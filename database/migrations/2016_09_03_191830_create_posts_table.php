@@ -19,11 +19,7 @@ class CreatePostsTable extends Migration
             $table->longText('text');
             $table->string('user');
             $table->string('community');
-            $table->boolean('trending')->default(false);
-            $table->boolean('liked')->default(false);
-            $table->boolean('reposted')->default(false);
-            $table->integer('likes');
-            $table->integer('reposts');
+            $table->boolean('is_trending')->default(false);
             $table->timestamp('created')->useCurrent();
             $table->timestamp('updated')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

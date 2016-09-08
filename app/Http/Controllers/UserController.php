@@ -8,20 +8,27 @@ use App\Http\Requests;
 use App\User;
 use App\Repost;
 use Auth;
+use App\Post;
 
 class UserController extends Controller
 {
   public function getProfile(){
-    $user_id = User::where('name','=',request()->user)->first()->id;
-    //return $user_id;
-    $data = [
-      'posts' => User::where('name','=',request()->user)->first()->posts,
-      'reposts' => Repost::where('user_id','=',$user_id)->get(),
-      'username' => request()->user,
-    ];
+    $user = User::where('name','=',Request()->user)->first(); //get the instance of the user.
 
-    //->post->text;
-    //return($data);
-    return view('showUserPosts', compact('data'));
+    $array = []; //create an empty array
+    foreach($user->reposts as $repost){
+      array_push($array,$repost->post->id); //add all the post_id's of the reposts
+    };
+
+    // Order by id descending | where id = arrary of repost | or where it is orginally posted by user.
+    $posts = Post::orderBy('id', 'DESC')->whereIn('id', $array)->orWhere('user_id','=',$user->id)->get();
+    return view('showUserPosts', compact('posts'));
+  }
+
+  public function toggleNewbieNotifications(){
+    $user = User::find(Auth::user()->id);
+    $user->newbieNotifications = 1;
+    $user->save();
+    return back();
   }
 }

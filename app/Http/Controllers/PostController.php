@@ -8,6 +8,7 @@ use App\Post;
 use App\Like;
 use App\User;
 use App\Repost;
+use App\Friend;
 use DB;
 use Auth;
 
@@ -25,7 +26,7 @@ class PostController extends Controller
 
     public function get()
     {
-      $posts = Post::all();
+      $posts = Post::orderBy('id', 'DESC')->get();
       return view('showAllPosts', compact('posts'));
     }
 
@@ -41,17 +42,47 @@ class PostController extends Controller
 
     public function repost(Post $post){
       //return $post->user;
-      if (!$post->reposts()->where('user','=',Auth::user()->name)->exists() && $post->user != Auth::user()->name){
-        Repost::insert(['user' => Auth::user()->name, 'post_id' => $post->id, 'user_id' => Auth::user()->id]);
+      //return $post->user;
+      if (!$post->reposts()->where('user_id','=',Auth::user()->id)->exists() && $post->user != Auth::user()->name){
+        //return $post->user_id;
+        Repost::insert(['op' => $post->user, 'post_id' => $post->id, 'user_id' => Auth::user()->id]);
       }else {
         //return Repost::where('user','=',Auth::user()->name)->delete();
         //$post->reposts()->where('user','=',Auth::user()->name)->delete();
-        Repost::where('user','=',Auth::user()->name)->delete();
+        Repost::where('user_id','=',Auth::user()->id)->where('post_id','=',$post->id)->delete();
       }
+      return back();
+      //return $post;
+    }
+
+    public function delete(){
+      Post::destroy(request()->id);
       return back();
     }
 
 
+    public function sort(){
+      //!App\Friend::where('user_id','=',1)->where('user','=',Auth::user()->name)->exists()
+      //return var_dump(!\App\Friend::where('user_id','=',1)->where('user','=',Auth::user()->name)->exists());
+
+      $friends = Friend::where('user','=',Auth::user()->name)->get();
+
+      $array = [];
+      foreach ($friends as $friend) {
+        //echo $friend->User."<br><br>";
+        $posts = $friend->User->posts;
+        //echo "<br>".$posts."<br>";
+        foreach($posts as $post){
+          //echo "<br>".$post->id."<br>";
+          array_push($array,$post->id);
+        }
+      }
+      //var_dump($array);
+      $posts = Post::orderBy('id', 'DESC')->whereIn('id', $array)->orWhere('user_id','=',Auth::user()->id)->get();
+      //return $posts;
+      return view('showAllPosts', compact('posts'));
+      //return Friend::first()->User;
+    }
 }
 
 /*

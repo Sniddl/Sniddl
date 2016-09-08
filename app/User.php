@@ -30,6 +30,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
 
+    /*public function Reposts()
+    {
+        return $this->hasMany('App\Repost');
+    }*/
+
+    public function Friends()
+    {
+        return $this->hasMany('App\Friend');
+    }
+
     public function Reposts()
     {
         return $this->hasMany('App\Repost');

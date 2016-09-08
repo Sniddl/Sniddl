@@ -29,3 +29,7 @@ Route::post('/create-post', 'PostController@create');
 Route::get('/like/{post}', 'PostController@like');
 Route::get('/repost/{post}', 'PostController@repost');
 Route::get('/u/{user}', 'UserController@getProfile');
+Route::get('/delete/{id}', 'PostController@delete');
+Route::get('/friend/{id}', 'FriendController@add');
+Route::get('/sort/{type}', 'PostController@sort');
+Route::get('/toggleNewbieNotifications', 'UserController@toggleNewbieNotifications');
