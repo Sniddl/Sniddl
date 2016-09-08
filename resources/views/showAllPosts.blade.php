@@ -18,19 +18,21 @@
     <div class="thumbnail">
       {{ $post->created }}
       <br/>
-      <a href="/u/{{ $post->User->name }}">{{ $post->User->name }}</a>
+      <a href="/u/{{ $post->User->username }}">{{ $post->User->name }}</a> {{'@'.$post->User->username}}
       <br/>
       <a href="/like/{{ $post->id }}">Like {{ $post->likes()->count() }}</a>
       <a href="/repost/{{ $post->id }}">Repost {{ $post->reposts()->count() }}</a>
-      {{ $post->text }}
+      <p>
+        {!! nl2br(e($post->text)) !!}
+      </p>
       @if(Auth::check())
-          @if (Auth::user()->name == $post->user)
+          @if (Auth::user()->username == $post->user)
               <br>
               <a href="/delete/{{$post->id}}">delete post</a>
           @else
               <br>
 
-              @if (!\App\Friend::where('user_id','=',$post->user_id)->where('user','=',Auth::user()->name)->exists())
+              @if (!\App\Friend::where('user_id','=',$post->user_id)->where('user','=',Auth::user()->username)->exists())
                   <a href="/friend/{{$post->user_id}}">Add friend</a>
               @else
                   <a href="/friend/{{$post->user_id}}">Remove Friend</a>
