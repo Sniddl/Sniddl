@@ -17,8 +17,8 @@ class PostController extends Controller
     //
     public function create()
     {
-      $user = User::where('name','=', Auth::user()->name)->first();
-      Post::insert(['text' => request()->text, 'user' => $user->name, 'user_id' => $user->id]);
+      $user = User::where('username','=', Auth::user()->username)->first();
+      Post::insert(['text' => request()->text, 'user' => $user->username, 'user_id' => $user->id]);
       //DB::table('posts')->update(['text' => "hehe I just chaned automatically!"]);
 
       return back();
@@ -31,10 +31,10 @@ class PostController extends Controller
     }
 
     public function like(Post $post){
-      if (!$post->likes()->where('user','=',Auth::user()->name)->exists()){
-        Like::insert(['user' => Auth::user()->name, 'post_id' => $post->id]);
+      if (!$post->likes()->where('user','=',Auth::user()->username)->exists()){
+        Like::insert(['user' => Auth::user()->username, 'post_id' => $post->id]);
       }else {
-        $post->likes()->where('user','=',Auth::user()->name)->delete();
+        $post->likes()->where('user','=',Auth::user()->username)->delete();
       }
       return back();
     }
@@ -43,7 +43,7 @@ class PostController extends Controller
     public function repost(Post $post){
       //return $post->user;
       //return $post->user;
-      if (!$post->reposts()->where('user_id','=',Auth::user()->id)->exists() && $post->user != Auth::user()->name){
+      if (!$post->reposts()->where('user_id','=',Auth::user()->id)->exists() && $post->user != Auth::user()->username){
         //return $post->user_id;
         Repost::insert(['op' => $post->user, 'post_id' => $post->id, 'user_id' => Auth::user()->id]);
       }else {
@@ -57,6 +57,7 @@ class PostController extends Controller
 
     public function delete(){
       Post::destroy(request()->id);
+      Repost::where('post_id','=',request()->id)->delete();
       return back();
     }
 
@@ -65,7 +66,7 @@ class PostController extends Controller
       //!App\Friend::where('user_id','=',1)->where('user','=',Auth::user()->name)->exists()
       //return var_dump(!\App\Friend::where('user_id','=',1)->where('user','=',Auth::user()->name)->exists());
 
-      $friends = Friend::where('user','=',Auth::user()->name)->get();
+      $friends = Friend::where('user','=',Auth::user()->username)->get();
 
       $array = [];
       foreach ($friends as $friend) {

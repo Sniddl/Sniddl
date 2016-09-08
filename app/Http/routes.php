@@ -24,6 +24,9 @@ Route::get('/home', 'HomeController@index');
 Route::get('/show-create-post', function () {
     return view('create-post');
 });
+Route::get('/updates', function () {
+    return view('updates');
+});
 
 Route::post('/create-post', 'PostController@create');
 Route::get('/like/{post}', 'PostController@like');
