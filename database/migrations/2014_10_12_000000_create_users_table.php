@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone');
             $table->boolean('newbieNotifications');
+            $table->string('avatar')->default('https://api.adorable.io/avatars/'.time().'.png');
             $table->rememberToken();
             $table->timestamps();
         });

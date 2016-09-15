@@ -9,6 +9,7 @@ use App\Like;
 use App\User;
 use App\Repost;
 use App\Friend;
+use App\Timeline;
 use DB;
 use Auth;
 
@@ -18,16 +19,51 @@ class PostController extends Controller
     public function create()
     {
       $user = User::where('username','=', Auth::user()->username)->first();
-      Post::insert(['text' => request()->text, 'user' => $user->username, 'user_id' => $user->id]);
-      //DB::table('posts')->update(['text' => "hehe I just chaned automatically!"]);
+      //Post::insert(['text' => request()->text, 'user' => $user->username, 'user_id' => $user->id]);
+      $post = new Post();
+      $post->text = request()->text;
+      $post->user = $user->username;
+      $post->user_id = $user->id;
+      $post->save();
+
+      $post_id = $post->id;
+
+      $timeline = new Timeline();
+      $timeline->post_id = $post_id;
+      $timeline->added_by = $user->username;
+      $timeline->is_repost = 0;
+      $timeline->save();
 
       return back();
+      //DB::table('posts')->update(['text' => "hehe I just chaned automatically!"]);
+      //return Response::json(array('success' => true, 'last_insert_id' => $data->id), 200);
+
     }
 
     public function get()
     {
-      $posts = Post::orderBy('id', 'DESC')->get();
-      return view('showAllPosts', compact('posts'));
+      /*$reposts = Repost::get();
+      $array = []; //create an empty array
+      foreach($reposts as $repost){
+        array_push($array,$repost->post->id); //add all the post_id's of the reposts
+      };
+      $allposts = Post::where('id','>=',0);
+      $reposts = Post::whereIn('id', $array);
+
+      //$posts = $allposts->union($reposts)->orderBy('id', 'DESC')->get();
+      $posts = Post::where('id','>=',0)->unionAll($reposts);
+      $posts = $posts->orderBy('id', 'DESC')->get();
+      //$posts::append($allposts);
+      //return $posts;
+      //$posts = Post::orderBy('id', 'DESC')->whereIn('id', $array)->orWhere('id','>=',0)->get();
+      //$posts = Post::where('id','>=',0)->get();
+      //return var_dump($posts);*/
+
+
+      $timeline = Timeline::orderBy('id', 'DESC' )->get();
+
+      //return $timeline;
+      return view('showAllPosts', compact('timeline'));
     }
 
     public function like(Post $post){
@@ -46,10 +82,17 @@ class PostController extends Controller
       if (!$post->reposts()->where('user_id','=',Auth::user()->id)->exists() && $post->user != Auth::user()->username){
         //return $post->user_id;
         Repost::insert(['op' => $post->user, 'post_id' => $post->id, 'user_id' => Auth::user()->id]);
+
+        $timeline = new Timeline();
+        $timeline->post_id = $post->id;
+        $timeline->added_by = Auth::user()->username;
+        $timeline->is_repost = 1;
+        $timeline->save();
       }else {
         //return Repost::where('user','=',Auth::user()->name)->delete();
         //$post->reposts()->where('user','=',Auth::user()->name)->delete();
         Repost::where('user_id','=',Auth::user()->id)->where('post_id','=',$post->id)->delete();
+        Timeline::where('post_id','=',$post->id)->where('is_repost','=',1)->where('added_by','=',Auth::user()->username)->delete();
       }
       return back();
       //return $post;
@@ -58,6 +101,7 @@ class PostController extends Controller
     public function delete(){
       Post::destroy(request()->id);
       Repost::where('post_id','=',request()->id)->delete();
+      Timeline::where('post_id','=',request()->id)->delete();
       return back();
     }
 
@@ -75,13 +119,13 @@ class PostController extends Controller
         //echo "<br>".$posts."<br>";
         foreach($posts as $post){
           //echo "<br>".$post->id."<br>";
-          array_push($array,$post->id);
+          array_push($array,$post->user);
         }
       }
       //var_dump($array);
-      $posts = Post::orderBy('id', 'DESC')->whereIn('id', $array)->orWhere('user_id','=',Auth::user()->id)->get();
+      $timeline = Timeline::orderBy('id', 'DESC')->whereIn( 'added_by', $array )->get();
       //return $posts;
-      return view('showAllPosts', compact('posts'));
+      return view('showAllPosts', compact('timeline'));
       //return Friend::first()->User;
     }
 }

@@ -61,13 +61,17 @@
                                 @include ('create-post')
                             </ul>
                         </li>
+
+                        <li><a style="position:relative;" href="/u/{{Auth::user()->username}}"><img class="img-circle" height="25px"  style="position:absolute; margin-top:-2px;" src="{{ Auth::user()->avatar }}"/></a></li>
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/u/{{ Auth::user()->username }}"><i class="fa fa-btn fa-sign-out"></i>My Profile</a></li>
+                                <li><a href="/u/{{ Auth::user()->username }}"><i class="fa fa-btn fa-user"></i>My Profile</a></li>
+                                <li><a href="/edit/profile"><i class="fa fa-btn fa-cog"></i>Edit Profile</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
 
                             </ul>
