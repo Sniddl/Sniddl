@@ -3,6 +3,15 @@
 
 
 <div class="container">
+
+  <h2>Update #3</h2>
+  <ul class="list-group">
+    <li class="list-group-item">Posts/reposts or anthing in the future will revolve around a timeline.</li>
+    <li class="list-group-item">There is now a section to edit your profile.</li>
+    <li class="list-group-item">Upload an avatar to fit your personality, or stick with the generated one.</li>
+  </ul>
+
+  
   <h2>Update #2</h2>
   <ul class="list-group">
     <li class="list-group-item">repost glitch fixed</li>
@@ -21,5 +30,9 @@
     <li class="list-group-item">Sort timeline by friends</li>
     <li class="list-group-item">delete posts</li>
   </ul>
+
+
+
+
 </div>
 @endsection

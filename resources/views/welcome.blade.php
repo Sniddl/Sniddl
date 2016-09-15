@@ -11,11 +11,18 @@
 
                 </div>
               @endif
-                @yield('posts')
+
+                @yield('edit')
             @else
-                Don't want to miss out? <a href="/login">Login</a> or <a href="register"> Register</a> to join the fun!
+            <div class="alert alert-warning">
+              <strong>Uh-Oh:</strong>   You aren't logged in to our website! <a href="/login">Login</a> or <a href="register"> Register</a> to join the fun!
+            </div>
+
 
             @endif
+
+            @yield('posts')
+
 
 
 

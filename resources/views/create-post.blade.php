@@ -1,5 +1,5 @@
 
-<form class="" action="create-post" method="post">
+<form class="" action="/create-post" method="post">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <div class="form-group">
     <textarea name="text" class="form-control vresize" rows="5"></textarea>

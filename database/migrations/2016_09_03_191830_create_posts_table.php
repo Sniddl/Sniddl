@@ -18,10 +18,10 @@ class CreatePostsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->longText('text');
             $table->string('user');
-            $table->string('community');
             $table->boolean('is_trending')->default(false);
-            $table->timestamp('created')->useCurrent();
-            $table->timestamp('updated')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamps();
+            //$table->timestamp('created')->useCurrent();
+            //$table->timestamp('updated')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

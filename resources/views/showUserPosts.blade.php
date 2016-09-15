@@ -3,29 +3,60 @@
 
 
 <div class="container">
-  <h3>{{ \App\User::where('username','=',Request::segment(2))->first()->name }}</h3>
+  <? $user = \App\User::where('username','=',Request::segment(2))->first();
+  ?>
 
-  @foreach ($posts as $post)
+  <h3><img class="img-circle" height="50px" style ="margin-right:10px;" src="{{ $user->avatar }}"/>{{ $user->name }}'s Profile</h3>
+
+
+  @if(Auth::check() && Auth::user()->username != $user->username)
+      <?
+        $friend = \App\Friend::where('user_id','=', $user->id )->where('user', '=', Auth::user()->username);
+      ?>
+      @if(!$friend->exists())
+        <a href="/friend/{{$user->id}}">Add friend</a>
+      @else
+        <a href="/friend/{{$user->id}}">Remove Friend</a>
+      @endif
+  @elseif(Auth::check() && Auth::user()->username != $user->username)
+      <a href="/edit/profile">Edit Profile</a>
+  @endif
+
+
+  <br><br><br><br>
+
+
+  @foreach ($timeline as $timeline)
+  <?$post = $timeline->post; ?>
 
     <div class="thumbnail">
           <div>
-            {{ $post->created }}
+            {{ $post->created_at }}
             @if($post->user != Request::segment(2))
-                  <strong>Reposted by {{Request::segment(2)}}</strong>
+                  <strong>{{$user->name}} reposted</strong>
             @endif
           </div>
+
           <div>
-            Posted by: <a href="/u/{{ $post->user }}">{{ $post->user }}</a>
+            <img class="img-circle" height="50px" style ="margin-right:10px;" src="{{ $post->User->avatar }}"/>
+            <a href="/u/{{ $post->user }}">{{ $post->User->name }}</a>
           </div>
+
           <div>
             {!! nl2br(e($post->text)) !!}
           </div>
-          <a href="/like/{{ $post->id }}">Like {{ $post->likes()->count() }}</a>
-          <a href="/repost/{{ $post->id }}">Repost {{ $post->reposts()->count() }}</a>
+
+          <div class="">
+            <a href="/like/{{ $post->id }}">Like {{ $post->likes()->count() }}</a>
+            <a href="/repost/{{ $post->id }}">Repost {{ $post->reposts()->count() }}</a>
+          </div>
+
 
     </div>
 
   @endforeach
+
+  @yield('edit')
 
 
 

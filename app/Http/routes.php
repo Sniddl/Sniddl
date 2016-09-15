@@ -36,3 +36,10 @@ Route::get('/delete/{id}', 'PostController@delete');
 Route::get('/friend/{id}', 'FriendController@add');
 Route::get('/sort/{type}', 'PostController@sort');
 Route::get('/toggleNewbieNotifications', 'UserController@toggleNewbieNotifications');
+
+Route::get('/edit/profile', function () {
+    return view('editProfile');
+});
+
+Route::post('/edit/profile/avatar', 'UserController@update_avatar');
+Route::post('/edit/profile/avatargen', 'UserController@generate_avatar');
