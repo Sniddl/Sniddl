@@ -3,16 +3,16 @@
 
 
 <div class="container">
-  <? $user = \App\User::where('username','=',Request::segment(2))->first();
-  ?>
+   {{-- */ $user = \App\User::where('username','=',Request::segment(2))->first(); /* --}}
+
 
   <h3><img class="img-circle" height="50px" style ="margin-right:10px;" src="{{ $user->avatar }}"/>{{ $user->name }}'s Profile</h3>
 
 
   @if(Auth::check() && Auth::user()->username != $user->username)
-      <?
+      {{-- */
         $friend = \App\Friend::where('user_id','=', $user->id )->where('user', '=', Auth::user()->username);
-      ?>
+      /* --}}
       @if(!$friend->exists())
         <a href="/friend/{{$user->id}}">Add friend</a>
       @else
