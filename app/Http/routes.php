@@ -24,6 +24,11 @@ Route::get('/home', 'HomeController@index');
 Route::get('/show-create-post', function () {
     return view('create-post');
 });
+
+Route::get('/signup', function () {
+    return view('auth/signup');
+});
+
 Route::get('/updates', function () {
     return view('updates');
 });

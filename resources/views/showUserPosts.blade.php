@@ -18,7 +18,7 @@
       @else
         <a href="/friend/{{$user->id}}">Remove Friend</a>
       @endif
-  @elseif(Auth::check() && Auth::user()->username != $user->username)
+  @elseif(Auth::check() && Auth::user()->username = $user->username)
       <a href="/edit/profile">Edit Profile</a>
   @endif
 
@@ -46,10 +46,21 @@
             {!! nl2br(e($post->text)) !!}
           </div>
 
-          <div class="">
-            <a href="/like/{{ $post->id }}">Like {{ $post->likes()->count() }}</a>
-            <a href="/repost/{{ $post->id }}">Repost {{ $post->reposts()->count() }}</a>
-          </div>
+          @if(Auth::check())
+            @if (Auth::user()->username == $post->user)
+              <br>
+              <a href="/delete/{{$post->id}}">delete post</a>
+            @endif
+            <div class="">
+              <a href="/like/{{ $post->id }}">Like {{ $post->likes()->count() }}</a>
+              <a href="/repost/{{ $post->id }}">Repost {{ $post->reposts()->count() }}</a>
+            </div>
+          @else
+            <div class="">
+              <a href="/signup">Like {{ $post->likes()->count() }}</a>
+              <a href="/signup">Repost {{ $post->reposts()->count() }}</a>
+            </div>
+          @endif
 
 
     </div>

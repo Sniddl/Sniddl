@@ -9,7 +9,12 @@
     <a href="/">Show all posts</a>
   @else
     <h3>All Posts</h3>
-    <a href="/sort/friends">Only show posts by friends</a>
+    @if(Auth::check())
+      <a href="/sort/friends">Only show posts by friends</a>
+    @else
+      <a href="/signup">Only show posts by friends</a>
+    @endif
+
   @endif
 
 
@@ -53,10 +58,17 @@
 
       </div>
 
+      @if(Auth::check())
+        <div class="">
+          <a href="/like/{{ $post->id }}">Like {{ $post->likes()->count() }}</a>
+          <a href="/repost/{{ $post->id }}">Repost {{ $post->reposts()->count() }}</a>
+        </div>
+      @else
       <div class="">
-        <a href="/like/{{ $post->id }}">Like {{ $post->likes()->count() }}</a>
-        <a href="/repost/{{ $post->id }}">Repost {{ $post->reposts()->count() }}</a>
+        <a href="/signup">Like {{ $post->likes()->count() }}</a>
+        <a href="/signup">Repost {{ $post->reposts()->count() }}</a>
       </div>
+      @endif
 
     </div>
   @endforeach
