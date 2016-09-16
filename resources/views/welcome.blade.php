@@ -15,11 +15,13 @@
                 @yield('edit')
             @else
             <div class="alert alert-warning">
-              <strong>Uh-Oh:</strong>   You aren't logged in to our website! <a href="/login">Login</a> or <a href="register"> Register</a> to join the fun!
+              <strong>Uh-Oh:</strong>   You aren't logged into our website! <a href="/login">Login</a> or <a href="register"> Register</a> to join the fun!
             </div>
 
 
             @endif
+
+            
 
             @yield('posts')
 

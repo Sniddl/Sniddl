@@ -207,6 +207,12 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
 
+        'Like' => App\Like::class,
+        'Post' => App\Post::class,
+        'Repost' => App\Repost::class,
+        'Timeline' => App\Timeline::class,
+        'User' => App\User::class,
+
     ],
 
 ];

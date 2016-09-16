@@ -41,7 +41,7 @@ class UserController extends Controller
   public function update_avatar(Request $request) {
 
     $this->validate($request, [
-      'avatar' => 'required|image|image_size:<=500,<=500|image_aspect:1',
+      'avatar' => 'required|image',
     ]);
 
       $old_file = public_path(Auth::user()->avatar);
@@ -61,7 +61,7 @@ class UserController extends Controller
 
         $filename = time(). '.' . $avatar->getClientOriginalExtension();
         //File::exists(storage_path('upload/avatars/' . $postId)) or File::makeDirectory(storage_path('upload/avatars/' . $postId));
-        Image::make($avatar)->save( public_path('/uploads/avatars/' . $filename) );
+        Image::make($avatar)->fit(300)->save( public_path('/uploads/avatars/' . $filename) );
 
         $user = Auth::user();
         $user->avatar = '/uploads/avatars/' . $filename;
