@@ -36,7 +36,7 @@
 
 
 
-      <div class="">
+      <div class="post-text">
         {!! nl2br(e($post->text)) !!}
       </div>
 
@@ -72,5 +72,12 @@
 
     </div>
   @endforeach
+
+
+
+  <script>$('.post-text').each(function() {
+    newhtml = $(this).html().trim()
+    $(this).html(newhtml+"a");
+  });</script>
 </div>
 @endsection
