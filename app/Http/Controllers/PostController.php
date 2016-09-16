@@ -16,12 +16,17 @@ use Auth;
 class PostController extends Controller
 {
     //
-    public function create()
+    public function create(Request $request)
     {
+      $this->validate($request, [
+        'text' => 'required|string',
+      ]);
+
       $user = User::where('username','=', Auth::user()->username)->first();
       //Post::insert(['text' => request()->text, 'user' => $user->username, 'user_id' => $user->id]);
+      return var_dump($request->text);
       $post = new Post();
-      $post->text = request()->text;
+      $post->text = $request->text;
       $post->user = $user->username;
       $post->user_id = $user->id;
       $post->save();

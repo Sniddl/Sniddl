@@ -36,7 +36,7 @@
 
 
 
-      <div class="">
+      <div class="post-text">
         {!! nl2br(e($post->text)) !!}
       </div>
 
@@ -72,5 +72,7 @@
 
     </div>
   @endforeach
+
+
 </div>
 @endsection
