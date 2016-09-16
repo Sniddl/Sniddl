@@ -24,7 +24,7 @@ class PostController extends Controller
 
       $user = User::where('username','=', Auth::user()->username)->first();
       //Post::insert(['text' => request()->text, 'user' => $user->username, 'user_id' => $user->id]);
-      return var_dump($request->text);
+      //return var_dump($request->text);
       $post = new Post();
       $post->text = $request->text;
       $post->user = $user->username;
