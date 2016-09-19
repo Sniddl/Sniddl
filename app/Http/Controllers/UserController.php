@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\User;
+use App\Friend;
 use App\Repost;
 use App\Timeline;
+
 use Auth;
 use App\Post;
 use Image;
@@ -25,8 +27,14 @@ class UserController extends Controller
     };
 
     // Order by id descending | where id = arrary of repost | or where it is orginally posted by user.*/
-    $timeline = Timeline::orderBy('id', 'DESC' )->where('added_by','=',Request()->user)->get();
-    return view('showUserPosts', compact('timeline'));
+    $data = [
+      'timeline' => Timeline::orderBy('id', 'DESC' )->where('added_by','=',Request()->user)->get(),
+      'following' => Friend::where('user','=',Request()->user)->get(),
+    ];
+
+
+
+    return view('showUserPosts', compact('data'));
     //return \App\User::where('username','=',Request::segment(2))->first()->name;
   }
 
@@ -75,19 +83,26 @@ class UserController extends Controller
 
 
   public function generate_avatar() {
-    $length = 10;
+    $length = 15;
+
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    //return $randomString;
 
-    $user = Auth::user();
+    $avatars = [];
+    for ($j = 0; $j < 15; $j++) {
+      $randomString = '';
+      for ($i = 0; $i < $length; $i++) {
+          $randomString .= $characters[rand(0, $charactersLength - 1)];
+      }
+      array_push($avatars, $randomString);
+    }
+    //return var_dump($data);
+    //return $randomString;
+    //$data = 'https://api.adorable.io/avatars/'.$randomString.'.png';
+    /*$user = Auth::user();
     $user->avatar = 'https://api.adorable.io/avatars/'.$randomString.'.png';
-    $user->save();
-    return back();
+    $user->save();*/
+    return view('generateAvatar', compact('avatars'));
 
   }
 }

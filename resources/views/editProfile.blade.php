@@ -24,7 +24,7 @@
     <input type="submit" class="btn btn-sm btn-primary" value="Generate">
   </form>
 
-
+  @yield('generateAvatar')
   <br><br>
   <form class="" enctype="multipart/form-data" action="/edit/profile/avatar" method="POST">
     <label>Update Profile Image</label>

@@ -47,29 +47,13 @@ class PostController extends Controller
 
     public function get()
     {
-      /*$reposts = Repost::get();
-      $array = []; //create an empty array
-      foreach($reposts as $repost){
-        array_push($array,$repost->post->id); //add all the post_id's of the reposts
-      };
-      $allposts = Post::where('id','>=',0);
-      $reposts = Post::whereIn('id', $array);
-
-      //$posts = $allposts->union($reposts)->orderBy('id', 'DESC')->get();
-      $posts = Post::where('id','>=',0)->unionAll($reposts);
-      $posts = $posts->orderBy('id', 'DESC')->get();
-      //$posts::append($allposts);
-      //return $posts;
-      //$posts = Post::orderBy('id', 'DESC')->whereIn('id', $array)->orWhere('id','>=',0)->get();
-      //$posts = Post::where('id','>=',0)->get();
-      //return var_dump($posts);*/
-
-
       $timeline = Timeline::orderBy('id', 'DESC' )->get();
 
       //return $timeline;
       return view('showAllPosts', compact('timeline'));
     }
+
+
 
     public function like(Post $post){
       if (!$post->likes()->where('user','=',Auth::user()->username)->exists()){
@@ -79,6 +63,8 @@ class PostController extends Controller
       }
       return back();
     }
+
+
 
 
     public function repost(Post $post){
