@@ -34,7 +34,7 @@ class UserController extends Controller
 
 
 
-    return view('showUserPosts', compact('data'));
+    return view('profile.show', compact('data'));
     //return \App\User::where('username','=',Request::segment(2))->first()->name;
   }
 
@@ -82,27 +82,27 @@ class UserController extends Controller
 
 
 
-  public function generate_avatar() {
+  public function generateAvatar() {
     $length = 15;
 
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
 
-    $avatars = [];
-    for ($j = 0; $j < 15; $j++) {
+    //$avatars = [];
+    //for ($j = 0; $j < 15; $j++) {
       $randomString = '';
       for ($i = 0; $i < $length; $i++) {
           $randomString .= $characters[rand(0, $charactersLength - 1)];
       }
-      array_push($avatars, $randomString);
-    }
+      //array_push($avatars, $randomString);
+  //  }
     //return var_dump($data);
     //return $randomString;
     //$data = 'https://api.adorable.io/avatars/'.$randomString.'.png';
-    /*$user = Auth::user();
+    $user = Auth::user();
     $user->avatar = 'https://api.adorable.io/avatars/'.$randomString.'.png';
-    $user->save();*/
-    return view('generateAvatar', compact('avatars'));
+    $user->save();
+    return back();
 
   }
 }
