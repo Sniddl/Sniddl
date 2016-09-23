@@ -21,10 +21,12 @@
 
             @endif
 
-            
+
 
             @yield('posts')
 
+
+          
 
 
 
