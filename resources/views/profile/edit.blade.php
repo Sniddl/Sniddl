@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('home')
 @section('edit')
 
 @if (count($errors) > 0)

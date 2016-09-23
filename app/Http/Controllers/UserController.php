@@ -18,24 +18,32 @@ use File;
 
 class UserController extends Controller
 {
-  public function getProfile(){
-  /*  $user = User::where('username','=',Request()->user)->first(); //get the instance of the user.
-
-    $array = []; //create an empty array
-    foreach($user->reposts as $repost){
-      array_push($array,$repost->post->id); //add all the post_id's of the reposts
-    };
-
-    // Order by id descending | where id = arrary of repost | or where it is orginally posted by user.*/
+  public function getProfile($user, $list = null){
+    $user = User::where('username','=', $user)->first();
     $data = [
-      'timeline' => Timeline::orderBy('id', 'DESC' )->where('added_by','=',Request()->user)->get(),
-      'following' => Friend::where('user','=',Request()->user)->get(),
+      'timeline' => Timeline::orderBy('id', 'DESC' )->where('added_by','=',$user->username)->get(),
+      'following' => Friend::where('user','=',$user->username)->get(),
+      'followers' => Friend::where('user_id','=', $user->id)->get(),
     ];
 
+    switch ($list) {
+      case 'following':
+        return view('profile.lists.following', compact('data'));
+        break;
+      case 'followers':
+        return view('profile.lists.followers', compact('data'));
+        break;
 
+      default:
+        return view('profile.lists.posts', compact('data'));
+        break;
+    }
 
-    return view('showUserPosts', compact('data'));
-    //return \App\User::where('username','=',Request::segment(2))->first()->name;
+    /*if ($list == "following"){
+      return view('profile.lists.following', compact('data'));
+    }
+    return view('profile.lists.posts', compact('data'));
+*/
   }
 
   public function toggleNewbieNotifications(){
@@ -82,27 +90,27 @@ class UserController extends Controller
 
 
 
-  public function generate_avatar() {
+  public function generateAvatar() {
     $length = 15;
 
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
 
-    $avatars = [];
-    for ($j = 0; $j < 15; $j++) {
+    //$avatars = [];
+    //for ($j = 0; $j < 15; $j++) {
       $randomString = '';
       for ($i = 0; $i < $length; $i++) {
           $randomString .= $characters[rand(0, $charactersLength - 1)];
       }
-      array_push($avatars, $randomString);
-    }
+      //array_push($avatars, $randomString);
+  //  }
     //return var_dump($data);
     //return $randomString;
     //$data = 'https://api.adorable.io/avatars/'.$randomString.'.png';
-    /*$user = Auth::user();
+    $user = Auth::user();
     $user->avatar = 'https://api.adorable.io/avatars/'.$randomString.'.png';
-    $user->save();*/
-    return view('generateAvatar', compact('avatars'));
+    $user->save();
+    return back();
 
   }
 }
