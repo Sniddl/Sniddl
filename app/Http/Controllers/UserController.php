@@ -14,6 +14,7 @@ use Auth;
 use App\Post;
 use Image;
 use File;
+use DB;
 
 
 class UserController extends Controller
@@ -112,5 +113,13 @@ class UserController extends Controller
     $user->save();
     return back();
 
+  }
+
+  public function updateName(Request $request){
+    $name = $request->get('displayname');
+    DB::table('users')
+              ->where('id', Auth::user()->id)
+              ->update(['name' => $name]);
+    return back();
   }
 }

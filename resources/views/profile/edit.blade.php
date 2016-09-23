@@ -35,8 +35,8 @@
 
   <!--Change display name-->
   <h3>Change display name</h3>
-    <form action="">
-      <input type="text" name="displayname" placeholder="{{ Auth::user()->username }}">
+    <form action="/changeName">
+      <input type="text" name="displayname" placeholder="{{ Auth::user()->name }}">
       <input type="submit" class="btn btn-sm btn-primary" value="Update">
     </form>
   <!--Change password-->
