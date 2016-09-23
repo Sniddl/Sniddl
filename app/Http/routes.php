@@ -27,6 +27,7 @@ Route::get('/sort/{type}', 'PostController@sort');
 Route::get('/toggleNewbieNotifications', 'UserController@toggleNewbieNotifications');
 Route::get('/u/{user}/{list}', 'UserController@getProfile');
 Route::get('/changeName', 'UserController@updateName');
+Route::get('/changePWD', 'UserController@changePWD');
 
 
 /*⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯

@@ -41,10 +41,11 @@
     </form>
   <!--Change password-->
   <h3>Change password</h3>
-  <form action="POST" style="padding-top: 30px;">
+  <form action="/changePWD" style="padding-top: 30px;">
     <input type="text" name="currentpassword" placeholder="Current password">
     <input type="text" name="newpassword" placeholder="New password">
     <input type="text" name="verifynewpwd" placeholder="Verify new password">
+    <input type="submit" class="btn btn-sm btn-primary" value="Update">
   </form>
   <!--Disallow search for the user-->
   <h3>Allow for users to search for your profile</h3>

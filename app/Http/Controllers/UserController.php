@@ -115,11 +115,35 @@ class UserController extends Controller
 
   }
 
+  // Allows the user the change their name
   public function updateName(Request $request){
     $name = $request->get('displayname');
     DB::table('users')
               ->where('id', Auth::user()->id)
               ->update(['name' => $name]);
+    return back();
+  }
+
+  // Changes password
+  public function changePWD(Request $request){
+    $currentpwd = $request->get('currentpassword');
+    $newpwd     = $request->get('newpassword');
+    $verifypwd  = $request->get('verifynewpwd');
+    if (password_verify($currentpwd, Auth::user()->password)){
+      if($newpwd === $verifypwd){
+        DB::table('users')
+                  ->where('id', Auth::user()->id)
+                  ->update(['password' => bcrypt($verifypwd)]);
+      }else{
+        DB::table('users')
+                  ->where('id', Auth::user()->id)
+                  ->update(['name' => "PWDCHNGE_ERROR"]);
+      }
+    }else {
+        DB::table('users')
+                  ->where('id', Auth::user()->id)
+                  ->update(['name' => "PWDCHNGE_ERROR"]);
+    }
     return back();
   }
 }
