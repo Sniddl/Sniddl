@@ -39,6 +39,7 @@
       <input type="text" name="displayname" placeholder="{{{ Auth::user()->name }}}">
       <input type="submit" class="btn btn-sm btn-primary" value="Update">
     </form>
+  <!--Checking Commits-->
   <!--Change password-->
   <h3>Change password</h3>
   <form action="/changePWD" style="padding-top: 30px;">
