@@ -15,6 +15,7 @@ use App\Post;
 use Image;
 use File;
 use DB;
+use Validator;
 
 
 class UserController extends Controller
