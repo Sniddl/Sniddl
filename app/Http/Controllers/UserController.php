@@ -9,6 +9,7 @@ use App\User;
 use App\Friend;
 use App\Repost;
 use App\Timeline;
+use App\Http\Controllers\Auth\AuthController;
 
 use Auth;
 use App\Post;
@@ -16,6 +17,7 @@ use Image;
 use File;
 use DB;
 use Validator;
+
 
 
 class UserController extends Controller
@@ -117,16 +119,30 @@ class UserController extends Controller
   }
 
   // Allows the user the change their name
-  public function updateName(Request $request){
+  public function updateName(Request $request)
+  {
+    $this->validate($request,[
+      'displayname' => 'Min:3|Max:254|Alpha_dash|filled|regex:/^[0-9a-zA-Zs\s\-\_]*$/'
+    ]);
+
     $name = $request->get('displayname');
-    DB::table('users')
-              ->where('id', Auth::user()->id)
-              ->update(['name' => $name]);
+    if ($name === Auth::user()->name){
+      return back();
+    }else{
+      DB::table('users')
+                ->where('id', Auth::user()->id)
+                ->update(['name' => $name]);
+    }
     return back();
   }
 
   // Changes password
   public function changePWD(Request $request){
+    $this->validate($request,[
+      'currentpassword'=>'required|filled',
+      'newpassword'=> 'required|Min:6|filled',
+      'verifynewpwd'=> 'required|Min:6|filled'
+    ]);
     $currentpwd = $request->get('currentpassword');
     $newpwd     = $request->get('newpassword');
     $verifypwd  = $request->get('verifynewpwd');
@@ -150,6 +166,9 @@ class UserController extends Controller
 
   // Allows the user the change their email
   public function changeEmail(Request $request){
+    $this->validate($request,[
+      'changeemail'=>'required|filled|email',
+    ]);
     $changeemail = $request->get('changeemail');
     DB::table('users')
               ->where('id', Auth::user()->id)
