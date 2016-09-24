@@ -147,4 +147,13 @@ class UserController extends Controller
     }
     return back();
   }
+
+  // Allows the user the change their email
+  public function changeEmail(Request $request){
+    $changeemail = $request->get('changeemail');
+    DB::table('users')
+              ->where('id', Auth::user()->id)
+              ->update(['email' => $changeemail]);
+    return back();
+  }
 }

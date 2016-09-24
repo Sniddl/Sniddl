@@ -47,6 +47,12 @@
     <input type="text" name="verifynewpwd" placeholder="Verify new password">
     <input type="submit" class="btn btn-sm btn-primary" value="Update">
   </form>
+  <!--Change email-->
+  <h3>Change email</h3>
+  <form action="/changeEmail" style="padding-top: 30px;">
+    <input type="text" name="changeemail" placeholder="Current password">
+    <input type="submit" class="btn btn-sm btn-primary" value="Update">
+  </form>
   <!--Disallow search for the user-->
   <h3>Allow for users to search for your profile</h3>
   <input type="checkbox" name="privatetickbox">
