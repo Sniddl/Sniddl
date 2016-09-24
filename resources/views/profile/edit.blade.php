@@ -13,7 +13,7 @@
 
 <div class="container">
   <img class="img-circle" height="100px" src="{{ Auth::user()->avatar }}"/>
-  <h1>Editing {{ Auth::user()->username }}'s profile...</h1>
+  <h1>Editing {{{ Auth::user()->username }}}'s profile...</h1>
 
 
 
@@ -36,21 +36,21 @@
   <!--Change display name-->
   <h3>Change display name</h3>
     <form action="/changeName">
-      <input type="text" name="displayname" placeholder="{{ Auth::user()->name }}">
+      <input type="text" name="displayname" placeholder="{{{ Auth::user()->name }}}">
       <input type="submit" class="btn btn-sm btn-primary" value="Update">
     </form>
   <!--Change password-->
   <h3>Change password</h3>
   <form action="/changePWD" style="padding-top: 30px;">
-    <input type="text" name="currentpassword" placeholder="Current password">
-    <input type="text" name="newpassword" placeholder="New password">
-    <input type="text" name="verifynewpwd" placeholder="Verify new password">
+    <input type="password" name="currentpassword" placeholder="Current password">
+    <input type="password" name="newpassword" placeholder="New password">
+    <input type="password" name="verifynewpwd" placeholder="Verify new password">
     <input type="submit" class="btn btn-sm btn-primary" value="Update">
   </form>
   <!--Change email-->
   <h3>Change email</h3>
   <form action="/changeEmail" style="padding-top: 30px;">
-    <input type="text" name="changeemail" placeholder="Current password">
+    <input type="text" name="changeemail" placeholder="{{{Auth::user()->email}}}">
     <input type="submit" class="btn btn-sm btn-primary" value="Update">
   </form>
   <!--Disallow search for the user-->
