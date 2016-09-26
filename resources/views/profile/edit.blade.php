@@ -12,7 +12,7 @@
 @endif
 
 <div class="container">
-  <img class="img-circle" height="100px" src="{{ Auth::user()->avatar }}"/>
+  <img class="img-circle" height="100px" width="100px" src="{{ Auth::user()->avatar }}" style="background-color: #{{Auth::user()->color}}"/>
   <h1>Editing {{{ Auth::user()->username }}}'s profile...</h1>
 
 

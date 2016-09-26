@@ -95,28 +95,54 @@ class UserController extends Controller
 
 
   public function generateAvatar() {
-    $length = 15;
 
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
+    $hex = dechex(rand(0x000000, 0xFFFFFF));
 
-    //$avatars = [];
-    //for ($j = 0; $j < 15; $j++) {
-      $randomString = '';
-      for ($i = 0; $i < $length; $i++) {
-          $randomString .= $characters[rand(0, $charactersLength - 1)];
-      }
-      //array_push($avatars, $randomString);
-  //  }
-    //return var_dump($data);
-    //return $randomString;
-    //$data = 'https://api.adorable.io/avatars/'.$randomString.'.png';
-    $user = Auth::user();
-    $user->avatar = 'https://api.adorable.io/avatars/'.$randomString.'.png';
+    if ($this->hexInfo($hex, 'contrast') >= 130) {
+      //bright color use dark text
+      $textColor =  'black';
+    }else {
+      //dark color use light text
+      $textColor = 'white';
+    }
+
+    $user = User::find(Auth::user()->id);
+    $user->avatar = '/uploads/avatars/letters/'.$textColor.'/'.strtolower(Auth::user()->name[0]).'.png';
+    $user->color = $hex;
     $user->save();
+
     return back();
 
+
+
   }
+
+
+
+  public function hexInfo($hex, $method=null){
+    //$hex = dechex(rand(0x000000, 0xFFFFFF));
+    $r = hexdec(substr($hex,0,2));
+    $g = hexdec(substr($hex,2,2));
+    $b = hexdec(substr($hex,4,2));
+
+    switch ($method) {
+      case 'contrast':
+        return sqrt($r * $r * .241 +
+                    $g * $g * .691 +
+                    $b * $b * .068);
+        break;
+
+      default:
+        return [
+          'r '=> $r,
+          'g' => $g,
+          'b' => $b,
+        ];
+
+    }
+  }
+
+
 
   // Allows the user the change their name
   public function updateName(Request $request)
@@ -131,7 +157,7 @@ class UserController extends Controller
     }else{
       DB::table('users')
                 ->where('id', Auth::user()->id)
-                ->update(['name' => $name]);
+                ->update(['name' => $name,]);
     }
     return back();
   }

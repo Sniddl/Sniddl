@@ -65,14 +65,24 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $hex = dechex(rand(0x000000, 0xFFFFFF));
+
+        if (User::hexInfo($hex, 'constrast') > 382) {
+          //bright color use dark text
+          $textColor =  'black';
+        }else {
+          //dark color use light text
+          $textColor = 'white';
+        }
+
         return User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'phone' => bcrypt($data['phone']),
-            'avatar' => '/uploads/avatars/letters/'.$data['name'][0].'_w.gif',
-            'color' => ''.dechex(rand(0x000000, 0xFFFFFF)).'',
+            'avatar' => '/uploads/avatars/letters/'.$textColor.'/'.$data['name'][0].'.png',
+            'color' => $hex,
         ]);
     }
 }
