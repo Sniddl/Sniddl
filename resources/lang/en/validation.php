@@ -93,8 +93,28 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'displayname' => [
+            'min' => 'Your display name must be 3 characters or more',
+            'filled' => 'Your name cannot be blank',
+        ],
+        'currentpassword' => [
+            'required' => 'Please enter your current password',
+            'filled'=>'Please enter your current password'
+        ],
+        'newpassword' => [
+            'required' => 'Please enter a new password',
+            'min' => 'Your new password must be 6 characters or more',
+            'filled' => 'Please enter a new password',
+        ],
+        'verifynewpwd' => [
+            'required' => 'Please verify your new password',
+            'min' => 'Your password must be 6 characters or more',
+            'filled' => 'Please verify your new password',
+        ],
+        'changeemail' => [
+            'required' => 'Please enter an email',
+            'filled' => 'Please enter an email',
+            'email' => 'Please enter a valid email',
         ],
     ],
 

@@ -60,7 +60,7 @@
                             </ul>
                         </li>
 
-                        <li><a style="position:relative;" href="/u/{{Auth::user()->username}}"><img class="img-circle" height="25px"  style="position:absolute; margin-top:-2px;" src="{{ Auth::user()->avatar }}"/></a></li>
+                        <li><a style="position:relative" href="/u/{{Auth::user()->username}}"><img class="img-circle" height="25px" width="25px" style="position:absolute; margin-top:-2px; background-color:#{{Auth::user()->color}};" src="{{ Auth::user()->avatar }}"/></a></li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
