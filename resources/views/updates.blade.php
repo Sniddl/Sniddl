@@ -1,4 +1,4 @@
-@extends ('welcome')
+@extends ('home')
 @section('posts')
 
 
@@ -11,7 +11,7 @@
     <li class="list-group-item">Upload an avatar to fit your personality, or stick with the generated one.</li>
   </ul>
 
-  
+
   <h2>Update #2</h2>
   <ul class="list-group">
     <li class="list-group-item">repost glitch fixed</li>
