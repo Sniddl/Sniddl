@@ -9,8 +9,7 @@
             <a href="/u/{{$follower->user}}">{{$follower->user}}</a>
             <small>{{'@'.$follower->user}}
               @if($follower->user != Auth::user()->username)
-                  {{--*/ $user = \App\User::where('username','=','$follower->user')->get() /*--}}
-                  <h1>{{$user}}</h1>
+                  {{--*/ $user = \App\User::where('username', '=', $follower->user)->first() /*--}}
                   @if(!\App\Friend::where('user_id','=', $user->id )->where('user', '=', Auth::user()->username)->exists())
                     <a href="/friend/{{$follower->User->id}}">Add friend</a>
                   @else
