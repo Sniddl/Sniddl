@@ -22,13 +22,21 @@ use Validator;
 
 class UserController extends Controller
 {
+
+
   public function getProfile($user, $list = null){
     $user = User::where('username','=', $user)->first();
+    //return $user->id;
     $data = [
       'timeline' => Timeline::orderBy('id', 'DESC' )->where('added_by','=',$user->username)->get(),
-      'following' => Friend::where('user','=',$user->username)->get(),
+      'following' => Friend::where('follower','=',$user->username)->get(),
       'followers' => Friend::where('user_id','=', $user->id)->get(),
+      'friends' => Friend::where('follower','=', $user->username)
+                          ->where('are_friends','=',1)
+                          ->get()
     ];
+
+    //return $data['friends']->User;
 
     switch ($list) {
       case 'following':
@@ -36,6 +44,9 @@ class UserController extends Controller
         break;
       case 'followers':
         return view('profile.lists.followers', compact('data'));
+        break;
+      case 'friends':
+        return view('profile.lists.friends', compact('data'));
         break;
 
       default:
@@ -96,9 +107,11 @@ class UserController extends Controller
 
   public function generateAvatar() {
 
-    $hex = dechex(rand(0x000000, 0xFFFFFF));
 
-    if ($this->hexInfo($hex, 'contrast') >= 130) {
+
+    $hex = generateHex();
+
+    if (hexInfo($hex, 'contrast') >= 130) {
       //bright color use dark text
       $textColor =  'black';
     }else {
@@ -111,7 +124,7 @@ class UserController extends Controller
     $user->color = $hex;
     $user->save();
 
-    return back();
+    return var_dump(hexInfo($hex, 'contrast'));
 
 
 
@@ -119,28 +132,6 @@ class UserController extends Controller
 
 
 
-  public function hexInfo($hex, $method=null){
-    //$hex = dechex(rand(0x000000, 0xFFFFFF));
-    $r = hexdec(substr($hex,0,2));
-    $g = hexdec(substr($hex,2,2));
-    $b = hexdec(substr($hex,4,2));
-
-    switch ($method) {
-      case 'contrast':
-        return sqrt($r * $r * .241 +
-                    $g * $g * .691 +
-                    $b * $b * .068);
-        break;
-
-      default:
-        return [
-          'r '=> $r,
-          'g' => $g,
-          'b' => $b,
-        ];
-
-    }
-  }
 
 
 
@@ -148,7 +139,7 @@ class UserController extends Controller
   public function updateName(Request $request)
   {
     $this->validate($request,[
-      'displayname' => 'Min:3|Max:254|Alpha_dash|filled|regex:/^[0-9a-zA-Zs\s\-\_]*$/'
+      'displayname' => 'Min:3|max:50|filled|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/'
     ]);
 
     $name = $request->get('displayname');

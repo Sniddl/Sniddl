@@ -29,6 +29,7 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+    protected $username = 'username';
 
     /**
      * Create a new authentication controller instance.
@@ -49,8 +50,8 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255|regex:/^[0-9a-zA-Zs\s\-\_]*$/',
-            'username' => 'required|unique:users|max:255|alpha_dash',
+            'name' => 'required|max:50|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/',
+            'username' => 'required|unique:users|max:20|alpha_dash',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
             'phone' => 'required|regex:/^[+(0-9)]{1,6}[0-9()\s-]*$/|min:10|max:25',
@@ -65,9 +66,9 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        $hex = dechex(rand(0x000000, 0xFFFFFF));
+        $hex = generateHex();
 
-        if (User::hexInfo($hex, 'constrast') > 382) {
+        if (hexInfo($hex, 'contrast') > 130) {
           //bright color use dark text
           $textColor =  'black';
         }else {
