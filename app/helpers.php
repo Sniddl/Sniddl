@@ -35,17 +35,42 @@ function hexInfo($hex, $method=null){
 }
 
 
-function check( $table, $parameter1=null, $parameter2=null ){
-  switch ($table) {
-    case 'Friend':
-      return 'following';
-      break;
+function parse_post($target){
 
-    default:
-      throw new Exception("Table not found.");
-      break;
+  $rules = [
+    '@' => '/(?<!\S)[@]+[a-zA-Z0-9\_\-]*/',
+    '+' => '/(?<!\S)[+]+[a-zA-Z0-9\_\-]*/'
+  ];
+
+  foreach ($rules as $key => $rule){
+    preg_match_all($rule, $target, $matches);
+    foreach ($matches[0] as $match){
+      $substr = substr($match, 1);
+      switch ($key) {
+        case '@':
+          $user = User::where('username','=',$substr)->first();
+          if ($user){
+            $target = str_replace_first($match, "<a href='/u/$substr'>@".$user->name.'</a>', $target);
+          }
+          break;
+        case '+':
+            $community = 'community will go here eventually';
+            if ($community){
+              $target = str_replace_first($match, "<a href='/c/$substr'>+".$substr.'</a>', $target);
+            }
+          break;
+
+        default:
+          throw new Exception("WTF! This can't be good. App\helpers @parse_post");
+          break;
+      }
+    }
   }
+
+
+  return $target;
 }
+
 
 
 
