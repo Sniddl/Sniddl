@@ -61,7 +61,7 @@ function parse_post($target){
           break;
 
         default:
-          throw new Exception("WTF! This can't be good. App\helpers line 56");
+          throw new Exception("WTF! This can't be good. App\helpers @parse_post");
           break;
       }
     }
@@ -70,41 +70,6 @@ function parse_post($target){
 
   return $target;
 }
-
-
-//$replace = 'asdf';
-//$target = "Hello @username this is @Zeb";
-//$newString = ;
-
-
-/* switch ($rule) {
-  case '@':
-    $regex = '/(?<!\S)[@]+[a-zA-Z0-9\_\-]/';
-    break;
-
-  default:
-    throw new Exception("Rule not found for current parsing of post.");
-    break;
-}
-preg_match_all($regex, $target, $matches);
-foreach ($matches[0] as $match){
-  $substr = substr($match, 1);
-  switch ($rule) {
-    case '@':
-      $user = User::where('username','=',$substr)->first();
-      if ($user){
-        $target = str_replace_first($match, "<a href='/u/$substr'>@".$user->name.'</a>', $target);
-      }
-      break;
-
-    default:
-      throw new Exception("WTF! This can't be good. App\helpers line 56");
-      break;
-  }
-}*/
-
-
-
 
 
 

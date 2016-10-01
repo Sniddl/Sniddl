@@ -48,14 +48,6 @@ class PostController extends Controller
     public function get()
     {
       $timeline = Timeline::orderBy('id', 'DESC' )->get();
-
-      //return $timeline;
-      //   ^[@]+[a-zA-Z0-9\_\-]*$
-
-      //$find = "@".$user;
-      //$rule = '@';
-      //$target = "Hello @asdfasdf this is Zeb my community is +gaming +soccer";
-      //return parse_post( $target);
       return view('showAllPosts', compact('timeline'));
     }
 
