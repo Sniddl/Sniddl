@@ -1,22 +1,29 @@
+
+
 @extends ('profile.index')
 @section('list')
 <div class="friends List">
 
     <ul class="list-group">
       @foreach ($data['followers'] as $follower)
+      <?//V A R I A B L E S
+
+        $user = \App\User::where('username', '=', $follower->follower)->first();
+        $friend = \App\Friend::where('user_id','=', $user->id )->where('follower', '=', Auth::user()->username);
+
+      ?>
         <li class="list-group-item">
           <h5>
-            <a href="/u/{{$follower->user}}">{{$follower->user}}</a>
-            <small>{{'@'.$follower->user}}
-              @if($follower->user != Auth::user()->username)
-                  {{--*/ $user = \App\User::where('username','=','$follower->user')->get() /*--}}
-                  <h1>{{$user}}</h1>
-                  @if(!\App\Friend::where('user_id','=', $user->id )->where('user', '=', Auth::user()->username)->exists())
-                    <a href="/friend/{{$follower->User->id}}">Add friend</a>
+            <a href="/u/{{$user->username}}">{{$user->name}}</a>
+            <small>{{'@'.$user->username}}
+              @if($follower->follower != Auth::user()->username)
+                  @if($friend->exists())
+                    <a href="/friend/{{$user->id}}">Remove Friend</a>
                   @else
-                    <a href="/friend/{{$follower->User->id}}">Remove Friend</a>
+                    <a href="/friend/{{$user->id}}">Add friend</a>
                   @endif
               @endif
+
             </small>
           </h5>
 

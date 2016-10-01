@@ -22,13 +22,21 @@ use Validator;
 
 class UserController extends Controller
 {
+
+
   public function getProfile($user, $list = null){
     $user = User::where('username','=', $user)->first();
+    //return $user->id;
     $data = [
       'timeline' => Timeline::orderBy('id', 'DESC' )->where('added_by','=',$user->username)->get(),
-      'following' => Friend::where('user','=',$user->username)->get(),
+      'following' => Friend::where('follower','=',$user->username)->get(),
       'followers' => Friend::where('user_id','=', $user->id)->get(),
+      'friends' => Friend::where('follower','=', $user->username)
+                          ->where('are_friends','=',1)
+                          ->get()
     ];
+
+    //return $data['friends']->User;
 
     switch ($list) {
       case 'following':
@@ -36,6 +44,9 @@ class UserController extends Controller
         break;
       case 'followers':
         return view('profile.lists.followers', compact('data'));
+        break;
+      case 'friends':
+        return view('profile.lists.friends', compact('data'));
         break;
 
       default:
@@ -97,6 +108,26 @@ class UserController extends Controller
   public function generateAvatar() {
     $length = 15;
 
+<<<<<<< HEAD
+
+
+    $hex = generateHex();
+
+    if (hexInfo($hex, 'contrast') >= 130) {
+      //bright color use dark text
+      $textColor =  'black';
+    }else {
+      //dark color use light text
+      $textColor = 'white';
+    }
+
+    $user = User::find(Auth::user()->id);
+    $user->avatar = '/uploads/avatars/letters/'.$textColor.'/'.strtolower(Auth::user()->name[0]).'.png';
+    $user->color = $hex;
+    $user->save();
+
+    return var_dump(hexInfo($hex, 'contrast'));
+=======
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
 
@@ -115,14 +146,23 @@ class UserController extends Controller
     $user->avatar = 'https://api.adorable.io/avatars/'.$randomString.'.png';
     $user->save();
     return back();
+>>>>>>> Sys-master
 
   }
 
+<<<<<<< HEAD
+
+
+
+
+
+=======
+>>>>>>> Sys-master
   // Allows the user the change their name
   public function updateName(Request $request){
     //Validates the input
     $this->validate($request,[
-      'displayname' => 'Min:3|Max:254|Alpha_dash|filled|regex:/^[0-9a-zA-Zs\s\-\_]*$/'
+      'displayname' => 'Min:3|max:50|filled|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/'
     ]);
     // Applies the changes if the validation is successful
     $name = $request->get('displayname');

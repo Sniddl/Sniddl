@@ -54,7 +54,7 @@
                 @else
                     <br>
 
-                    @if (!\App\Friend::where('user_id','=',$post->user_id)->where('user','=',Auth::user()->username)->exists())
+                    @if (!\App\Friend::where('user_id','=',$post->user_id)->where('follower','=',Auth::user()->username)->exists())
                         <a href="/friend/{{$post->user_id}}">Add friend</a>
                     @else
                         <a href="/friend/{{$post->user_id}}">Remove Friend</a>
