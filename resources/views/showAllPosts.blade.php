@@ -43,7 +43,7 @@
 
 
           <div class="post-text">
-            {!! nl2br(e($post->text)) !!}
+            {!! parse_post( nl2br(e($post->text)) ) !!}
           </div>
 
           <div class="">
