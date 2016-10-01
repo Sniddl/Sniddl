@@ -57,7 +57,7 @@ class PostController extends Controller
 
     public function like(Post $post){
       if (!$post->likes()->where('user','=',Auth::user()->username)->exists()){
-        Like::insert(['user' => Auth::user()->username, 'post_id' => $post->id]);
+        Like::insert(['user' => Auth::user()->username, 'post_id' => $post->id, 'user_id' => Auth::user()->id]);
       }else {
         $post->likes()->where('user','=',Auth::user()->username)->delete();
       }

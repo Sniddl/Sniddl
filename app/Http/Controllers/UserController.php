@@ -106,7 +106,9 @@ class UserController extends Controller
 
 
   public function generateAvatar() {
+    $length = 15;
 
+<<<<<<< HEAD
 
 
     $hex = generateHex();
@@ -125,41 +127,64 @@ class UserController extends Controller
     $user->save();
 
     return var_dump(hexInfo($hex, 'contrast'));
+=======
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
 
-
+    //$avatars = [];
+    //for ($j = 0; $j < 15; $j++) {
+      $randomString = '';
+      for ($i = 0; $i < $length; $i++) {
+          $randomString .= $characters[rand(0, $charactersLength - 1)];
+      }
+      //array_push($avatars, $randomString);
+  //  }
+    //return var_dump($data);
+    //return $randomString;
+    //$data = 'https://api.adorable.io/avatars/'.$randomString.'.png';
+    $user = Auth::user();
+    $user->avatar = 'https://api.adorable.io/avatars/'.$randomString.'.png';
+    $user->save();
+    return back();
+>>>>>>> Sys-master
 
   }
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> Sys-master
   // Allows the user the change their name
-  public function updateName(Request $request)
-  {
+  public function updateName(Request $request){
+    //Validates the input
     $this->validate($request,[
       'displayname' => 'Min:3|max:50|filled|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/'
     ]);
-
+    // Applies the changes if the validation is successful
     $name = $request->get('displayname');
     if ($name === Auth::user()->name){
       return back();
     }else{
       DB::table('users')
                 ->where('id', Auth::user()->id)
-                ->update(['name' => $name,]);
+                ->update(['name' => $name, 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
     }
     return back();
   }
 
   // Changes password
   public function changePWD(Request $request){
+    //Validates the input
     $this->validate($request,[
       'currentpassword'=>'required|filled',
       'newpassword'=> 'required|Min:6|filled',
       'verifynewpwd'=> 'required|Min:6|filled'
     ]);
+    // If the validation is successful the change is applied
     $currentpwd = $request->get('currentpassword');
     $newpwd     = $request->get('newpassword');
     $verifypwd  = $request->get('verifynewpwd');
@@ -167,7 +192,7 @@ class UserController extends Controller
       if($newpwd === $verifypwd){
         DB::table('users')
                   ->where('id', Auth::user()->id)
-                  ->update(['password' => bcrypt($verifypwd)]);
+                  ->update(['password' => bcrypt($verifypwd), 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
       }else{
         DB::table('users')
                   ->where('id', Auth::user()->id)
@@ -183,13 +208,15 @@ class UserController extends Controller
 
   // Allows the user the change their email
   public function changeEmail(Request $request){
+    //Validates the input
     $this->validate($request,[
       'changeemail'=>'required|filled|email',
     ]);
+    // If the validation is successful the change is applied
     $changeemail = $request->get('changeemail');
     DB::table('users')
               ->where('id', Auth::user()->id)
-              ->update(['email' => $changeemail]);
+              ->update(['email' => $changeemail, 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
     return back();
   }
 }
