@@ -95,80 +95,56 @@ class UserController extends Controller
 
 
   public function generateAvatar() {
+    $length = 15;
 
-    $hex = dechex(rand(0x000000, 0xFFFFFF));
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
 
-    if ($this->hexInfo($hex, 'contrast') >= 130) {
-      //bright color use dark text
-      $textColor =  'black';
-    }else {
-      //dark color use light text
-      $textColor = 'white';
-    }
-
-    $user = User::find(Auth::user()->id);
-    $user->avatar = '/uploads/avatars/letters/'.$textColor.'/'.strtolower(Auth::user()->name[0]).'.png';
-    $user->color = $hex;
+    //$avatars = [];
+    //for ($j = 0; $j < 15; $j++) {
+      $randomString = '';
+      for ($i = 0; $i < $length; $i++) {
+          $randomString .= $characters[rand(0, $charactersLength - 1)];
+      }
+      //array_push($avatars, $randomString);
+  //  }
+    //return var_dump($data);
+    //return $randomString;
+    //$data = 'https://api.adorable.io/avatars/'.$randomString.'.png';
+    $user = Auth::user();
+    $user->avatar = 'https://api.adorable.io/avatars/'.$randomString.'.png';
     $user->save();
-
     return back();
 
-
-
   }
-
-
-
-  public function hexInfo($hex, $method=null){
-    //$hex = dechex(rand(0x000000, 0xFFFFFF));
-    $r = hexdec(substr($hex,0,2));
-    $g = hexdec(substr($hex,2,2));
-    $b = hexdec(substr($hex,4,2));
-
-    switch ($method) {
-      case 'contrast':
-        return sqrt($r * $r * .241 +
-                    $g * $g * .691 +
-                    $b * $b * .068);
-        break;
-
-      default:
-        return [
-          'r '=> $r,
-          'g' => $g,
-          'b' => $b,
-        ];
-
-    }
-  }
-
-
 
   // Allows the user the change their name
-  public function updateName(Request $request)
-  {
+  public function updateName(Request $request){
+    //Validates the input
     $this->validate($request,[
       'displayname' => 'Min:3|Max:254|Alpha_dash|filled|regex:/^[0-9a-zA-Zs\s\-\_]*$/'
     ]);
-
+    // Applies the changes if the validation is successful
     $name = $request->get('displayname');
     if ($name === Auth::user()->name){
       return back();
     }else{
       DB::table('users')
                 ->where('id', Auth::user()->id)
-                ->update(['name' => $name,]);
+                ->update(['name' => $name, 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
     }
     return back();
   }
 
   // Changes password
   public function changePWD(Request $request){
+    //Validates the input
     $this->validate($request,[
       'currentpassword'=>'required|filled',
       'newpassword'=> 'required|Min:6|filled',
       'verifynewpwd'=> 'required|Min:6|filled'
     ]);
+    // If the validation is successful the change is applied
     $currentpwd = $request->get('currentpassword');
     $newpwd     = $request->get('newpassword');
     $verifypwd  = $request->get('verifynewpwd');
@@ -176,7 +152,7 @@ class UserController extends Controller
       if($newpwd === $verifypwd){
         DB::table('users')
                   ->where('id', Auth::user()->id)
-                  ->update(['password' => bcrypt($verifypwd)]);
+                  ->update(['password' => bcrypt($verifypwd), 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
       }else{
         DB::table('users')
                   ->where('id', Auth::user()->id)
@@ -192,13 +168,15 @@ class UserController extends Controller
 
   // Allows the user the change their email
   public function changeEmail(Request $request){
+    //Validates the input
     $this->validate($request,[
       'changeemail'=>'required|filled|email',
     ]);
+    // If the validation is successful the change is applied
     $changeemail = $request->get('changeemail');
     DB::table('users')
               ->where('id', Auth::user()->id)
-              ->update(['email' => $changeemail]);
+              ->update(['email' => $changeemail, 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
     return back();
   }
 }

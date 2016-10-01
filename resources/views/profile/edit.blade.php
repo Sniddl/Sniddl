@@ -12,12 +12,12 @@
 @endif
 
 <div class="container">
-  <img class="img-circle" height="100px" width="100px" src="{{ Auth::user()->avatar }}" style="background-color: #{{Auth::user()->color}}"/>
+  <img class="img-circle" height="100px" src="{{ Auth::user()->avatar }}"/>
   <h1>Editing {{{ Auth::user()->username }}}'s profile...</h1>
 
 
 
-
+  <p>Username: <span style="padding-left: 15px; color:teal;">{{Auth::user()->username}}</span></p>
   <form class="" action="/edit/profile/avatargen" method="POST">
     <label>Generate Profile Picture</label><br>
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -36,30 +36,25 @@
   <!--Change display name-->
   <h3>Change display name</h3>
     <form action="/changeName">
-      <input type="text" name="displayname" placeholder="{{{ Auth::user()->name }}}">
-      <input type="submit" class="btn btn-sm btn-primary" value="Update">
+      <input type="text" name="displayname" placeholder="{{{ Auth::user()->name }}}"/>
+      <input type="submit" class="btn btn-sm btn-primary" value="Update"/>
     </form>
-  <!--Checking Commits-->
+    
   <!--Change password-->
   <h3>Change password</h3>
-  <form action="/changePWD" style="padding-top: 30px;">
-    <input type="password" name="currentpassword" placeholder="Current password">
-    <input type="password" name="newpassword" placeholder="New password">
-    <input type="password" name="verifynewpwd" placeholder="Verify new password">
+  <form action="/changePWD" style="padding-top: 20px;">
+    <input type="password" name="currentpassword" placeholder="Current password"><br>
+    <input type="password" name="newpassword" placeholder="New password" style="margin-top:10px;"><br>
+    <input type="password" name="verifynewpwd" placeholder="Verify new password" style="margin-top:10px;"><br>
     <input type="submit" class="btn btn-sm btn-primary" value="Update">
+
   </form>
   <!--Change email-->
   <h3>Change email</h3>
-  <form action="/changeEmail" style="padding-top: 30px;">
+  <form action="/changeEmail" style="padding-top: 20px;">
     <input type="text" name="changeemail" placeholder="{{{Auth::user()->email}}}">
     <input type="submit" class="btn btn-sm btn-primary" value="Update">
   </form>
-  <!--Disallow search for the user-->
-  <h3>Allow for users to search for your profile</h3>
-  <input type="checkbox" name="privatetickbox">
-  <!--Mute Notifications-->
-  <h3>Mute notifications</h3>
-  <input type="checkbox" name="mutenotifs">
 </div>
 
 
