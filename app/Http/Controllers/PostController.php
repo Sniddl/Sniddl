@@ -15,7 +15,7 @@ use Auth;
 
 class PostController extends Controller
 {
-    //
+    ///
     public function create(Request $request)
     {
       $this->validate($request, [
@@ -50,6 +50,12 @@ class PostController extends Controller
       $timeline = Timeline::orderBy('id', 'DESC' )->get();
 
       //return $timeline;
+      //   ^[@]+[a-zA-Z0-9\_\-]*$
+
+      //$find = "@".$user;
+      //$rule = '@';
+      //$target = "Hello @asdfasdf this is Zeb my community is +gaming +soccer";
+      //return parse_post( $target);
       return view('showAllPosts', compact('timeline'));
     }
 
