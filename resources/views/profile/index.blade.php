@@ -8,7 +8,10 @@
 <!--⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
   DECLARE GLOBAL VARIABLES
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯-->
-    {{-- */ $user = \App\User::where('username','=',Request::segment(2))->first(); /* --}}
+    <?
+     $user = \App\User::where('username','=',Request::segment(2))->first();
+
+     ?>
 
 
 <!--⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
@@ -17,18 +20,35 @@
     <h3><img class="img-circle" height="50px" style ="margin-right:10px; background-color:#{{$user->color}}; " src="{{ $user->avatar }}"/>{{ $user->name }}'s Profile</h3>
 
 
-    @if(Auth::check() && Auth::user()->username != $user->username)
-        {{-- */
-          $friend = \App\Friend::where('user_id','=', $user->id )->where('user', '=', Auth::user()->username);
-        /* --}}
-        @if(!$friend->exists())
-          <a href="/friend/{{$user->id}}">Add friend</a>
+    @if(Auth::check())
+        <?
+           $friend = \App\Friend::where('user_id','=', $user->id )->where('follower', '=', Auth::user()->username);
+        ?>
+        @if(Auth::user()->username == $user->username)
+            <a href="/edit/profile">Edit Profile</a>
         @else
-          <a href="/friend/{{$user->id}}">Remove Friend</a>
+            @if(!$friend->exists())
+              <a href="/friend/{{$user->id}}">Add friend</a>
+            @else
+              <a href="/friend/{{$user->id}}">Remove Friend</a>
+            @endif
         @endif
-    @elseif(Auth::check() && Auth::user()->username = $user->username)
-        <a href="/edit/profile">Edit Profile</a>
+
+        <a href="/u/{{Request::segment(2)}}/following"><h4>Following: {{$data['following']->count()}}</h4></a>
+        <a href="/u/{{Request::segment(2)}}/followers"><h4>Followers: {{$data['followers']->count()}}</h4></a>
+        <a href="/u/{{Request::segment(2)}}/friends"><h4>Friends: {{$data['friends']->count()}}</h4></a>
+
+    @else
+      <a href="/signup"><h4>Following: {{$data['following']->count()}}</h4></a>
+      <a href="/signup"><h4>Followers: {{$data['followers']->count()}}</h4></a>
+      <a href="/signup"><h4>Friends: {{$data['friends']->count()}}</h4></a>
     @endif
+
+    <a href="/u/{{Request::segment(2)}}"><h4>Posts: {{$data['timeline']->count()}}</h4></a>
+
+
+
+
 
 
 <br><br><br><br>
@@ -41,9 +61,7 @@
 <!--⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
   Stats
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯-->
-<a href="/u/{{Request::segment(2)}}"><h4>Posts: {{$data['timeline']->count()}}</h4></a>
-<a href="/u/{{Request::segment(2)}}/following"><h4>Following: {{$data['following']->count()}}</h4></a>
-<a href="/u/{{Request::segment(2)}}/followers"><h4>Followers: {{$data['followers']->count()}}</h4></a>
+
 
 
 
