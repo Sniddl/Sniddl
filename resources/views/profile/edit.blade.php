@@ -12,7 +12,7 @@
 @endif
 
 <div class="container">
-  <img class="img-circle" height="100px" src="{{ Auth::user()->avatar }}"/>
+  <img class="img-circle" height="100px" width="100px" src="{{ Auth::user()->avatar }}" style="background-color: #{{Auth::user()->color}}"/>
   <h1>Editing {{{ Auth::user()->username }}}'s profile...</h1>
 
 
@@ -39,7 +39,7 @@
       <input type="text" name="displayname" placeholder="{{{ Auth::user()->name }}}"/>
       <input type="submit" class="btn btn-sm btn-primary" value="Update"/>
     </form>
-    
+
   <!--Change password-->
   <h3>Change password</h3>
   <form action="/changePWD" style="padding-top: 20px;">
