@@ -101,14 +101,7 @@ class UserController extends Controller
      }
   }
 
-
-
-
-
   public function generateAvatar() {
-
-
-
     $hex = generateHex();
 
     if (hexInfo($hex, 'contrast') >= 130) {
@@ -124,42 +117,36 @@ class UserController extends Controller
     $user->color = $hex;
     $user->save();
 
-    return var_dump(hexInfo($hex, 'contrast'));
-
-
-
+    return back();
   }
 
-
-
-
-
-
   // Allows the user the change their name
-  public function updateName(Request $request)
-  {
+  public function updateName(Request $request){
+    //Validates the input
     $this->validate($request,[
       'displayname' => 'Min:3|max:50|filled|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/'
     ]);
-
+    // Applies the changes if the validation is successful
     $name = $request->get('displayname');
     if ($name === Auth::user()->name){
       return back();
     }else{
       DB::table('users')
                 ->where('id', Auth::user()->id)
-                ->update(['name' => $name,]);
+                ->update(['name' => $name, 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
     }
     return back();
   }
 
   // Changes password
   public function changePWD(Request $request){
+    //Validates the input
     $this->validate($request,[
       'currentpassword'=>'required|filled',
       'newpassword'=> 'required|Min:6|filled',
       'verifynewpwd'=> 'required|Min:6|filled'
     ]);
+    // If the validation is successful the change is applied
     $currentpwd = $request->get('currentpassword');
     $newpwd     = $request->get('newpassword');
     $verifypwd  = $request->get('verifynewpwd');
@@ -167,7 +154,7 @@ class UserController extends Controller
       if($newpwd === $verifypwd){
         DB::table('users')
                   ->where('id', Auth::user()->id)
-                  ->update(['password' => bcrypt($verifypwd)]);
+                  ->update(['password' => bcrypt($verifypwd), 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
       }else{
         DB::table('users')
                   ->where('id', Auth::user()->id)
@@ -183,13 +170,15 @@ class UserController extends Controller
 
   // Allows the user the change their email
   public function changeEmail(Request $request){
+    //Validates the input
     $this->validate($request,[
       'changeemail'=>'required|filled|email',
     ]);
+    // If the validation is successful the change is applied
     $changeemail = $request->get('changeemail');
     DB::table('users')
               ->where('id', Auth::user()->id)
-              ->update(['email' => $changeemail]);
+              ->update(['email' => $changeemail, 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
     return back();
   }
 }

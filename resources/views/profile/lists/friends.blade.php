@@ -5,11 +5,10 @@
 <div class="friends List">
     <ul class="list-group">
       @foreach ($data['friends'] as $friend)
-      <?//V A R I A B L E S
-        $user = \App\User::where('username','=', $friend->User->username)->first();
-        $user2 = \App\Friend::where('user_id','=', $user->id )->where('follower', '=', Auth::user()->username);
 
-      ?>
+        {{--*/$user = \App\User::where('username','=', $friend->User->username)->first();
+        $user2 = \App\Friend::where('user_id','=', $user->id )->where('follower', '=', Auth::user()->username)/*--}}
+
 
         <li class="list-group-item">
           <h5>

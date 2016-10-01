@@ -6,12 +6,10 @@
 
     <ul class="list-group">
       @foreach ($data['followers'] as $follower)
-      <?//V A R I A B L E S
 
-        $user = \App\User::where('username', '=', $follower->follower)->first();
-        $friend = \App\Friend::where('user_id','=', $user->id )->where('follower', '=', Auth::user()->username);
+        {{--*/$user = \App\User::where('username', '=', $follower->follower)->first();
+        $friend = \App\Friend::where('user_id','=', $user->id )->where('follower', '=', Auth::user()->username)/*--}}
 
-      ?>
         <li class="list-group-item">
           <h5>
             <a href="/u/{{$user->username}}">{{$user->name}}</a>

@@ -57,7 +57,7 @@ class PostController extends Controller
 
     public function like(Post $post){
       if (!$post->likes()->where('user','=',Auth::user()->username)->exists()){
-        Like::insert(['user' => Auth::user()->username, 'post_id' => $post->id]);
+        Like::insert(['user' => Auth::user()->username, 'post_id' => $post->id, 'user_id' => Auth::user()->id]);
       }else {
         $post->likes()->where('user','=',Auth::user()->username)->delete();
       }
@@ -101,7 +101,7 @@ class PostController extends Controller
       //!App\Friend::where('user_id','=',1)->where('user','=',Auth::user()->name)->exists()
       //return var_dump(!\App\Friend::where('user_id','=',1)->where('user','=',Auth::user()->name)->exists());
 
-      $friends = Friend::where('user','=',Auth::user()->username)->get();
+      $friends = Friend::where('follower','=',Auth::user()->username)->get();
 
       $array = [];
       foreach ($friends as $friend) {
