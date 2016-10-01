@@ -101,16 +101,7 @@ class UserController extends Controller
      }
   }
 
-
-
-
-
   public function generateAvatar() {
-    $length = 15;
-
-<<<<<<< HEAD
-
-
     $hex = generateHex();
 
     if (hexInfo($hex, 'contrast') >= 130) {
@@ -126,38 +117,9 @@ class UserController extends Controller
     $user->color = $hex;
     $user->save();
 
-    return var_dump(hexInfo($hex, 'contrast'));
-=======
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-
-    //$avatars = [];
-    //for ($j = 0; $j < 15; $j++) {
-      $randomString = '';
-      for ($i = 0; $i < $length; $i++) {
-          $randomString .= $characters[rand(0, $charactersLength - 1)];
-      }
-      //array_push($avatars, $randomString);
-  //  }
-    //return var_dump($data);
-    //return $randomString;
-    //$data = 'https://api.adorable.io/avatars/'.$randomString.'.png';
-    $user = Auth::user();
-    $user->avatar = 'https://api.adorable.io/avatars/'.$randomString.'.png';
-    $user->save();
     return back();
->>>>>>> Sys-master
-
   }
 
-<<<<<<< HEAD
-
-
-
-
-
-=======
->>>>>>> Sys-master
   // Allows the user the change their name
   public function updateName(Request $request){
     //Validates the input

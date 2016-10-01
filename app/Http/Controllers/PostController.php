@@ -101,7 +101,7 @@ class PostController extends Controller
       //!App\Friend::where('user_id','=',1)->where('user','=',Auth::user()->name)->exists()
       //return var_dump(!\App\Friend::where('user_id','=',1)->where('user','=',Auth::user()->name)->exists());
 
-      $friends = Friend::where('user','=',Auth::user()->username)->get();
+      $friends = Friend::where('follower','=',Auth::user()->username)->get();
 
       $array = [];
       foreach ($friends as $friend) {
