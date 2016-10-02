@@ -65,7 +65,7 @@
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" style="float:right;">
     Deactivate your account
-  </button>
+  </button> </a>
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -77,9 +77,9 @@
         </div>
         <form action="/deactivate" autocomplete="off">
         <div class="modal-body">
-          @if (session()->has('flash_notification.level'))
-              <div class="alert alert-{{ session('flash_notification.level') }}">
-                  {!! session('flash_notification.message') !!}
+          @if (Session::has('test'))
+              <div class="alert alert-danger">
+                  {!! Session::get('test') !!}
               </div>
           @endif
           <center><h4 style="color:#ff4b4b;"><b>Warning!</b> This action cannot be undone once complete</h4></center>
@@ -100,9 +100,5 @@
   </div>
 </div>
 
-
-<script>
-  $('div.alert').delay(4000).slideUp(300);
-</script>
 
 @endsection

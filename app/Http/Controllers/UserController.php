@@ -238,8 +238,7 @@ public function verify($username, $code){
             return back();
           }
       }else {
-        flash('The username did not match', 'warning');
-        return back();
+        Session::flash('test','The username you entered was incorrect');
       }
   }
 
