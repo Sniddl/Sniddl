@@ -165,7 +165,7 @@ class UserController extends Controller
               $user->save();
               flash('Your password has been updated','success');
           }else{
-            flash('Your new passwords didn&#8217;t match. Please enter them again','warning');
+            flash("Your new passwords didn't match. Please enter them again",'warning');
           }
         }else{
           flash('Your new password cannot be the same as your current password','warning');
