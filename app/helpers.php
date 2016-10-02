@@ -71,6 +71,16 @@ function parse_post($target){
   return $target;
 }
 
+function email_signup(){
+  $user = Auth::user();//User::where('email','=', $data['email'])->first();
+
+  Mail::send('emails.signup', ['user' => $user], function ($m) use ($user) {
+      $m->from('noreply@sniddl.com', 'Sniddl');
+
+      $m->to($user->email, $user->name)->subject('Sniddl Confirmation');
+  });
+}
+
 
 
 
