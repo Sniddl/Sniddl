@@ -123,9 +123,9 @@ class UserController extends Controller
     $user->save();
 
 
-    //$user = User::where('email', '=', $data['email'])->first();
-
-    email_signup();
+    
+    //backup for testing email
+    //email_signup();
 
     return back();
   }
