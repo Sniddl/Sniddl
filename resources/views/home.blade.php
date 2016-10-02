@@ -4,11 +4,32 @@
 @section('content')
 
             @if (Auth::user())
-              @if(Auth::user()->newbieNotifications != 1)
-                <div class="alert alert-success alert-dismissible" role="alert"><a href="/toggleNewbieNotifications" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+              @if(Session::has('verify_success'))
+                <div class="alert alert-success alert-dismissible" role="alert"><div  type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>
+                  <strong>Success:</strong>
+                  {{Session::get('verify_success')}}
+                </div>
 
-                  <strong>Registration Complete:</strong> Thank you for joing Sniddl. Click where it says <strong><u>{{ Auth::user()->name }}</u></strong> to view some options.
+              @elseif(Session::has('verify_fail'))
+                <div class="alert alert-danger" role="alert">
+                  <strong>Error:</strong>
+                  {{Session::get('verify_fail')}}
+                  <a href="/resendVerification">Click here</a> to resend the email.
+                </div>
+              @elseif(Session::has('verify_incomplete'))
+                <div class="alert alert-info alert-dismissible" role="alert"><div  type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>
+                  <strong>Confirmation Needed:</strong>
+                  {{Session::get('verify_incomplete')}}
+                  <a href="/resendVerification">Click here</a> to resend the email.
+                </div>
 
+              @endif
+
+              
+              @if(Session::has('notify_danger'))
+                <div class="alert alert-danger alert-dismissible" role="alert"><div  type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>
+                  <strong>Warning:</strong>
+                  {{Session::get('notify_danger')}}
                 </div>
               @endif
 
@@ -26,7 +47,7 @@
             @yield('posts')
 
 
-          
+
 
 
 

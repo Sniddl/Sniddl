@@ -24,11 +24,12 @@ Route::get('/u/{user}', 'UserController@getProfile');
 Route::get('/delete/{id}', 'PostController@delete');
 Route::get('/friend/{id}', 'FriendController@add');
 Route::get('/sort/{type}', 'PostController@sort');
-Route::get('/toggleNewbieNotifications', 'UserController@toggleNewbieNotifications');
+Route::get('/resendVerification', 'UserController@resendVerification');
 Route::get('/u/{user}/{list}', 'UserController@getProfile');
 Route::get('/changeName', 'UserController@updateName');
 Route::get('/changePWD', 'UserController@changePWD');
 Route::get('/changeEmail', 'UserController@changeEmail');
+Route::get('/verify/{username}/{code}', 'UserController@verify');
 
 
 /*⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
@@ -46,4 +47,8 @@ Route::get('/updates', function () {
 });
 Route::get('/edit/profile', function () {
     return view('profile.edit');
+});
+
+Route::get('/email', function () {
+    return view('emails.signup');
 });
