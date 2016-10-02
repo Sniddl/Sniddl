@@ -65,11 +65,12 @@ class UserController extends Controller
 
   public function resendVerification(){
     if (Auth::user()->confirmation_code){
-      email_signup();
+      email_signup(Auth::user());
       Session::forget('verify_fail');
       Session::put('verify_incomplete', 'Thank you for joining Sniddl, but you need to verify your e-mail if you wish to continue.');
+    } else {
+      Session::flash('notify_danger', "You think you're being clever? Try to break someone else's site instead.");
     }
-    Session::flash('notify_danger', "You think you're being clever? Try to break someone else's site instead.");
     return back();
   }
 
@@ -123,7 +124,7 @@ class UserController extends Controller
     $user->save();
 
 
-    
+
     //backup for testing email
     //email_signup();
 
@@ -198,8 +199,9 @@ public function verify($username, $code){
     $unverified = User::where('username','=', $username)
                 ->where('confirmation_code','=', $code)
                 ->first();
-    $found = User::where('confirmation_code','=', $code)
+    $found = User::where('username','=', $username)
                 ->first();
+
 
     if ($unverified){
       $unverified->confirmation_code = null;
@@ -210,7 +212,7 @@ public function verify($username, $code){
       Session::flash('verify_success', 'You have successfully verified your account!');
       return redirect('/');
     }
-    elseif(!$found){
+    elseif($found->confirmation_code == null){
       Session::forget('verify_fail');
       Session::forget('verify_incomplete');
       Session::flash('verify_success', 'You have already verified your account!');

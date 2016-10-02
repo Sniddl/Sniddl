@@ -9,6 +9,8 @@ use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use \Session;
+use \Redirect;
 
 class AuthController extends Controller
 {
@@ -78,7 +80,7 @@ class AuthController extends Controller
           $textColor = 'white';
         }
 
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
@@ -89,7 +91,15 @@ class AuthController extends Controller
             'confirmation_code' => str_random(30),
         ]);
 
+
+        email_signup($user);
+
         Session::put('verify_incomplete', 'Thank you for joining Sniddl, but you need to verify your e-mail if you wish to continue.');
+
+        return $user;
+
+
+
 
 
 
