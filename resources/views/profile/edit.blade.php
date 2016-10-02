@@ -61,7 +61,45 @@
     <input type="text" name="changeemail" placeholder="{{{Auth::user()->email}}}">
     <input type="submit" class="btn btn-sm btn-primary" value="Update">
   </form>
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" style="float:right;">
+    Deactivate your account
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Deactivate your account</h4>
+        </div>
+        <form action="/deactivate" autocomplete="off">
+        <div class="modal-body">
+          @if (session()->has('flash_notification.level'))
+              <div class="alert alert-{{ session('flash_notification.level') }}">
+                  {!! session('flash_notification.message') !!}
+              </div>
+          @endif
+          <center><h4 style="color:#ff4b4b;"><b>Warning!</b> This action cannot be undone once complete</h4></center>
+          <br>
+          <hr>
+          <h4>If you wish to continue:</h4>
+          <p>Enter your username</p>
+          <input type="text" name="deac-username" placeholder="Username" style="width:230px;">
+          <p>Enter your password</p>
+          <input type="password" name="deac-password" placeholder="Current password" style="width:230px;">
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger" value="Update">Deactivate</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 <script>
   $('div.alert').delay(4000).slideUp(300);

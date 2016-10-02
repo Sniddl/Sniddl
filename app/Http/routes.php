@@ -29,6 +29,7 @@ Route::get('/u/{user}/{list}', 'UserController@getProfile');
 Route::get('/changeName', 'UserController@updateName');
 Route::get('/changePWD', 'UserController@changePWD');
 Route::get('/changeEmail', 'UserController@changeEmail');
+Route::get('/deactivate', 'UserController@deactivate');
 Route::get('/verify/{username}/{code}', 'UserController@verify');
 
 

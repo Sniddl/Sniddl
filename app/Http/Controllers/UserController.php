@@ -223,5 +223,24 @@ public function verify($username, $code){
     }
 }
 
+  public function deactivate(Request $request){
+      $deacusername = $request->get('deac-username');
+      $deacpassword = $request->get('deac-password');
+
+      if($deacusername == Auth::user()->username){
+          if(password_verify($deacpassword, Auth::user()->password)){
+            $user = User::find(Auth::user()->id);
+            $user->forceDelete();
+
+            return redirect('register');
+          }else{
+            flash('The password you entered was incorrect');
+            return back();
+          }
+      }else {
+        flash('The username did not match', 'warning');
+        return back();
+      }
+  }
 
 }
