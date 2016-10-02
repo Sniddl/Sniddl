@@ -159,6 +159,7 @@ return [
 
         Intervention\Image\ImageServiceProvider::class,
         Cviebrock\ImageValidator\ImageValidatorServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
 
     ],
 

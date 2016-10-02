@@ -12,6 +12,12 @@
 @endif
 
 <div class="container">
+  @if (session()->has('flash_notification.message'))
+      <div class="alert alert-{{ session('flash_notification.level') }}">
+          {!! session('flash_notification.message') !!}
+      </div>
+  @endif
+
   <img class="img-circle" height="100px" width="100px" src="{{ Auth::user()->avatar }}" style="background-color: #{{Auth::user()->color}}"/>
   <h1>Editing {{{ Auth::user()->username }}}'s profile...</h1>
 
@@ -57,6 +63,8 @@
   </form>
 </div>
 
-
+<script>
+  $('div.alert').delay(4000).slideUp(300);
+</script>
 
 @endsection

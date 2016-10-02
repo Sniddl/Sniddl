@@ -123,7 +123,7 @@ class UserController extends Controller
     $user->save();
 
 
-    
+
     //backup for testing email
     //email_signup();
 
@@ -132,63 +132,64 @@ class UserController extends Controller
 
   // Allows the user the change their name
   public function updateName(Request $request){
-    //Validates the input
-    $this->validate($request,[
+    $this->validate($request,[ //Validates the input with regex
       'displayname' => 'Min:3|max:50|filled|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/'
     ]);
-    // Applies the changes if the validation is successful
     $name = $request->get('displayname');
-    if ($name === Auth::user()->name){
-      return back();
+    if ($name === Auth::user()->name){ //Checks if the name new name is equal to the users current name
+      return back(); //If it is it will return the user back to save unnecessary DB calls
     }else{
-      DB::table('users')
-                ->where('id', Auth::user()->id)
-                ->update(['name' => $name, 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
+      $user = User::find(Auth::user()->id); //Updates if not
+      $user->name = $name;
+      $user->save();
+      flash('Your name was changed successfully', 'success');
     }
     return back();
   }
 
   // Changes password
   public function changePWD(Request $request){
-    //Validates the input
-    $this->validate($request,[
+    $this->validate($request,[ //Validates the input with regex
       'currentpassword'=>'required|filled',
       'newpassword'=> 'required|Min:6|filled',
       'verifynewpwd'=> 'required|Min:6|filled'
     ]);
-    // If the validation is successful the change is applied
     $currentpwd = $request->get('currentpassword');
     $newpwd     = $request->get('newpassword');
     $verifypwd  = $request->get('verifynewpwd');
-    if (password_verify($currentpwd, Auth::user()->password)){
-      if($newpwd === $verifypwd){
-        DB::table('users')
-                  ->where('id', Auth::user()->id)
-                  ->update(['password' => bcrypt($verifypwd), 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
+      if (password_verify($currentpwd, Auth::user()->password)){ //Checks if the current password is equal to the user's current password in DB
+        if($verifypwd !== $currentpwd){ //Checks if the new password entered is equal to the user's current password
+          if($newpwd === $verifypwd){ //Checks if the 2 new passwords entered are equal
+              $user = User::find(Auth::user()->id);
+              $user->password = bcrypt($verifypwd);
+              $user->save();
+              flash('Your password has been updated','success');
+          }else{
+            flash("Your new passwords didn't match. Please enter them again",'warning');
+          }
+        }else{
+          flash('Your new password cannot be the same as your current password','warning');
+        }
       }else{
-        DB::table('users')
-                  ->where('id', Auth::user()->id)
-                  ->update(['name' => "PWDCHNGE_ERROR"]);
+            flash('Your current password is incorrect','warning');
       }
-    }else {
-        DB::table('users')
-                  ->where('id', Auth::user()->id)
-                  ->update(['name' => "PWDCHNGE_ERROR"]);
-    }
     return back();
   }
 
   // Allows the user the change their email
   public function changeEmail(Request $request){
-    //Validates the input
-    $this->validate($request,[
+    $this->validate($request,[ //Validates the input with regex
       'changeemail'=>'required|filled|email',
     ]);
-    // If the validation is successful the change is applied
     $changeemail = $request->get('changeemail');
-    DB::table('users')
-              ->where('id', Auth::user()->id)
-              ->update(['email' => $changeemail, 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
+    if($changeemail !== Auth::user()->email){ //Checks if the new email entered is already equals to the user's curent email
+      $user = User::find(Auth::user()->id); //If not the email is updated
+      $user->email = $changeemail;
+      $user->save();
+      flash('Your email has been updated', 'success');
+    }else{
+      flash('Please enter a different, new email','warning');
+    }
     return back();
   }
 
@@ -221,13 +222,6 @@ public function verify($username, $code){
       return redirect('/');
     }
 }
-
-
-
-
-
-
-
 
 
 }
