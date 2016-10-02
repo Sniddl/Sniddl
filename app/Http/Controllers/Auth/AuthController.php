@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Mail;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -84,6 +86,12 @@ class AuthController extends Controller
             'phone' => bcrypt($data['phone']),
             'avatar' => '/uploads/avatars/letters/'.$textColor.'/'.$data['name'][0].'.png',
             'color' => $hex,
+            'confirmation_code' => str_random(30),
         ]);
+
+        Session::put('verify_incomplete', 'Thank you for joining Sniddl, but you need to verify your e-mail if you wish to continue.');
+
+
+
     }
 }

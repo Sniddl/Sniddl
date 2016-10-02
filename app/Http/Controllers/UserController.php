@@ -12,11 +12,13 @@ use App\Timeline;
 use App\Http\Controllers\Auth\AuthController;
 
 use Auth;
+use Mail;
 use App\Post;
 use Image;
 use File;
 use DB;
 use Validator;
+use \Session;
 
 
 
@@ -61,10 +63,13 @@ class UserController extends Controller
 */
   }
 
-  public function toggleNewbieNotifications(){
-    $user = User::find(Auth::user()->id);
-    $user->newbieNotifications = 1;
-    $user->save();
+  public function resendVerification(){
+    if (Auth::user()->confirmation_code){
+      email_signup();
+      Session::forget('verify_fail');
+      Session::put('verify_incomplete', 'Thank you for joining Sniddl, but you need to verify your e-mail if you wish to continue.');
+    }
+    Session::flash('notify_danger', "You think you're being clever? Try to break someone else's site instead.");
     return back();
   }
 
@@ -116,6 +121,11 @@ class UserController extends Controller
     $user->avatar = '/uploads/avatars/letters/'.$textColor.'/'.strtolower(Auth::user()->name[0]).'.png';
     $user->color = $hex;
     $user->save();
+
+
+    
+    //backup for testing email
+    //email_signup();
 
     return back();
   }
@@ -181,4 +191,43 @@ class UserController extends Controller
               ->update(['email' => $changeemail, 'updated_at' => DB::raw('UTC_TIMESTAMP') ]);
     return back();
   }
+
+
+public function verify($username, $code){
+
+    $unverified = User::where('username','=', $username)
+                ->where('confirmation_code','=', $code)
+                ->first();
+    $found = User::where('confirmation_code','=', $code)
+                ->first();
+
+    if ($unverified){
+      $unverified->confirmation_code = null;
+      $unverified->newbieNotifications = 1;
+      $unverified->save();
+      Session::forget('verify_fail');
+      Session::forget('verify_incomplete');
+      Session::flash('verify_success', 'You have successfully verified your account!');
+      return redirect('/');
+    }
+    elseif(!$found){
+      Session::forget('verify_fail');
+      Session::forget('verify_incomplete');
+      Session::flash('verify_success', 'You have already verified your account!');
+      return redirect('/');
+    }
+    else {
+      Session::put('verify_fail', 'It looks like we are having trouble verifying your account.');
+      return redirect('/');
+    }
+}
+
+
+
+
+
+
+
+
+
 }

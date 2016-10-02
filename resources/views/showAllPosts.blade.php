@@ -36,14 +36,14 @@
           </div>
 
           <div class="">
-            <img class="img-circle" height="50px" style ="margin-right:10px; background-color:#{{$post->User->color}};" src="{{ $post->User->avatar }}"/>
+            <img class="img-circle" height="50px" width="50px" style ="margin-right:10px; background-color:#{{$post->User->color}};" src="{{ $post->User->avatar }}"/>
             <a href="/u/{{ $post->User->username }}">{{ $post->User->name }}</a> {{'@'.$post->User->username}}
           </div>
 
 
 
           <div class="post-text">
-            {!! nl2br(e($post->text)) !!}
+            {!! parse_post( nl2br(e($post->text)) ) !!}
           </div>
 
           <div class="">

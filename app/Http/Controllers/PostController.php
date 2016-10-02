@@ -15,7 +15,7 @@ use Auth;
 
 class PostController extends Controller
 {
-    //
+    ///
     public function create(Request $request)
     {
       $this->validate($request, [
@@ -48,8 +48,6 @@ class PostController extends Controller
     public function get()
     {
       $timeline = Timeline::orderBy('id', 'DESC' )->get();
-
-      //return $timeline;
       return view('showAllPosts', compact('timeline'));
     }
 

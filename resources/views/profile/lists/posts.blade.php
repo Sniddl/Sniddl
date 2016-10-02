@@ -18,7 +18,7 @@
             </div>
 
             <div>
-              {!! nl2br(e($post->text)) !!}
+              {!!  parse_post( nl2br(e($post->text)) ) !!}
             </div>
 
             @if(Auth::check())
