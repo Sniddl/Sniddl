@@ -29,38 +29,40 @@ class UserController extends Controller
   public function getProfile($user, $list = null){
     $user = User::where('username','=', $user)->first();
     //return $user->id;
-    $data = [
-      'timeline' => Timeline::orderBy('id', 'DESC' )->where('added_by','=',$user->username)->get(),
-      'following' => Friend::where('follower','=',$user->username)->get(),
-      'followers' => Friend::where('user_id','=', $user->id)->get(),
-      'friends' => Friend::where('follower','=', $user->username)
-                          ->where('are_friends','=',1)
-                          ->get()
-    ];
 
-    //return $data['friends']->User;
+    if ($user) {
+      $data = [
+        'timeline' => Timeline::orderBy('id', 'DESC' )->where('added_by','=',$user->username)->get(),
+        'following' => Friend::where('follower','=',$user->username)->get(),
+        'followers' => Friend::where('user_id','=', $user->id)->get(),
+        'friends' => Friend::where('follower','=', $user->username)
+                            ->where('are_friends','=',1)
+                            ->get()
+      ];
 
-    switch ($list) {
-      case 'following':
-        return view('profile.lists.following', compact('data'));
-        break;
-      case 'followers':
-        return view('profile.lists.followers', compact('data'));
-        break;
-      case 'friends':
-        return view('profile.lists.friends', compact('data'));
-        break;
+      //return $data['friends']->User;
 
-      default:
-        return view('profile.lists.posts', compact('data'));
-        break;
+      switch ($list) {
+        case 'following':
+          return view('profile.lists.following', compact('data'));
+          break;
+        case 'followers':
+          return view('profile.lists.followers', compact('data'));
+          break;
+        case 'friends':
+          return view('profile.lists.friends', compact('data'));
+          break;
+
+        default:
+          return view('profile.lists.posts', compact('data'));
+          break;
+      }
+
+    }else {
+      abort(404);
     }
 
-    /*if ($list == "following"){
-      return view('profile.lists.following', compact('data'));
-    }
-    return view('profile.lists.posts', compact('data'));
-*/
+
   }
 
   public function resendVerification(){
