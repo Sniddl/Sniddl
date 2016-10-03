@@ -12,6 +12,9 @@ Route::auth();
 Route::post('/create-post', 'PostController@create');
 Route::post('/edit/profile/avatar', 'UserController@update_avatar');
 Route::post('/edit/profile/avatargen', 'UserController@generateAvatar');
+Route::post('/changeName', 'UserController@updateName');
+Route::post('/changePWD', 'UserController@changePWD');
+Route::post('/changeEmail', 'UserController@changeEmail');
 
 
 /*⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
@@ -21,16 +24,15 @@ Route::get('/', 'PostController@get');
 Route::get('/like/{post}', 'PostController@like');
 Route::get('/repost/{post}', 'PostController@repost');
 Route::get('/u/{user}', 'UserController@getProfile');
-Route::get('/delete/{id}', 'PostController@delete');
 Route::get('/friend/{id}', 'FriendController@add');
 Route::get('/sort/{type}', 'PostController@sort');
-Route::get('/resendVerification', 'UserController@resendVerification');
+/*redo this as a post request*/ Route::get('/resendVerification', 'UserController@resendVerification');
 Route::get('/u/{user}/{list}', 'UserController@getProfile');
-Route::get('/changeName', 'UserController@updateName');
-Route::get('/changePWD', 'UserController@changePWD');
-Route::get('/changeEmail', 'UserController@changeEmail');
-Route::get('/deactivate', 'UserController@deactivate');
+
+//Route::get('/deactivate', 'UserController@deactivate');
 Route::get('/verify/{username}/{code}', 'UserController@verify');
+
+Route::post('/delete/{item}/{id}', 'DeletionContoller@delete');
 
 
 /*⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯

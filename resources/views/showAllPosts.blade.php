@@ -42,7 +42,7 @@
 
 
 
-          <div class="post-text">
+          <div class="post-text" >
             {!! parse_post( nl2br(e($post->text)) ) !!}
           </div>
 
@@ -50,7 +50,10 @@
             @if(Auth::check())
                 @if (Auth::user()->username == $post->user)
                     <br>
-                    <a href="/delete/{{$post->id}}">delete post</a>
+                    <form class="" action="/delete/post/{{$post->id}}" method="post">
+                      {{ csrf_field() }}
+                      <input type="submit" name="name" value="Delete Post" class='btn btn-danger'>
+                    </form>
                 @else
                     <br>
 

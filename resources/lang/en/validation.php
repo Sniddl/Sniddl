@@ -104,12 +104,7 @@ return [
         'newpassword' => [
             'required' => 'Please enter a new password',
             'min' => 'Your new password must be 6 characters or more',
-            'filled' => 'Please enter a new password',
-        ],
-        'verifynewpwd' => [
-            'required' => 'Please verify your new password',
-            'min' => 'Your password must be 6 characters or more',
-            'filled' => 'Please verify your new password',
+            'confirmed' => 'Your new passwords did not match.',
         ],
         'changeemail' => [
             'required' => 'Please enter an email',

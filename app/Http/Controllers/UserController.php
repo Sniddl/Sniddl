@@ -133,7 +133,7 @@ class UserController extends Controller
   // Allows the user the change their name
   public function updateName(Request $request){
     $this->validate($request,[ //Validates the input with regex
-      'displayname' => 'Min:3|max:50|filled|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/'
+      'displayname' => 'min:3|required|max:50|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/',
     ]);
     $name = $request->get('displayname');
     if ($name === Auth::user()->name){ //Checks if the name new name is equal to the users current name
@@ -151,22 +151,19 @@ class UserController extends Controller
   public function changePWD(Request $request){
     $this->validate($request,[ //Validates the input with regex
       'currentpassword'=>'required|filled',
-      'newpassword'=> 'required|Min:6|filled',
-      'verifynewpwd'=> 'required|Min:6|filled'
+      'newpassword'=> 'required|min:6|confirmed',
     ]);
     $currentpwd = $request->get('currentpassword');
     $newpwd     = $request->get('newpassword');
-    $verifypwd  = $request->get('verifynewpwd');
+    //$verifypwd  = $request->get('newpassword_confirmation');
       if (password_verify($currentpwd, Auth::user()->password)){ //Checks if the current password is equal to the user's current password in DB
-        if($verifypwd !== $currentpwd){ //Checks if the new password entered is equal to the user's current password
-          if($newpwd === $verifypwd){ //Checks if the 2 new passwords entered are equal
+        if($newpwd !== $currentpwd){ //Checks if the new password entered is equal to the user's current password
+           //Checks if the 2 new passwords entered are equal
               $user = User::find(Auth::user()->id);
-              $user->password = bcrypt($verifypwd);
+              $user->password = bcrypt($newpwd);
               $user->save();
               flash('Your password has been updated','success');
-          }else{
-            flash("Your new passwords didn't match. Please enter them again",'warning');
-          }
+
         }else{
           flash('Your new password cannot be the same as your current password','warning');
         }
@@ -179,7 +176,7 @@ class UserController extends Controller
   // Allows the user the change their email
   public function changeEmail(Request $request){
     $this->validate($request,[ //Validates the input with regex
-      'changeemail'=>'required|filled|email',
+      'changeemail'=> 'required|email|max:255|unique:users',
     ]);
     $changeemail = $request->get('changeemail');
     if($changeemail !== Auth::user()->email){ //Checks if the new email entered is already equals to the user's curent email
@@ -222,6 +219,11 @@ public function verify($username, $code){
       return redirect('/');
     }
 }
+
+  public function confirmDeletion() {
+    Flash::put('confirmDeletion', 'Are you sure you would like to delete your account?');
+    return 2;
+  }
 
   public function deactivate(Request $request){
       $deacusername = $request->get('deac-username');

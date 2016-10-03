@@ -25,80 +25,55 @@
 
   <p>Username: <span style="padding-left: 15px; color:teal;">{{Auth::user()->username}}</span></p>
   <form class="" action="/edit/profile/avatargen" method="POST">
+    {{ csrf_field() }}
     <label>Generate Profile Picture</label><br>
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="submit" class="btn btn-sm btn-primary" value="Generate">
   </form>
 
   @yield('generateAvatar')
   <br><br>
   <form class="" enctype="multipart/form-data" action="/edit/profile/avatar" method="POST">
+    {{ csrf_field() }}
     <label>Update Profile Image</label>
     <input type="file" name="avatar"><br>
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="submit" class="btn btn-sm btn-primary" value="Upload">
   </form>
 
   <!--Change display name-->
   <h3>Change display name</h3>
-    <form action="/changeName">
+    <form action="/changeName" method="post">
+      {{ csrf_field() }}
       <input type="text" name="displayname" placeholder="{{{ Auth::user()->name }}}"/>
       <input type="submit" class="btn btn-sm btn-primary" value="Update"/>
     </form>
 
   <!--Change password-->
   <h3>Change password</h3>
-  <form action="/changePWD" style="padding-top: 20px;">
+  <form action="/changePWD" style="padding-top: 20px;" method="post">
+    {{ csrf_field() }}
     <input type="password" name="currentpassword" placeholder="Current password"><br>
     <input type="password" name="newpassword" placeholder="New password" style="margin-top:10px;"><br>
-    <input type="password" name="verifynewpwd" placeholder="Verify new password" style="margin-top:10px;"><br>
+    <input type="password" name="newpassword_confirmation" placeholder="Verify new password" style="margin-top:10px;"><br>
     <input type="submit" class="btn btn-sm btn-primary" value="Update">
 
   </form>
   <!--Change email-->
   <h3>Change email</h3>
-  <form action="/changeEmail" style="padding-top: 20px;">
+  <form action="/changeEmail" style="padding-top: 20px;" method="post">
+    {{ csrf_field() }}
     <input type="text" name="changeemail" placeholder="{{{Auth::user()->email}}}">
     <input type="submit" class="btn btn-sm btn-primary" value="Update">
   </form>
 
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" style="float:right;">
+  <a href="/delete/user">
     Deactivate your account
-  </button> </a>
+ </a>
 
   <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Deactivate your account</h4>
-        </div>
-        <form action="/deactivate" autocomplete="off">
-        <div class="modal-body">
-          @if (Session::has('test'))
-              <div class="alert alert-danger">
-                  {!! Session::get('test') !!}
-              </div>
-          @endif
-          <center><h4 style="color:#ff4b4b;"><b>Warning!</b> This action cannot be undone once complete</h4></center>
-          <br>
-          <hr>
-          <h4>If you wish to continue:</h4>
-          <p>Enter your username</p>
-          <input type="text" name="deac-username" placeholder="Username" style="width:230px;">
-          <p>Enter your password</p>
-          <input type="password" name="deac-password" placeholder="Current password" style="width:230px;">
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger" value="Update">Deactivate</button>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
+  @if(Session::has('confirmDeletion'))
+  <h1>hey</h1>
+  @endif
 
 
 @endsection
