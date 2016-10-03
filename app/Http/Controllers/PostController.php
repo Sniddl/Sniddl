@@ -87,12 +87,7 @@ class PostController extends Controller
       //return $post;
     }
 
-    public function delete(){
-      Post::destroy(request()->id);
-      Repost::where('post_id','=',request()->id)->delete();
-      Timeline::where('post_id','=',request()->id)->delete();
-      return back();
-    }
+    
 
 
     public function sort(){
