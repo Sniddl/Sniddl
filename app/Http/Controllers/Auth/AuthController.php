@@ -98,10 +98,58 @@ class AuthController extends Controller
 
         return $user;
 
-
-
-
-
-
     }
+
+
+
+
+
+
+
+  /**
+   * Handle a login request to the application.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function postLogin(Request $request)
+  {
+      // get our login input
+      $login = $request->input('login');
+      // check login field
+      $login_type = filter_var( $login, FILTER_VALIDATE_EMAIL ) ? 'email' : 'username';
+      // merge our login field into the request with either email or username as key
+      $request->merge([ $login_type => $login ]);
+      // let's validate and set our credentials
+      if ( $login_type == 'email' ) {
+          $this->validate($request, [
+              'email'    => 'required|email',
+              'password' => 'required',
+          ]);
+          $credentials = $request->only( 'email', 'password' );
+      } else {
+          $this->validate($request, [
+              'username' => 'required',
+              'password' => 'required',
+          ]);
+          $credentials = $request->only( 'username', 'password' );
+      }
+      if ($this->auth->attempt($credentials, $request->has('remember')))
+      {
+          return redirect()->intended($this->redirectPath());
+      }
+      return redirect($this->loginPath())
+          ->withInput($request->only('login', 'remember'))
+          ->withErrors([
+              'login' => $this->getFailedLoginMessage(),
+          ]);
+}
+
+
+
+
+
+
+
+
 }
