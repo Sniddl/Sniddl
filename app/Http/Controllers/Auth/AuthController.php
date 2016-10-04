@@ -74,10 +74,10 @@ class AuthController extends Controller
 
         if (hexInfo($hex, 'contrast') > 130) {
           //bright color use dark text
-          $textColor =  'black';
-        }else {
+            $textColor =  'black';
+        } else {
           //dark color use light text
-          $textColor = 'white';
+            $textColor = 'white';
         }
 
         $user = User::create([
@@ -97,7 +97,6 @@ class AuthController extends Controller
         Session::put('verify_incomplete', 'Thank you for joining Sniddl, but you need to verify your e-mail if you wish to continue.');
 
         return $user;
-
     }
 
 
@@ -112,44 +111,35 @@ class AuthController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function postLogin(Request $request)
-  {
-      // get our login input
-      $login = $request->input('login');
-      // check login field
-      $login_type = filter_var( $login, FILTER_VALIDATE_EMAIL ) ? 'email' : 'username';
-      // merge our login field into the request with either email or username as key
-      $request->merge([ $login_type => $login ]);
-      // let's validate and set our credentials
-      if ( $login_type == 'email' ) {
-          $this->validate($request, [
+    public function postLogin(Request $request)
+    {
+        // get our login input
+        $login = $request->input('login');
+        // check login field
+        $login_type = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        // merge our login field into the request with either email or username as key
+        $request->merge([ $login_type => $login ]);
+        // let's validate and set our credentials
+        if ($login_type == 'email') {
+            $this->validate($request, [
               'email'    => 'required|email',
               'password' => 'required',
-          ]);
-          $credentials = $request->only( 'email', 'password' );
-      } else {
-          $this->validate($request, [
-              'username' => 'required',
-              'password' => 'required',
-          ]);
-          $credentials = $request->only( 'username', 'password' );
-      }
-      if ($this->auth->attempt($credentials, $request->has('remember')))
-      {
-          return redirect()->intended($this->redirectPath());
-      }
-      return redirect($this->loginPath())
-          ->withInput($request->only('login', 'remember'))
-          ->withErrors([
+            ]);
+            $credentials = $request->only('email', 'password');
+        } else {
+            $this->validate($request, [
+            'username' => 'required',
+            'password' => 'required',
+            ]);
+            $credentials = $request->only('username', 'password');
+        }
+        if ($this->auth->attempt($credentials, $request->has('remember'))) {
+            return redirect()->intended($this->redirectPath());
+        }
+          return redirect($this->loginPath())
+            ->withInput($request->only('login', 'remember'))
+            ->withErrors([
               'login' => $this->getFailedLoginMessage(),
-          ]);
-}
-
-
-
-
-
-
-
-
+            ]);
+    }
 }
