@@ -47,6 +47,7 @@ class PostController extends Controller
     public function get()
     {
         $timeline = Timeline::orderBy('id', 'DESC')->get();
+        //return $timeline = Timeline::orderBy('id', 'DESC')->first()->post;
         return view('showAllPosts', compact('timeline'));
     }
 
@@ -88,7 +89,7 @@ class PostController extends Controller
       //return $post;
     }
 
-    
+
 
 
     public function sort()

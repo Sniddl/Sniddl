@@ -14,7 +14,7 @@ class UpdateFriendsTable extends Migration
     {
       Schema::table('friends', function ($table) {
         $table->renameColumn('user', 'follower');
-        $table->boolean('are_friends');
+        $table->boolean('are_friends')->default(0);
       });
     }
 

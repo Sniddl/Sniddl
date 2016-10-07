@@ -9,7 +9,7 @@
   DECLARE GLOBAL VARIABLES
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯-->
 
-     <?$user = \App\User::where('username','=',Request::segment(2))->first()?>
+     <?php $user = \App\User::where('username','=',Request::segment(2))->first()?>
 
 
 
@@ -21,7 +21,7 @@
 
     @if(Auth::check())
 
-           <?$friend = \App\Friend::where('user_id','=', $user->id )->where('follower', '=', Auth::user()->username)?>
+           <?php $friend = \App\Friend::where('user_id','=', $user->id )->where('follower', '=', Auth::user()->username)?>
 
         @if(Auth::user()->username == $user->username)
             <a href="/edit/profile">Edit Profile</a>
@@ -38,9 +38,9 @@
         <a href="/u/{{Request::segment(2)}}/friends"><h4>Friends: {{$data['friends']->count()}}</h4></a>
 
     @else
-      <a href="/signup"><h4>Following: {{$data['following']->count()}}</h4></a>
-      <a href="/signup"><h4>Followers: {{$data['followers']->count()}}</h4></a>
-      <a href="/signup"><h4>Friends: {{$data['friends']->count()}}</h4></a>
+      <a href="/login"><h4>Following: {{$data['following']->count()}}</h4></a>
+      <a href="/login"><h4>Followers: {{$data['followers']->count()}}</h4></a>
+      <a href="/login"><h4>Friends: {{$data['friends']->count()}}</h4></a>
     @endif
 
     <a href="/u/{{Request::segment(2)}}"><h4>Posts: {{$data['timeline']->count()}}</h4></a>
