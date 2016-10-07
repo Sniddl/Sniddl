@@ -35,8 +35,8 @@
               </div>
             @else
               <div class="">
-                <a href="/signup">Like {{ $post->likes()->count() }}</a>
-                <a href="/signup">Repost {{ $post->reposts()->count() }}</a>
+                <a href="/login">Like {{ $post->likes()->count() }}</a>
+                <a href="/login">Repost {{ $post->reposts()->count() }}</a>
               </div>
             @endif
 
