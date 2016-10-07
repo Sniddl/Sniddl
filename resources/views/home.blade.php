@@ -25,7 +25,7 @@
 
               @endif
 
-              
+
               @if(Session::has('notify_danger'))
                 <div class="alert alert-danger alert-dismissible" role="alert"><div  type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>
                   <strong>Warning:</strong>
@@ -35,6 +35,9 @@
 
                 @yield('edit')
             @else
+            <div class="alert alert-danger">
+              <strong>Notice:</strong>   Sniddl has been updated. As a result, all accounts have been deleted.
+            </div>
             <div class="alert alert-warning">
               <strong>Uh-Oh:</strong>   You aren't logged into our website! <a href="/login">Login</a> or <a href="register"> Register</a> to join the fun!
             </div>
