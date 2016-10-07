@@ -179,11 +179,12 @@ class UserController extends Controller
   // Allows the user the change their email
     public function changeEmail(Request $request)
     {
+
         $this->validate($request, [ //Validates the input with regex
-        'changeemail'=> 'required|email|max:255|unique:users',
+        'changeemail'=> 'required|email|max:255|unique:users,email',
         ]);
-        $changeemail = $request->get('changeemail');
-        if ($changeemail !== Auth::user()->email) { //Checks if the new email entered is already equals to the user's curent email
+        $changeemail = $request->changeemail;
+        if ($changeemail != Auth::user()->email) { //Checks if the new email entered is already equals to the user's curent email
             $user = User::find(Auth::user()->id); //If not the email is updated
             $user->email = $changeemail;
             $user->save();

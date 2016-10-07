@@ -29,6 +29,6 @@ class CreateCommunitiesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('communities');
     }
 }

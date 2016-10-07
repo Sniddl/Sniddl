@@ -40,12 +40,11 @@ class FriendController extends Controller
                                 ->first();
 
             //return $gettingDeleted;
-            if ($gettingDeleted->arefriends = 1) {
+            if ($gettingDeleted->are_friends == 1) {
                 $friend = Friend::where('user_id', '=', Auth::user()->id)
                           ->where('follower', '=', $gettingDeleted->User->username)
                           ->first();
 
-                //return $friend;
                 $friend->are_friends = 0;
                 $friend->save();
             }
