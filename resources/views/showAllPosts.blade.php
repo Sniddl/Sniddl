@@ -15,7 +15,7 @@
         @if(Auth::check())
           <a href="/sort/friends">Only show posts by friends</a>
         @else
-          <a href="/signup">Only show posts by friends</a>
+          <a href="/login">Only show posts by friends</a>
         @endif
 
       @endif
@@ -74,8 +74,8 @@
             </div>
           @else
           <div class="">
-            <a href="/signup">Like {{ $post->likes()->count() }}</a>
-            <a href="/signup">Repost {{ $post->reposts()->count() }}</a>
+            <a href="/login">Like {{ $post->likes()->count() }}</a>
+            <a href="/login">Repost {{ $post->reposts()->count() }}</a>
           </div>
           @endif
 
