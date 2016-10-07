@@ -49,8 +49,10 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
+            'username' => 'required|min:4',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'phone' => 'required|min:11',
         ]);
     }
 
@@ -62,10 +64,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+      $hex = generateHex();
+
+      if (hexInfo($hex, 'contrast') > 130) {
+        //bright color use dark text
+        $textColor =  'black';
+      }else {
+        //dark color use light text
+        $textColor = 'white';
+      }
+
         return User::create([
             'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'phone' => bcrypt($data['phone']),
+            'avatar' => '/uploads/avatars/letters/'.$textColor.'/'.$data['name'][0].'.png',
+            'color' => $hex,
+            'confirmation_code' => str_random(30),
         ]);
     }
 }

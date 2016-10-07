@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone');
-            $table->boolean('newbieNotifications');
+            $table->boolean('newbieNotifications')->default(1);
             $table->string('avatar');
             $table->string('color');
             $table->rememberToken();
