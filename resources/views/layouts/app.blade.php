@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @include('header')
+    @include('head')
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -55,7 +55,17 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/u/{{ Auth::user()->username }}"><i class="fa fa-btn fa-user"></i>My Profile</a></li>
                                 <li><a href="/edit/profile"><i class="fa fa-btn fa-cog"></i>Edit Profile</a></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li>
+                                  <a href="{{ url('/logout') }}"
+                                      onclick="event.preventDefault();
+                                               document.getElementById('logout-form').submit();">
+                                      Logout
+                                  </a>
+
+                                  <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                      {{ csrf_field() }}
+                                  </form>
+                                </li>
 
                             </ul>
                         </li>

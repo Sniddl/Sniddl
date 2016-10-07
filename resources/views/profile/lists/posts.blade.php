@@ -2,7 +2,7 @@
 @section('list')
     <h4>Posts & Reposts</h4>
     @foreach ($data['timeline'] as $timeline)
-    {{--*/ $post = $timeline->post; /* --}}
+    <? $post = $timeline->post; ?>
 
       <div class="thumbnail">
             <div>
