@@ -6,8 +6,8 @@
     <ul class="list-group">
       @foreach ($data['friends'] as $friend)
 
-        {{--*/$user = \App\User::where('username','=', $friend->User->username)->first();
-        $user2 = \App\Friend::where('user_id','=', $user->id )->where('follower', '=', Auth::user()->username)/*--}}
+        <?$user = \App\User::where('username','=', $friend->User->username)->first();
+        $user2 = \App\Friend::where('user_id','=', $user->id )->where('follower', '=', Auth::user()->username)?>
 
 
         <li class="list-group-item">

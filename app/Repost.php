@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Repost extends Model
 {
-    public function post() {
-      return $this->belongsTo('App\Post');
+    public function post()
+    {
+        return $this->belongsTo('App\Post');
     }
 }
