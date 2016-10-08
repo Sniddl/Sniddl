@@ -38,8 +38,7 @@ class UserController extends Controller
                             ->where('are_friends', '=', 1)
                             ->get()
             ];
-
-            //return $data['friends']->User;
+            //return $data['friends']->$user;
 
             switch ($list) {
                 case 'following':

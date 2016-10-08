@@ -45,8 +45,6 @@
 
             @endif
 
-
-
             @yield('posts')
 
 
