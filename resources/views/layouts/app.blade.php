@@ -3,12 +3,13 @@
 <head>
     @include('head')
 </head>
-<body id="app-layout">
+<body id="app-layout" >
+  <!--
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
 
-                <!-- Collapsed Hamburger -->
+
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                     <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
@@ -16,21 +17,21 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <!-- Branding Image -->
+
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Sniddl
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
+
                 <ul class="nav navbar-nav">
-                    <!--<li><a href="{{ url('/home') }}">Home</a></li>-->
+                    <li><a href="{{ url('/home') }}">Home</a></li>
                 </ul>
 
-                <!-- Right Side Of Navbar -->
+
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
+
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
@@ -75,6 +76,135 @@
             </div>
         </div>
     </nav>
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style media="screen">
+  .navbar .avatar {
+    background-color: rebeccapurple;
+    border-radius: 10px;
+    width: 38px;
+    box-sizing: border-box;
+  }
+  .drop-right {
+    left: auto;
+    right: 0;
+    margin-right: -15px;
+  }
+  .navbar .pull-xs-right {
+    margin: 0 5px;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }.navbar-item {
+    display: inline-block;
+    float: none !important;
+  }
+  .card-icons > a {
+    color: black;
+    text-decoration: none;
+    margin-right: 10px;
+}.card-block {
+    padding: 0.5rem 0;
+}
+p.card-text {
+    margin: 10px 0;
+    padding: 10px 1.25rem;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.card-item {
+  padding: 0 1.25rem;
+}
+span.collapse.in {
+    display: inline;
+}
+</style>
+
+    <nav class="navbar navbar-light bg-faded" style="margin-bottom: 20px;" >
+      <a class="navbar-brand" href="/" style="margin-right: 30px;">Sniddl</a>
+
+      @if(Auth::check())
+              <ul class="nav navbar-nav" >
+                <li class="nav-item">
+                  <a class="nav-link" href="/sort/friends">Friends</a><span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Communities</a><span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Notifications</a><span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+
+
+
+
+
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-outline-secondary pull-xs-right" data-toggle="modal" data-target="#myModal">
+                <i class="fa fa-pencil"></i> Post
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title" id="myModalLabel">Create a post</h4>
+                    </div>
+                    <div class="modal-body">
+                      @include ('create-post')
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="dropdown pull-xs-right">
+                <img class="avatar" src="{{ Auth::user()->avatar }}" style="background-color:#{{Auth::user()->color}};" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                <div class="dropdown-menu drop-right" aria-labelledby="dropdownMenuButton">
+
+                  <a class="dropdown-item" href="/u/{{ Auth::user()->username }}"><i class="fa fa-btn fa-user"></i> View Profile</a>
+                  <a class="dropdown-item" href="/edit/profile"><i class="fa fa-btn fa-cog"></i> Edit Profile</a>
+                  <a class="dropdown-item" href="{{ url('/logout') }}"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                        <i class="fa fa-btn fa-sign-out"></i> Logout
+                  </a>
+                  <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                  </form>
+
+                </div>
+              </div>
+      @endif
+    </nav>
+
+
+
+
+
+
+
+
+
 
     @yield('content')
 
