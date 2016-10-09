@@ -134,25 +134,21 @@ span.collapse.in {
 }
 </style>
 
-    <nav class="navbar navbar-light bg-faded" style="margin-bottom: 20px;" >
+<nav class="navbar  navbar-dark bg-inverse" style="margin-bottom: 20px;" >
+  <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" style="color:white;">&#9776;</button>
+    <div class="collapse navbar-toggleable-xs" id="navbar-header">
       <a class="navbar-brand" href="/" style="margin-right: 30px;">Sniddl</a>
-
-      @if(Auth::check())
               <ul class="nav navbar-nav" >
                 <li class="nav-item">
                   <a class="nav-link" href="/sort/friends">Friends</a><span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Communities</a><span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="#">Communities</a><span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Notifications</a><span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="#">Notifications</a><span class="sr-only"></span></a>
                 </li>
               </ul>
-
-
-
-
 
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-outline-secondary pull-xs-right" data-toggle="modal" data-target="#myModal">
@@ -172,7 +168,6 @@ span.collapse.in {
                     <div class="modal-body">
                       @include ('create-post')
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -191,20 +186,10 @@ span.collapse.in {
                   <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                   </form>
-
                 </div>
               </div>
-      @endif
-    </nav>
-
-
-
-
-
-
-
-
-
+    </div>
+</nav>
 
     @yield('content')
 
