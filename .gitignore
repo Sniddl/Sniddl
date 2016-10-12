@@ -1,6 +1,7 @@
 vendor/
 node_modules/
 public/storage
+public/storage.*
 
 # Laravel 4 specific
 bootstrap/compiled.php

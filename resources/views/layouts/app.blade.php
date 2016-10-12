@@ -149,11 +149,12 @@ span.collapse.in {
                   <a class="nav-link" href="#">Notifications</a><span class="sr-only"></span></a>
                 </li>
               </ul>
-
+              @if(Auth::check())
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-outline-secondary pull-xs-right" data-toggle="modal" data-target="#myModal">
                 <i class="fa fa-pencil"></i> Post
               </button>
+              @endif
 
               <!-- Modal -->
               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -171,7 +172,7 @@ span.collapse.in {
                   </div>
                 </div>
               </div>
-
+              @if(Auth::check())
               <div class="dropdown pull-xs-right">
                 <img class="avatar" src="{{ Auth::user()->avatar }}" style="background-color:#{{Auth::user()->color}};" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                 <div class="dropdown-menu drop-right" aria-labelledby="dropdownMenuButton">
@@ -188,6 +189,7 @@ span.collapse.in {
                   </form>
                 </div>
               </div>
+              @endif
     </div>
 </nav>
 
