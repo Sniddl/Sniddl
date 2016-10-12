@@ -228,6 +228,7 @@ return [
         'Repost' => App\Repost::class,
         'Timeline' => App\Timeline::class,
         'User' => App\User::class,
+        'Community' => App\Community::class,
 
     ],
 
