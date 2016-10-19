@@ -38,7 +38,7 @@ class UserController extends Controller
                             ->where('are_friends', '=', 1)
                             ->get()
             ];
-            //return $data['friends']->$user;
+            //return $data;
 
             switch ($list) {
                 case 'following':
@@ -135,7 +135,7 @@ class UserController extends Controller
     public function updateName(Request $request)
     {
         $this->validate($request, [ //Validates the input with regex
-        'displayname' => 'min:3|required|max:50|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/',
+        'displayname' => 'min:3|required|max:50|alpha_num',
         ]);
         $name = $request->get('displayname');
         if ($name === Auth::user()->name) { //Checks if the name new name is equal to the users current name

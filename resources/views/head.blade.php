@@ -17,6 +17,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="js/profile.js" type="text/javascript"></script>
 <script src="jquery.timeago.js" type="text/javascript"></script>
 
 <!-- End of head -->

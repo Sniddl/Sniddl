@@ -1,23 +1,20 @@
 @extends('home')
 @section('edit')
-
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 <div class="container">
   @if (session()->has('flash_notification.message'))
       <div class="alert alert-{{ session('flash_notification.level') }}">
           {!! session('flash_notification.message') !!}
       </div>
   @endif
-
+  @if (count($errors) > 0)
+      <div class="alert alert-danger" role="alert">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+  @endif
   <img class="img-circle" height="100px" width="100px" src="{{ Auth::user()->avatar }}" style="background-color: #{{Auth::user()->color}}"/>
   <h1 style="padding-top:20px;">Editing {{{ Auth::user()->username }}}'s profile...</h1>
 
