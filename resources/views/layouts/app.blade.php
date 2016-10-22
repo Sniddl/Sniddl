@@ -92,46 +92,7 @@
 
 
 <style media="screen">
-  .navbar .avatar {
-    background-color: rebeccapurple;
-    border-radius: 10px;
-    width: 38px;
-    box-sizing: border-box;
-  }
-  .drop-right {
-    left: auto;
-    right: 0;
-    margin-right: -15px;
-  }
-  .navbar .pull-xs-right {
-    margin: 0 5px;
-  }
 
-  .navbar-nav {
-    text-align: center;
-  }.navbar-item {
-    display: inline-block;
-    float: none !important;
-  }
-  .card-icons > a {
-    color: black;
-    text-decoration: none;
-    margin-right: 10px;
-}.card-block {
-    padding: 0.5rem 0;
-}
-p.card-text {
-    margin: 10px 0;
-    padding: 10px 1.25rem;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-}
-.card-item {
-  padding: 0 1.25rem;
-}
-span.collapse.in {
-    display: inline;
-}
 </style>
 
 <nav class="navbar  navbar-dark bg-inverse" style="margin-bottom: 20px;" >
@@ -139,15 +100,19 @@ span.collapse.in {
     <div class="collapse navbar-toggleable-xs" id="navbar-header">
       <a class="navbar-brand" href="/" style="margin-right: 30px;">Sniddl</a>
               <ul class="nav navbar-nav" >
+
                 <li class="nav-item">
-                  <a class="nav-link" href="/sort/friends">Friends</a><span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="/communities">Communities</a><span class="sr-only"></span></a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Communities</a><span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Notifications</a><span class="sr-only"></span></a>
-                </li>
+                @if(Auth::check())
+                  <li class="nav-item">
+                    <a class="nav-link" href="/sort/friends">Friends</a><span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Notifications</a><span class="sr-only"></span></a>
+                  </li>
+                @endif
+
               </ul>
               @if(Auth::check())
               <!-- Button trigger modal -->
@@ -164,7 +129,7 @@ span.collapse.in {
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                      <h4 class="modal-title" id="myModalLabel">Create a post</h4>
+                      <h4 class="modal-title" id="myModalLabel" style="color:darkgrey">Create a post</h4>
                     </div>
                     <div class="modal-body">
                       @include ('create-post')
@@ -195,9 +160,6 @@ span.collapse.in {
 
     @yield('content')
 
-    <!-- JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    @include('footer')
 </body>
 </html>

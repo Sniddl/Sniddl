@@ -65,6 +65,12 @@
               </div>
           </div>
 
+          <div class="form-group">
+              <div class="col-md-6 offset-md-4 " >
+                <a href="/register"> Don't have an account?</a>
+              </div>
+          </div>
+
 
       </form>
     </div>

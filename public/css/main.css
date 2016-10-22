@@ -1,3 +1,43 @@
+.navbar .avatar {
+  background-color: rebeccapurple;
+  border-radius: 10px;
+  width: 38px;
+  box-sizing: border-box;
+}
+.drop-right {
+  left: auto;
+  right: 0;
+  margin-right: -15px;
+}
+.navbar .pull-xs-right {
+  margin: 0 5px;
+}
+
+.navbar-nav {
+  text-align: center;
+}.navbar-item {
+  display: inline-block;
+  float: none !important;
+}
+.card-icons > a {
+  color: black;
+  text-decoration: none;
+  margin-right: 10px;
+}.card-block {
+  padding: 0.5rem 0;
+}
+p.card-text {
+  margin: 10px 0;
+  padding: 10px 1.25rem;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.card-item {
+padding: 0 1.25rem;
+}
+span.collapse.in {
+  display: inline;
+}
 ul.dropdown-menu.create-post {
     width: 450px;
     text-align: right;
@@ -9,4 +49,17 @@ ul.dropdown-menu.create-post textarea {
 
 body {
     font-family: 'Lato';
+}
+
+.reposted-post {
+    line-height: 10px;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    margin-top: -8px;
+    background: #28d073;
+    border-radius: 3px 3px 0px 0px;
+
+}.reposted-post * {
+  color: white !important;
+  font-size: 12px !important;
 }

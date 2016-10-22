@@ -7,7 +7,13 @@ Auth::routes();
 
 
 /*⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-  POST ROUTES
+  Routes that need to be changed to post requests.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯*/
+Route::get('/friend/{id}', 'FriendController@add');
+Route::get('/resendVerification', 'UserController@resendVerification');
+
+/*⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+  POST ROUTES -- use for forms, or if you want to keep things private.
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯*/
 Route::post('/create-post', 'PostController@create');
 Route::post('/edit/profile/avatar', 'UserController@update_avatar');
@@ -17,22 +23,24 @@ Route::post('/changePWD', 'UserController@changePWD');
 Route::post('/changeEmail', 'UserController@changeEmail');
 Route::post('/delete/{item}/{id}', 'DeletionContoller@delete');
 Route::post('/create/c', 'CommunityController@createCommunity');
+Route::post('/like/{post}', 'PostController@like');
+Route::post('/repost/{post}', 'PostController@repost')->name('repost');
+Route::post('/post-feed', 'LiveController@post');
+
+
+
 /*⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-  GET ROUTES
+  GET ROUTES -- Only use if you want everyone to have access to this.
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯*/
 Route::get('/', 'PostController@get');
-Route::get('/like/{post}', 'PostController@like');
-Route::get('/repost/{post}', 'PostController@repost');
 Route::get('/u/{user}', 'UserController@getProfile');
-Route::get('/friend/{id}', 'FriendController@add');
 Route::get('/sort/{type}', 'PostController@sort');
-/*redo this as a post request*/ Route::get('/resendVerification', 'UserController@resendVerification');
 Route::get('/u/{user}/{list}', 'UserController@getProfile');
-
 //Route::get('/deactivate', 'UserController@deactivate');
 Route::get('/verify/{username}/{code}', 'UserController@verify');
-
 Route::get('/c/{url}', 'CommunityController@getCommunity');
+Route::get('/communities', 'CommunityController@getList');
+Route::get('/post/{timeline_id}', 'PostController@url');
 
 
 
@@ -44,7 +52,7 @@ Route::get('/show-create-post', function () {
     return view('create-post');
 });
 Route::get('/signup', function () {
-    return view('auth/signup');
+    return redirect('/register');
 });
 Route::get('/updates', function () {
     return view('updates');

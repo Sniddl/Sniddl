@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests;
 use Auth;
 use Storage;
+use Image;
 
 
 class CommunityController extends Controller
@@ -25,11 +26,16 @@ class CommunityController extends Controller
       }
     }
 
+
+
+
+
+
     public function createCommunity(Request $request){
       $this->validate($request, [
-      'createcommunityname' => 'required|min:5|regex:/[a-zA-Z0-9]/|unique:communities,name',
-      'createcommunitydescription' => '',
-      'createcommunityurl' => 'required|min:3|max:30|regex:/[a-zA-Z0-9]/|unique:communities,url',
+      'createcommunityname' => 'required|min:5|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/|unique:communities,name',
+      'createcommunitydescription' => 'required|string',
+      'createcommunityurl' => 'required|min:3|max:30|alpha_num|unique:communities,url',
       'createcommunityavatar' => 'required|image',
       ]);
       //Requesting the fields
@@ -37,8 +43,20 @@ class CommunityController extends Controller
       $communitydescription = $request->createcommunitydescription;
       $communityurl = $request->createcommunityurl;
 
-      $path = $request->file('createcommunityavatar')->store('public/image');
-          $url = Storage::url($path);
+      $path = $request->file('createcommunityavatar');
+      $resize= Image::make($path)->resize(300, 300);
+      $store = Storage::putFile('public/image', $resize);
+      $url = Storage::url($store);
+
+
+      /*$path = $request->file('createcommunityavatar');
+      $store = $request->file('createcommunityavatar')->store('public/image');
+      $url = Storage::url($store);
+      $resize= Image::make($path)->fit(300)->save($url);*/
+
+
+
+      //return $path;
   //    if($request->hasFile('createcommunityavatar')){
   //      $communityavatar = $request->file('createcommunityavatar');
   //      $createcommunityavatar_ext = $communityavatar->getClientOriginalExtension();
@@ -57,4 +75,14 @@ class CommunityController extends Controller
 
       return redirect('/c/'. $community->url);
     }
+
+
+
+
+    public function getList() {
+      $communities = Community::orderBy('name')->get();
+      //return $communities;
+      return view('communities.list', compact('communities'));
+    }
+
 }

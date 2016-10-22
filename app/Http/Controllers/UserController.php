@@ -87,6 +87,7 @@ class UserController extends Controller
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $avatar_ext = $avatar->getClientOriginalExtension();
+            //return $avatar;
 
 
             if (File::exists($old_file)) {

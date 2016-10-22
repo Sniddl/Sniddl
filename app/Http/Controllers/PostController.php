@@ -53,24 +53,31 @@ class PostController extends Controller
 
 
 
-    public function like(Post $post)
+    public function like(Request $request)
     {
+        $post = Post::find($request->id);
         if (!$post->likes()->where('user', '=', Auth::user()->username)->exists()) {
             Like::insert(['user' => Auth::user()->username, 'post_id' => $post->id, 'user_id' => Auth::user()->id]);
         } else {
             $post->likes()->where('user', '=', Auth::user()->username)->delete();
         }
-        return back();
+        return response()->json([
+          'likeAmount' => $post->likes->count()
+        ]);
     }
 
 
 
 
-    public function repost(Post $post)
+    public function repost(Request $request)
     {
       //return $post->user;
       //return $post->user;
-        if (!$post->reposts()->where('user_id', '=', Auth::user()->id)->exists() && $post->user != Auth::user()->username) {
+        $post = Post::find($request->id);
+        //Repost::insert(['op' => $post->user, 'post_id' => $post->id, 'user_id' => Auth::user()->id]);
+
+        $already_reposted = $post->reposts()->where('user_id', '=', Auth::user()->id)->exists();
+        if (!$already_reposted && $post->user != Auth::user()->username) {
             //return $post->user_id;
             Repost::insert(['op' => $post->user, 'post_id' => $post->id, 'user_id' => Auth::user()->id]);
 
@@ -85,7 +92,9 @@ class PostController extends Controller
             Repost::where('user_id', '=', Auth::user()->id)->where('post_id', '=', $post->id)->delete();
             Timeline::where('post_id', '=', $post->id)->where('is_repost', '=', 1)->where('added_by', '=', Auth::user()->username)->delete();
         }
-        return back();
+        return response()->json([
+        'repostAmount' => $post->reposts->count()
+      ]);
       //return $post;
     }
 
@@ -115,24 +124,26 @@ class PostController extends Controller
         return view('showAllPosts', compact('timeline'));
       //return Friend::first()->User;
     }
+
+
+
+
+
+
+
+    public function url($timeline_id) {
+      $getPostByUrl = Timeline::find($timeline_id);
+      return view('layouts.post-rendered')->with('timeline', $getPostByUrl);
+    }
+
+
+
 }
 
-/*
 
-array(1) {
-  [0]=> object(stdClass)#173 (11) {
-    ["id"]=> int(1)
-    ["text"]=> string(33) "hehe I just chaned automatically!"
-    ["user"]=> string(3) "zeb"
-    ["community"]=> string(0) ""
-    ["trending"]=> int(1)
-    ["liked"]=> int(0)
-    ["reposted"]=> int(0)
-    ["likes"]=> int(0)
-    ["reposts"]=> int(0)
-    ["created"]=> string(19) "2016-09-04 15:30:49"
-    ["updated"]=> string(19) "2016-09-04 15:34:42"
-}
-}
 
-*/
+
+
+
+
+//

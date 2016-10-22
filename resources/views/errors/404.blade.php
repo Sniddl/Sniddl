@@ -1,7 +1,4 @@
-@extends('layouts.app')
 
-
-@section('content')
 <style media="screen">
 
   .error-img-wrapper {
@@ -26,5 +23,3 @@
 <div class="error-img-wrapper">
 
 </div>
-
-@endsection

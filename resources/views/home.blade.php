@@ -31,10 +31,10 @@
                     </div>
                   @endif
 
-
-                  @yield('posts')
-                  @yield('edit')
-
+                  <div class="container">
+                    @yield('posts')
+                    @yield('edit')
+                  </div>
             @else
 
                   <div class="alert alert-danger alert-dismissible fade in" role="alert">
