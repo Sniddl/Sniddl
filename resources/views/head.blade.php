@@ -22,6 +22,5 @@
 <script src="jquery.timeago.js" type="text/javascript"></script>
 <script src="/js/global.js" charset="utf-8"></script>
 <script src="/js/colorpicker/colorpicker.min.js" charset="utf-8"></script>
-<script src="/js/profile.js" charset="utf-8"></script>
 
 <!-- End of head -->
