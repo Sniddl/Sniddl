@@ -2,6 +2,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Sniddl - Created by Zeb and Sys">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <title>Pre-Alpha Sniddl</title>
 
@@ -11,13 +12,16 @@
 
 <!-- Styles -->
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">-->
 
 <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" >
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="js/profile.js" type="text/javascript"></script>
+<script src="/js/jquery-ui/jquery-ui.min.js" charset="utf-8"></script>
 <script src="jquery.timeago.js" type="text/javascript"></script>
+<script src="/js/global.js" charset="utf-8"></script>
+<script src="/js/colorpicker/colorpicker.min.js" charset="utf-8"></script>
+<script src="/js/profile.js" charset="utf-8"></script>
 
 <!-- End of head -->
