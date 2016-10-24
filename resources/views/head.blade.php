@@ -18,7 +18,9 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="/js/jquery-ui/jquery-ui.min.js" charset="utf-8"></script>
 <script src="jquery.timeago.js" type="text/javascript"></script>
 <script src="/js/global.js" charset="utf-8"></script>
+<script src="/js/colorpicker/colorpicker.min.js" charset="utf-8"></script>
 
 <!-- End of head -->
