@@ -95,7 +95,10 @@ return [
     'custom' => [
         'displayname' => [
             'min' => 'Your display name must be 3 characters or more',
-            'filled' => 'Your name cannot be blank',
+            'required' => 'Your display name cannot be blank.',
+            'alpha_num' => 'Your display name must only contain alphanumeric characters',
+            'max' => 'Your display name must be no longer than 50 characters',
+
         ],
         'currentpassword' => [
             'required' => 'Please enter your current password',
@@ -108,8 +111,8 @@ return [
         ],
         'changeemail' => [
             'required' => 'Please enter an email',
-            'filled' => 'Please enter an email',
             'email' => 'Please enter a valid email',
+            'unique' => 'Your email is already in use with another account',
         ],
     ],
 
