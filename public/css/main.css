@@ -59,7 +59,16 @@ body {
     background: #28d073;
     border-radius: 3px 3px 0px 0px;
 
-}.reposted-post * {
+}
+.reposted-post * {
   color: white !important;
   font-size: 12px !important;
+}
+a.createcommunity{
+  color: #131313;
+  text-decoration: none;
+}
+
+.navbar {
+    border-radius: 0rem;
 }

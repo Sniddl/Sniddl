@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
   <h5>Currently there are {{$communities->count()}} communities on Sniddl.</h5>
+  <a href="/create" class="createcommunity">create</a>
   <div class="list-group">
     @foreach($communities as $c)
       <a href="/c/{{$c->url}}" class="list-group-item list-group-item-action">
