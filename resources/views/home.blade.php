@@ -37,15 +37,14 @@
                   </div>
             @else
 
-                  <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                    <strong>Notice:</strong>   Sniddl has been updated. As a result, all accounts have been deleted.
-                  </div>
-
                   <div class="jumbotron jumbotron-fluid">
                     <div class="container">
+                      <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Notice:</strong>   Sniddl has been updated. As a result, all accounts have been deleted.
+                      </div>
                       <h1 class="display-3">Welcome to Sniddl.</h1>
                       <p class="lead">Sniddl is a social network in development. If you are seeing this right now you are an official Alpha-tester, Congratulations!! As of now we can't tell you much because either our ideas are too good for the world to hear, or we don't actually have any ideas and we need some BS to fill this page. </p>
                       <hr class="m-y-2">
