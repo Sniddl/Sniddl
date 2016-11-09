@@ -60,8 +60,8 @@ class UserController extends Controller
         }
     }
 
-    public function resendVerification()
-    {
+    public function resendVerification(){
+
         if (Auth::user()->confirmation_code) {
             email_signup(Auth::user());
             Session::forget('verify_fail');
@@ -71,7 +71,6 @@ class UserController extends Controller
         }
         return back();
     }
-
 
     public function update_avatar(Request $request)
     {
@@ -96,7 +95,7 @@ class UserController extends Controller
 
           //return var_dump($avatar);
 
-            $filename = time(). '.' . $avatar->getClientOriginalExtension();
+            $filename = 'user_' . date("jFYhis") . '.' . $avatar->getClientOriginalExtension();
           //File::exists(storage_path('upload/avatars/' . $postId)) or File::makeDirectory(storage_path('upload/avatars/' . $postId));
             Image::make($avatar)->fit(300)->save(public_path('/uploads/avatars/' . $filename));
 

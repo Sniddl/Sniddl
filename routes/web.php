@@ -54,9 +54,7 @@ Route::get('/show-create-post', function () {
 Route::get('/signup', function () {
     return redirect('/register');
 });
-Route::get('/updates', function () {
-    return view('updates');
-});
+
 Route::get('/edit/profile', function () {
     return view('profile.edit');
 });
