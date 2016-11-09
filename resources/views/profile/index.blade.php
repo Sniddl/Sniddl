@@ -44,7 +44,6 @@
     @endif
 
     <a href="/u/{{Request::segment(2)}}"><h4>Posts: {{$data['timeline']->count()}}</h4></a>
-    <a href="/create"><i class="material-icons">add_circle_outline</i></a>
 
 
 

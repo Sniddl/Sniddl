@@ -43,36 +43,27 @@ class CommunityController extends Controller
       $communitydescription = $request->createcommunitydescription;
       $communityurl = $request->createcommunityurl;
 
-      $path = $request->file('createcommunityavatar');
-      $resize= Image::make($path)->resize(300, 300);
-      $store = Storage::putFile('public/image', $resize);
-      $url = Storage::url($store);
-
-
       /*$path = $request->file('createcommunityavatar');
       $store = $request->file('createcommunityavatar')->store('public/image');
       $url = Storage::url($store);
       $resize= Image::make($path)->fit(300)->save($url);*/
 
-
-
-      //return $path;
-  //    if($request->hasFile('createcommunityavatar')){
-  //      $communityavatar = $request->file('createcommunityavatar');
-  //      $createcommunityavatar_ext = $communityavatar->getClientOriginalExtension();
-
-  //      $filename = 'comm_' . time(). '.' . $communityavatar->getClientOriginalExtension();
-  //      Image::make($communityavatar)->fit(300)->save(public_path('/uploads/avatars/' . $filename));
-  //    }
+      if($request->hasFile('createcommunityavatar')){
+        $communityavatar = $request->file('createcommunityavatar');
+        $createcommunityavatar_ext = $communityavatar->getClientOriginalExtension();
+        // Format of the date() is "date, month, year, hour(12hr), minutes, seconds" **The date is based on machine time**
+        $filename = 'comm_' . date("jFYhis") . '.' . $communityavatar->getClientOriginalExtension();
+        Image::make($communityavatar)->fit(300)->save(public_path('/uploads/avatars/' . $filename));
+      }
       //Creating the community
       $community = new Community();
       $community->name = $communityname;
       $community->description = $communitydescription;
       $community->owner = Auth::user()->id;
       $community->url = $communityurl;
-      $community->avatar = $url;
+      $community->avatar = '/uploads/avatars/'.$filename;
       $community->save();
-
+      //return date("jFYhis");
       return redirect('/c/'. $community->url);
     }
 

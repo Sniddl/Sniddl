@@ -24,7 +24,7 @@
           <input name="createcommunitydescription" type="text" class="form-control" id="createcommunitydescription" placeholder="Description">
         </div>
         <div class="form-group">
-          <label for="c-communitydescription">Enter a url suffix for your community <span style="color:#a4a4a4; padding-left:40px;">sniddl.com/c/<span id="comm_url_example"></span></label>
+          <label for="c-communitydescription">Enter a url suffix for your community <span style="color:#a4a4a4; padding-left:40px;">sniddl.com/c/<span id="comm_url_example" style="color: #2a2a2a;"></span></label>
           <input name="createcommunityurl" type="text" class="form-control" id="createcommunityurl" placeholder="Example: Sniddl">
         </div>
         <div class="form-group" style="padding-top:20px">
