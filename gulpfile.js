@@ -1,6 +1,7 @@
 const elixir = require('laravel-elixir');
-
 require('laravel-elixir-vue');
+
+
 
 /*
  |--------------------------------------------------------------------------
@@ -14,6 +15,6 @@ require('laravel-elixir-vue');
  */
 
 elixir(mix => {
-    mix.sass('app.scss')
-       .webpack('app.js');
+    mix.sass('dependencies.scss') //assumes sass assets folder
+      .browserify('dependencies.js') //assumes js assets folder
 });

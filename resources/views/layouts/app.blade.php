@@ -116,7 +116,7 @@
               </ul>
               @if(Auth::check())
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-outline-secondary pull-xs-right" data-toggle="modal" data-target="#myModal">
+              <button type="button" class="btn btn-outline-secondary pull-nav-right" data-toggle="modal" data-target="#myModal">
                 <i class="fa fa-pencil"></i> Post
               </button>
               @endif
@@ -138,7 +138,7 @@
                 </div>
               </div>
               @if(Auth::check())
-              <div class="dropdown pull-xs-right">
+              <div class="dropdown pull-nav-right">
                 <img class="avatar" src="{{ Auth::user()->avatar }}" style="background-color:#{{Auth::user()->color}};" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                 <div class="dropdown-menu drop-right" aria-labelledby="dropdownMenuButton">
 
