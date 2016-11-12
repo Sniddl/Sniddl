@@ -19,6 +19,7 @@ use File;
 use DB;
 use Validator;
 use \Session;
+use Response;
 
 class UserController extends Controller
 {
@@ -249,4 +250,50 @@ class UserController extends Controller
             Session::flash('test', 'The username you entered was incorrect');
         }
     }
+
+
+
+    public function profileSettings(Request $r){
+      //return $request->displayname;
+      $this->validate($r, [
+      'newpassword' => 'min:6|confirmed',
+      'displayname' => 'min:3|max:50|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/',
+      'username' => 'unique:users|max:20|alpha_dash',
+      'changeemail' => 'email|max:255|unique:users,email',
+      ]);
+
+
+      $u = Auth::user();
+      $u->name = $r->has('displayname') ? $r->displayname: $u->name ;
+      $u->username = $r->has('username') ? $r->username: $u->username ;
+      if($r->has('newpassword')){
+        $this->validate($r, ['currentpassword'=>'required',]);
+        if ( password_verify($r->currentpassword, $u->password) ) {
+          $u->password = bcrypt($r->newpassword);
+        }else {
+          return Response::json(['error' => 'Your current password doesn\'t match '], 422);
+        }
+      }
+      $u->email = $r->has('changeemail') ? $r->changeemail: $u->email ;
+      $u->save();
+
+
+      return $u;
+    }
+
+
+    public function toggleDarkness() {
+      $u = Auth::user();
+      if($u->isDark == 0){
+        $u->isDark = 1;
+      }else{
+        $u->isDark = 0;
+      }
+      $u->save();
+      return redirect('/edit/profile');
+    }
+
+
+
+
 }

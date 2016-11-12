@@ -14,8 +14,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
 <!-- CSS -->
-<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
-<link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" >
+<link href="{{ asset('css/dependencies.css') }}" rel="stylesheet" type="text/css" >
+<link href="{{ asset('css/light.css') }}" rel="stylesheet" type="text/css" >
+@if(Auth::check() && Auth::user()->isDark == 1)
+  <link href="{{ asset('css/dark.css') }}" rel="stylesheet" type="text/css" >
+@endif
 
 <!-- JS -->
 <script src="{{asset('js/dependencies.js')}}" charset="utf-8"></script>

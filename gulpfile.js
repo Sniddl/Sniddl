@@ -16,5 +16,7 @@ require('laravel-elixir-vue');
 
 elixir(mix => {
     mix.sass('dependencies.scss') //assumes sass assets folder
-      .browserify('dependencies.js') //assumes js assets folder
+       .sass('light.scss')
+       .sass('dark.scss')
+       .browserify('dependencies.js') //assumes js assets folder
 });

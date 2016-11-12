@@ -1,26 +1,24 @@
+body {
+    font-family: 'Roboto';
+    margin-bottom: 50px;
+}
 
 .navbar .avatar {
   background-color: rebeccapurple;
-  border-radius: 10px;
+  border-radius: 100%;
   width: 38px;
   box-sizing: border-box;
 }
 .drop-right {
   left: auto;
   right: 0;
-  margin-right: -15px;
+  margin-right: -5px;
 }
 .navbar .pull-nav-right {
   margin: 0 5px;
   float: right;
 }
 
-.navbar-nav {
-  text-align: center;
-}.navbar-item {
-  display: inline-block;
-  float: none !important;
-}
 .card-icons > a {
   color: black;
   text-decoration: none;
@@ -37,6 +35,15 @@ p.card-text {
 .card-item {
 padding: 0 1.25rem;
 }
+
+.card {
+    position: relative;
+    display: block;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border-radius: 0;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
 span.collapse.in {
   display: inline;
 }
@@ -49,9 +56,6 @@ ul.dropdown-menu.create-post textarea {
   resize: vertical;
 }
 
-body {
-    font-family: 'Lato';
-}
 
 .reposted-post {
     line-height: 10px;
@@ -72,4 +76,46 @@ a.createcommunity{
 }
 .navbar {
     border-radius: 0rem;
+    margin-bottom: 10px;
+}
+button.card-toggle {
+    width: 100%;
+    height: 37px;
+    background: transparent;
+    border: none;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    cursor: pointer;
+    text-align: right;
+    padding: 0 15px;
+}button.card-toggle:focus{
+  outline: none;
+}
+h5.setting-block {
+    font-size: 1.05rem;
+    margin-bottom: 0.2rem;
+}
+
+
+.card-collapse::before {
+    content: "";
+    width: calc(100% + 30px);
+    margin: 9px 0 9px -15px;
+    height: 1px;
+    background: #e0e0e0;
+    display: block;
+}
+.card-form > label {
+    font-size: .9rem;
+    font-weight: 600;
+    margin-right: 15px;
+}.card-form input {
+    display: block;
+    width: 100%;
+}
+.card-form input.btn.btn-primary {
+    margin-top: 15px;
 }

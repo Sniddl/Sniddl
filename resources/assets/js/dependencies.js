@@ -14,6 +14,6 @@
 global.$ = global.jQuery = require('jquery');
 global.Tether = require('tether');
 
-//Everything else
+//Other Dependencies
 require('bootstrap');
 require('jquery-ui');
