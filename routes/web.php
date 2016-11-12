@@ -26,6 +26,8 @@ Route::post('/create/c', 'CommunityController@createCommunity');
 Route::post('/like/{post}', 'PostController@like');
 Route::post('/repost/{post}', 'PostController@repost')->name('repost');
 Route::post('/post-feed', 'LiveController@post');
+Route::post('/profileSettings', 'UserController@profileSettings');
+Route::post('/toggleDarkness', 'UserController@toggleDarkness');
 
 
 

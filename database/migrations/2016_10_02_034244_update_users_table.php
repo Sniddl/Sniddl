@@ -14,6 +14,7 @@ class UpdateUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('confirmation_code')->nullable();
+            $table->boolean('isDark')->default(0);
         });
     }
 
@@ -25,7 +26,7 @@ class UpdateUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('confirmation_code');
+            $table->dropColumn('confirmation_code','isDark');
         });
     }
 }

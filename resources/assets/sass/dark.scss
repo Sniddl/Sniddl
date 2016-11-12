@@ -1,0 +1,45 @@
+@import "_variables";
+@import "_structure";
+@import "_mixins";
+body {
+  background-color: $dark-grey;
+  color: $off-white;
+}
+
+
+.navbar{
+    background-color: $black;
+    .nav-link, .navbar-brand {
+      color: $light-grey !important;
+      &:hover{
+        color: $pure-white !important;}}
+    button, i {
+      color: $light-grey;
+      border-color: black;
+      &:hover{
+        button, i {
+          color: $pure-white;}
+        border-color: $pure-white;
+        background-color: transparent;}}}
+
+
+.post-block{
+  background-color: $lighter-black;
+  border-color: black;
+  .card-icons {
+    background: $black;
+    color: $off-white;
+    border-top: 1px solid black;}
+  .reposted-post {
+      background-color: $black;
+      border-bottom: 1px solid black;
+      a {
+       color: $off-white !important;}}
+  .post-toggle{
+    background: $black;
+    border: 1px solid black;
+  }
+  .post-name{
+    color: $off-white;
+  }
+}
