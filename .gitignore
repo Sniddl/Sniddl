@@ -2,7 +2,6 @@ vendor/
 node_modules/
 public/storage
 public/storage.*
-config/database.php
 
 # Laravel 4 specific
 bootstrap/compiled.php
