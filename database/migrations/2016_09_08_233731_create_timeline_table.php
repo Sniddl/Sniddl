@@ -14,8 +14,8 @@ class CreateTimelineTable extends Migration
     {
         Schema::create('timeline', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id');
-            $table->string('added_by');
+            $table->integer('post_id')->unsigned()->index();
+            $table->integer('added_by')->unsigned()->index();
             $table->boolean('is_repost')->default(false);
             $table->timestamps();
         });

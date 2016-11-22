@@ -8,11 +8,6 @@
 
 
 
-
-
-<!-- FONTS -->
-<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700"> -->
-
 <!-- CSS -->
 <link href="{{ asset('css/dependencies.css') }}" rel="stylesheet" type="text/css" >
 <link href="{{ asset('css/light.css') }}" rel="stylesheet" type="text/css" >

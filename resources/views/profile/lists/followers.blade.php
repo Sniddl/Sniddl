@@ -7,14 +7,14 @@
     <ul class="list-group">
       @foreach ($data['followers'] as $follower)
 
-        <?php $user = \App\User::where('username', '=', $follower->follower)->first();
-        $friend = \App\Friend::where('user_id','=', $user->id )->where('follower', '=', Auth::user()->username)?>
+        <?php $user = \App\User::find($follower->follower_id);
+        $friend = $user->AuthFriend()?>
 
         <li class="list-group-item">
           <h5>
-            <a href="/u/{{$user->username}}">{{$user->name}}</a>
+            <a href="/u/{{$user->username}}">{{$user->display_name}}</a>
             <small>{{'@'.$user->username}}
-              @if($follower->follower != Auth::user()->username)
+              @if($follower->follower_id != Auth::user()->id)
                   @if($friend->exists())
                     <a href="/friend/{{$user->id}}">Remove Friend</a>
                   @else

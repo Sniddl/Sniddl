@@ -76,13 +76,13 @@ class RegisterController extends Controller
       }
 
         return User::create([
-            'name' => $data['name'],
+            'display_name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'phone' => bcrypt($data['phone']),
-            'avatar' => '/uploads/avatars/letters/'.$textColor.'/'.strtolower($data['name'][0]).'.png',
-            'color' => $hex,
+            'avatar_url' => '/uploads/avatars/letters/'.$textColor.'/'.strtolower($data['name'][0]).'.png',
+            'avatar_bg_color' => $hex,
             'confirmation_code' => str_random(30),
         ]);
     }

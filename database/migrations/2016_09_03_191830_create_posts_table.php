@@ -16,12 +16,11 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
+            $table->integer('community_id')->nullable();
             $table->longText('text');
-            $table->string('user');
-            $table->boolean('is_trending')->default(false);
+            $table->boolean('isTrending')->default(false);
+            $table->boolean('isReply')->default(false);
             $table->timestamps();
-            //$table->timestamp('created')->useCurrent();
-            //$table->timestamp('updated')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

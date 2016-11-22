@@ -6,7 +6,7 @@
   <div class="col-lg-8 col-md-10 offset-lg-2 offset-md-1" >
     @foreach ($data['timeline'] as $timeline)
       <!-- Make variable for the posts you are referencing. -->
-      <?php $post = $timeline->post; ?>
+      <?php $post = $timeline->post_id; ?>
       @include('layouts.post')
     @endforeach
   </div>

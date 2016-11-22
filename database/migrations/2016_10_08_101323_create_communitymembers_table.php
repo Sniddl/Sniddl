@@ -13,13 +13,11 @@ class CreateCommunitymembersTable extends Migration
      */
     public function up()
     {
-      Schema::create('communitymembers', function (Blueprint $table) {
+      Schema::create('community_members', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('user_id')->unsigned()->index();
           $table->integer('comm_id')->unsigned()->index();
           $table->timestamps();
-          //$table->timestamp('created')->useCurrent();
-          //$table->timestamp('updated')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
       });
     }
 

@@ -32,12 +32,10 @@ class UserController extends Controller
 
         if ($user) {
             $data = [
-            'timeline' => Timeline::orderBy('id', 'DESC')->where('added_by', '=', $user->username)->get(),
-            'following' => Friend::where('follower', '=', $user->username)->get(),
-            'followers' => Friend::where('user_id', '=', $user->id)->get(),
-            'friends' => Friend::where('follower', '=', $user->username)
-                            ->where('are_friends', '=', 1)
-                            ->get()
+            'timeline'  => $user->Timeline()->get(),
+            'following' => $user->Following()->get(),
+            'followers' => $user->Followers()->get(),
+            'friends'   => $user->Friends()->get()
             ];
             //return $data;
 
