@@ -246,4 +246,15 @@ body {
 .card-collapse::before {
   background-color: #ff0000; }
 
+#register-center {
+  border: 2px dashed #b3b3b3;
+  border-radius: 20px;
+  padding-left: 80px;
+  padding-right: 80px;
+  margin-top: 100px;
+  padding-bottom: 100px;
+  padding-top: 50px; }
+  #register-center input {
+    margin-bottom: 7px; }
+
 /*# sourceMappingURL=light.css.map */
