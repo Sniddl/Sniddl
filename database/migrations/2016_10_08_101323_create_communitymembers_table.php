@@ -28,6 +28,6 @@ class CreateCommunitymembersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('communitymembers');
+        Schema::drop('community_members');
     }
 }
