@@ -27,15 +27,15 @@ class PostController extends Controller
       //return var_dump($request->text);
         $post = new Post();
         $post->text = $request->text;
-        $post->user = $user->username;
         $post->user_id = $user->id;
+        $post->community_id = null;
         $post->save();
 
         $post_id = $post->id;
 
         $timeline = new Timeline();
         $timeline->post_id = $post_id;
-        $timeline->added_by = $user->username;
+        $timeline->added_by = $user->id;
         $timeline->is_repost = 0;
         $timeline->save();
 
@@ -106,7 +106,7 @@ class PostController extends Controller
       //!App\Friend::where('user_id','=',1)->where('user','=',Auth::user()->name)->exists()
       //return var_dump(!\App\Friend::where('user_id','=',1)->where('user','=',Auth::user()->name)->exists());
 
-        $friends = Friend::where('follower', '=', Auth::user()->username)->get();
+        $friends = Friend::where('follower_id', '=', Auth::user()->id)->get();
 
         $array = [];
         foreach ($friends as $friend) {

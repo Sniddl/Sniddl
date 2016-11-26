@@ -19,7 +19,7 @@ class CommunityController extends Controller
       if($getCommunity == ''){ //If a community was searched but doesn't exist a 404 will be thrown ,(Literally).
         abort(404);
       }else{
-        $owner = User::where('id', '=', $getCommunity->owner)->first();
+        $owner = User::find($getCommunity->owner_id)->first();
         //return $owner;
         return view('communities.community', compact('owner'));
         //return $getCommunity;
@@ -58,8 +58,8 @@ class CommunityController extends Controller
       //Creating the community
       $community = new Community();
       $community->name = $communityname;
-      $community->description = $communitydescription;
-      $community->owner = Auth::user()->id;
+      $community->desc = $communitydescription;
+      $community->owner_id = Auth::user()->id;
       $community->url = $communityurl;
       $community->avatar = '/uploads/avatars/'.$filename;
       $community->save();
