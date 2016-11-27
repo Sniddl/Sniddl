@@ -5,7 +5,7 @@
       @if($timeline->is_repost)
         <div class="reposted-post">
           <i class="fa fa-retweet"></i>
-          <a href="/u/{{$timeline->added_by}}">{{$timeline->added_by}} reposted...</a>
+          <a href="/u/{{$timeline->added_by}}">{{$timeline->AddedBy()}} reposted...</a>
         </div>
       @endif
 

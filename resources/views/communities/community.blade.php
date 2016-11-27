@@ -20,7 +20,7 @@
       </div>
 {{--Right column--}}
       <div class="col-sm-6">
-        <p style="float:right; font-size:11pt; color:#a8a8a8; padding-top:27px;">{{$getCommunity->description}}</p>
+        <p style="float:right; font-size:11pt; color:#a8a8a8; padding-top:27px;">{{$getCommunity->desc}}</p>
       </div>
   </div>
 </div>

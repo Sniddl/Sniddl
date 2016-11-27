@@ -16,6 +16,7 @@ class CreateLikesTable extends Migration
             $table->increments('id');
             $table->integer('post_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
+            $table->timestamps();
         });
     }
 

@@ -17,6 +17,7 @@ class CreateRepostsTable extends Migration
             $table->integer('post_id')->unsigned()->index();
             $table->integer('reposter_id')->unsigned()->index();
             $table->integer('op_id')->unsigned()->index();
+            $table->timestamps();
         });
     }
 
