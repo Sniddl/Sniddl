@@ -175,6 +175,7 @@ return [
         Cviebrock\ImageValidator\ImageValidatorServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
 
+
     ],
 
     /*

@@ -32,41 +32,33 @@ class User extends Authenticatable
 
 
     public function Posts(){
-        return $this->hasMany('App\Post');
-    }
-
-    /*public function Reposts()
-    {
-        return $this->hasMany('App\Repost');
-    }*/
+        return $this->hasMany('App\Post');}
 
     public function Friends(){
       return Friend::where('follower_id', '=', $this->id)
-                      ->where('are_friends', '=', 1);
-    }
+                      ->where('are_friends', '=', 1);}
 
     public function Followers(){
-      return Friend::where('being_followed_id', '=', $this->id);
-    }
+      return Friend::where('being_followed_id', '=', $this->id);}
 
     public function Following(){
-      return Friend::where('follower_id', '=', $this->id);
-    }
+      return Friend::where('follower_id', '=', $this->id);}
 
     public function Timeline(){
-      return Timeline::orderBy('id', 'DESC')->where('added_by', '=', $this->username);
-    }
+      return Timeline::orderBy('id', 'DESC')->where('added_by', '=', $this->username);}
 
     public function Reposts(){
-        return $this->hasMany('App\Repost');
-    }
+        return $this->hasMany('App\Repost');}
 
     public function AuthFriend(){
-      return Friend::where('user_id','=', $this->id )
-                   ->where('follower_id', '=', Auth::user()->id);
+      return Friend::where('being_followed_id','=', $this->id )
+                   ->where('follower_id', '=', Auth::user()->id);}
+
+    public static function GetRequest($column, $index){
+      return User::where($column,'=',Request::segment($index));}
+
+    public function OwnerOf(){
+      return Community::where('owner_id','=',$this->id);
     }
 
-    public static function GetRequest($column, $int){
-      return User::where($column,'=',Request::segment($int));
-    }
-}
+}//end of class

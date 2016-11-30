@@ -16,7 +16,9 @@ class LiveController extends Controller
       $thereAreNewPost = Timeline::where('created_at','>=', $last);
       return response()->json([
         'thereAreNewPost' => $thereAreNewPost->exists(),
-        'amountOfNewPosts' => $thereAreNewPost->count(),
-      ]);
-    }
-}
+        'amountOfNewPosts' => $thereAreNewPost->count(),]);}
+
+
+
+        
+}//end of class

@@ -83,3 +83,9 @@ function email_signup($user)
         $m->to($user->email, $user->name)->subject('Sniddl Confirmation');
     });
 }
+
+function is_dev(){
+  $auth = Auth::user()->id;
+  $dev = DB::table('devs')->where('user_id','=',$auth);
+  return $dev->exists();
+}

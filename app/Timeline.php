@@ -17,6 +17,6 @@ class Timeline extends Model
     }
 
     public function AddedBy() {
-      return User::find($this->added_by)->display_name;
+      return User::find($this->added_by);
     }
 }

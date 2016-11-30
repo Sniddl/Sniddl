@@ -25,19 +25,14 @@ class UserController extends Controller
 {
 
 
-    public function getProfile($user, $list = null)
-    {
+    public function getProfile($user, $list = null){
         $user = User::where('username', '=', $user)->first();
-        //return $user->id;
-
         if ($user) {
             $data = [
-            'timeline'  => $user->Timeline()->get(),
-            'following' => $user->Following()->get(),
-            'followers' => $user->Followers()->get(),
-            'friends'   => $user->Friends()->get()
-            ];
-            //return $data;
+              'timeline'  => $user->Timeline()->get(),
+              'following' => $user->Following()->get(),
+              'followers' => $user->Followers()->get(),
+              'friends'   => $user->Friends()->get()];
 
             switch ($list) {
                 case 'following':
@@ -52,12 +47,13 @@ class UserController extends Controller
 
                 default:
                     return view('profile.lists.posts', compact('data'));
-                break;
-            }
+                break;}
         } else {
-            abort(404);
-        }
-    }
+            abort(404);}}
+
+
+
+
 
     public function resendVerification(){
 
@@ -66,144 +62,96 @@ class UserController extends Controller
             Session::forget('verify_fail');
             Session::put('verify_incomplete', 'Thank you for joining Sniddl, but you need to verify your e-mail if you wish to continue.');
         } else {
-            Session::flash('notify_danger', "You think you're being clever? Try to break someone else's site instead.");
-        }
-        return back();
-    }
+            Session::flash('notify_danger', "You think you're being clever? Try to break someone else's site instead.");}
+        return back();}
 
-    public function update_avatar(Request $request)
-    {
 
+
+    public function update_avatar(Request $request){
         $this->validate($request, [
-        'avatar' => 'required|image',
-        ]);
-
+          'avatar' => 'required|image',]);
         $old_file = public_path(Auth::user()->avatar);
-
-
-
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $avatar_ext = $avatar->getClientOriginalExtension();
-            //return $avatar;
-
-
             if (File::exists($old_file)) {
-                File::delete($old_file);
-            }
-
-          //return var_dump($avatar);
-
+                File::delete($old_file);}
             $filename = 'user_' . date("jFYhis") . '.' . $avatar->getClientOriginalExtension();
-          //File::exists(storage_path('upload/avatars/' . $postId)) or File::makeDirectory(storage_path('upload/avatars/' . $postId));
             Image::make($avatar)->fit(300)->save(public_path('/uploads/avatars/' . $filename));
-
             $user = Auth::user();
             $user->avatar = '/uploads/avatars/' . $filename;
             $user->save();
-            return back();
-        }
-    }
+            return back();}}
 
-    public function generateAvatar()
-    {
+
+    public function generateAvatar(){
         $hex = generateHex();
-
         if (hexInfo($hex, 'contrast') >= 130) {
-            //bright color use dark text
             $textColor =  'black';
         } else {
-            //dark color use light text
-            $textColor = 'white';
-        }
-
+            $textColor = 'white';}
         $user = User::find(Auth::user()->id);
         $user->avatar = '/uploads/avatars/letters/'.$textColor.'/'.strtolower(Auth::user()->name[0]).'.png';
         $user->color = $hex;
         $user->save();
+        return back();}
 
 
-
-        //backup for testing email
-        //email_signup();
-
-        return back();
-    }
-
-  // Allows the user the change their name
-    public function updateName(Request $request)
-    {
-        $this->validate($request, [ //Validates the input with regex
-        'displayname' => 'min:3|required|max:50|alpha_num',
-        ]);
+    public function updateName(Request $request){
+        $this->validate($request, [
+          'displayname' => 'min:3|required|max:50|alpha_num',]);
         $name = $request->get('displayname');
-        if ($name === Auth::user()->name) { //Checks if the name new name is equal to the users current name
-            return back(); //If it is it will return the user back to save unnecessary DB calls
+        if ($name === Auth::user()->name) {
+            return back();
         } else {
             $user = User::find(Auth::user()->id); //Updates if not
             $user->name = $name;
             $user->save();
-            flash('Your name was changed successfully', 'success');
-        }
-        return back();
-    }
+            flash('Your name was changed successfully', 'success');}
+        return back();}
 
-  // Changes password
-    public function changePWD(Request $request)
-    {
-        $this->validate($request, [ //Validates the input with regex
-        'currentpassword'=>'required|filled',
-        'newpassword'=> 'required|min:6|confirmed',
-        ]);
+    public function changePWD(Request $request){
+        $this->validate($request, [
+          'currentpassword'=>'required|filled',
+          'newpassword'=> 'required|min:6|confirmed',]);
         $currentpwd = $request->get('currentpassword');
         $newpwd     = $request->get('newpassword');
-        //$verifypwd  = $request->get('newpassword_confirmation');
-        if (password_verify($currentpwd, Auth::user()->password)) { //Checks if the current password is equal to the user's current password in DB
-            if ($newpwd !== $currentpwd) { //Checks if the new password entered is equal to the user's current password
-                 //Checks if the 2 new passwords entered are equal
+        if (password_verify($currentpwd, Auth::user()->password)) {
+            if ($newpwd !== $currentpwd) {
                   $user = User::find(Auth::user()->id);
                   $user->password = bcrypt($newpwd);
                   $user->save();
                   flash('Your password has been updated', 'success');
-            } else {
-                flash('Your new password cannot be the same as your current password', 'warning');
-            }
-        } else {
-            flash('Your current password is incorrect', 'warning');
-        }
-        return back();
-    }
+            }else{
+                flash('Your new password cannot be the same as your current password', 'warning');}
+        }else{
+            flash('Your current password is incorrect', 'warning');}
+        return back();}
 
-  // Allows the user the change their email
-    public function changeEmail(Request $request)
-    {
 
+
+
+    public function changeEmail(Request $request){
         $this->validate($request, [ //Validates the input with regex
-        'changeemail'=> 'required|email|max:255|unique:users,email',
-        ]);
+          'changeemail'=> 'required|email|max:255|unique:users,email',]);
         $changeemail = $request->changeemail;
         if ($changeemail != Auth::user()->email) { //Checks if the new email entered is already equals to the user's curent email
             $user = User::find(Auth::user()->id); //If not the email is updated
             $user->email = $changeemail;
             $user->save();
             flash('Your email has been updated', 'success');
-        } else {
-            flash('Please enter a different, new email', 'warning');
-        }
-        return back();
-    }
+        }else{
+            flash('Please enter a different, new email', 'warning');}
+        return back();}
 
 
-    public function verify($username, $code)
-    {
 
+    public function verify($username, $code){
         $unverified = User::where('username', '=', $username)
                 ->where('confirmation_code', '=', $code)
                 ->first();
         $found = User::where('username', '=', $username)
                 ->first();
-
-
         if ($unverified) {
             $unverified->confirmation_code = null;
             $unverified->newbieNotifications = 1;
@@ -219,48 +167,38 @@ class UserController extends Controller
             return redirect('/');
         } else {
             Session::put('verify_fail', 'It looks like we are having trouble verifying your account.');
-            return redirect('/');
-        }
-    }
+            return redirect('/');}}
 
-    public function confirmDeletion()
-    {
+
+
+    public function confirmDeletion(){
         Flash::put('confirmDeletion', 'Are you sure you would like to delete your account?');
-        return 2;
-    }
+        return 2;}
 
-    public function deactivate(Request $request)
-    {
+
+
+    public function deactivate(Request $request){
         $deacusername = $request->get('deac-username');
         $deacpassword = $request->get('deac-password');
-
         if ($deacusername == Auth::user()->username) {
             if (password_verify($deacpassword, Auth::user()->password)) {
                 $user = User::find(Auth::user()->id);
                 $user->forceDelete();
-
                 return redirect('register');
-            } else {
+            }else{
                 flash('The password you entered was incorrect');
-                return back();
-            }
-        } else {
-            Session::flash('test', 'The username you entered was incorrect');
-        }
-    }
+                return back();}
+        }else{
+            Session::flash('test', 'The username you entered was incorrect');}}
 
 
 
     public function profileSettings(Request $r){
-      //return $request->displayname;
       $this->validate($r, [
-      'newpassword' => 'min:6|confirmed',
-      'displayname' => 'min:3|max:50|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/',
-      'username' => 'unique:users|max:20|alpha_dash',
-      'changeemail' => 'email|max:255|unique:users,email',
-      ]);
-
-
+        'newpassword' => 'min:6|confirmed',
+        'displayname' => 'min:3|max:50|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/',
+        'username' => 'unique:users|max:20|alpha_dash',
+        'changeemail' => 'email|max:255|unique:users,email',]);
       $u = Auth::user();
       $u->name = $r->has('displayname') ? $r->displayname: $u->name ;
       $u->username = $r->has('username') ? $r->username: $u->username ;
@@ -269,15 +207,10 @@ class UserController extends Controller
         if ( password_verify($r->currentpassword, $u->password) ) {
           $u->password = bcrypt($r->newpassword);
         }else {
-          return Response::json(['error' => 'Your current password doesn\'t match '], 422);
-        }
-      }
+          return Response::json(['error' => 'Your current password doesn\'t match '], 422);}}
       $u->email = $r->has('changeemail') ? $r->changeemail: $u->email ;
       $u->save();
-
-
-      return $u;
-    }
+      return $u;}
 
 
     public function toggleDarkness() {
@@ -285,13 +218,11 @@ class UserController extends Controller
       if($u->isDark == 0){
         $u->isDark = 1;
       }else{
-        $u->isDark = 0;
-      }
+        $u->isDark = 0;}
       $u->save();
-      return redirect('/edit/profile');
-    }
+      return redirect('/edit/profile');}
 
 
 
 
-}
+}//end of class
