@@ -2,11 +2,10 @@ body{
   background: #282c34;
   color: #bcc1cc;
   font-size: .9rem;
-  padding: 20px 0px;
+  padding: 20px 40px;
 }
 h1 {
-  border-bottom: 1px solid;
-  border-top: 1px solid;
+
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -37,7 +36,7 @@ color: #bcc1cc;
     border: 1px solid rgba(171, 178, 191, 0.34);
     border-radius: 5px;
     box-shadow: 0 1px 8px rgb(0, 0, 0);
-    
+
 }
 div.expand{display: none}
 div.expand-content {
@@ -46,10 +45,89 @@ div.expand-content {
   border-left: solid 5px #3eb5ff;
   padding-left: 10px;
   font-family: monospace;
+  word-wrap: break-word;
 }
 .custom-tooltip {
 cursor: pointer;
 }
 .tooltip-inner::before{
 display: none;
+}
+.docs{
+  margin-left: 250px;
+}
+
+.sidebar {
+    border-right: 1px solid ;
+    width: 220px;
+    float: left;
+    padding: 35px;
+    padding-left: 0;
+}
+
+.sidebar>ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar>ul>li {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0 0 10px;
+    margin: 1em 0 0;
+}
+.sidebar>ul>li>ul {
+    border-top: 1px dashed ;
+    display: block;
+    list-style: none;
+    margin: .5em 0 0;
+    padding: .5em 0 0;
+    font-size: 14px;
+}.sidebar>ul>li>ul>li{
+  color: #545454;
+}.sidebar>ul>li>ul>li:hover{
+  color: #a3a3a3;
+}
+.sidebar>ul>li>ul>li:before {
+    content: "#";
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 14px;
+    color: inherit;
+}
+.sidebar a {
+  text-decoration: none;
+  color: #3192cf;
+}.sidebar a:hover{
+  color: #3eb5ff;
+}a.header {
+    color: #bcc1cc;
+    font-size: 1.0rem;
+}
+a.header:hover {
+    color: white;
+}
+
+
+
+
+
+
+/*-----------------------------------------------------*/
+/*  S Y N T A X    C O L O R I N G
+/*-----------------------------------------------------*/
+.php-variable {
+  color: #e06c75;
+}
+.php-method {
+  color: #61afef;
+}
+.php-facade {
+  color: #e5c07b;
+}
+.php-object {
+  color: #c0c5d0;
+}
+.blade {
+  color: #c178dd
 }

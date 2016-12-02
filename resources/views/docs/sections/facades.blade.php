@@ -2,7 +2,7 @@
 
 @section('docs')
 <div class="container">
-  <h1>Database Facade</h1>
+  <h1>Model Facades</h1>
   <p>Use these functions with your table class instance to quickly access commonly used queries. The source code for these functions are located within the table class file.</p>
   <a class="h5" data-toggle="expand" href="#community-facades" aria-expanded="false" aria-controls="#community-facades">Community</a>
   <a class="h5" data-toggle="expand" href="#post-facades" aria-expanded="false" aria-controls="#post-facades">Post</a>
@@ -18,8 +18,7 @@
       </div>
       <code class="HTML">
         <!-- PHP -->
-        &lt;?php $community = Community::where( 'name', '=', Request::segment(2) ); // returns: "Soccer"
-        ?>
+        &lt;?php  $community = Community::where( 'name', '=', Request::segment(2) ); // returns: "Soccer"  ?>
 
         <!-- Blade -->
         <h1 class="community-title">@{{$community->name}}->name</h1>
