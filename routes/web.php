@@ -84,14 +84,30 @@ Route::get('/plugins/colorpicker', function() {
   Devloper Links
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯*/
 
-Route::get('/docs', function(){
+// Route::get('/docs', function(){
+  // if( is_dev() ){
+  //   return view('docs.sections.facades');
+  // }else {
+  //   abort(404);
+  // }
+//
+// });
+Route::get('/docs/{page?}', function($page = null){
   if( is_dev() ){
-    return view('docs.sections.facades');
+    switch ($page) {
+      case 'model-facades':
+        return view('docs.sections.facades');
+        break;
+      case 'helpers':
+        return view('docs.sections.helpers');
+        break;
+      default:
+        return view('docs.sections.facades');
+        break;
+    }
+
   }else {
     abort(404);
   }
 
-});
-Route::get('/docs/{page}', function(){
-  return view('docs.sections.facades');
 });
