@@ -15,9 +15,11 @@ class CreateRepliesTable extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("op_id")->unsigned()->index();
-            $table->integer("user_id")->unsigned()->index();
-            $table->timestamps("text");
+            $table->integer("post_id")->unsigned()->index(); //link to the reply
+            $table->integer("replyto_id")->unsigned()->index(); //link to the original post
+            $table->integer("user_id")->unsigned()->index(); //link to the user who made the reply
+            $table->integer("reply_id")->unsigned()->index()->nullable(); //if filled: link the reply to a reply
+            $table->timestamps();
         });
     }
 

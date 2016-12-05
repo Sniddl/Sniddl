@@ -10,33 +10,46 @@ use App\User;
 use App\Repost;
 use App\Friend;
 use App\Timeline;
+use App\Reply;
 use DB;
 use Auth;
 
 class PostController extends Controller
 {
 
-    public function create(Request $request){
+    public function create(Request $request, $method=null){
         $this->validate($request, [
           'text' => 'required|string',]);
-        $user = User::where('username', '=', Auth::user()->username)->first();
+        $op = Post::find($request->id); //find the original post.
+        $user = Auth::user();
         $post = new Post();
         $post->text = $request->text;
         $post->user_id = $user->id;
         $post->community_id = null;
+        if ($method == "reply"){
+            $post->isReply = 1;}
         $post->save();
         $post_id = $post->id;
+
         $timeline = new Timeline();
         $timeline->post_id = $post_id;
         $timeline->added_by = $user->id;
         $timeline->is_repost = 0;
+        if ($method == "reply"){
+            $timeline->is_reply = 1;
+            $r = new Reply();
+            $r->replyto_id = $op->id;//get the id global.js @reply click function.
+            $r->post_id = $post_id; //the id of this post.
+            $r->user_id = $user->id; //id of this user.
+            $r->save();}
         $timeline->save();
-        return back();}
+        if ($method == null){
+          return back();}}
 
 
 
     public function get(){
-        $timeline = Timeline::orderBy('id', 'DESC')->get();
+        $timeline = Timeline::orderBy('id', 'DESC')->where('is_reply','=', 0)->get();
         return view('showAllPosts', compact('timeline'));}
 
 
@@ -108,6 +121,7 @@ class PostController extends Controller
 
 
 }//end of class
+
 
 
 

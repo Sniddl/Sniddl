@@ -1,8 +1,20 @@
+
+
+
+
 window.base_url = function(relative=false) {
   var getUrl = window.location;
   var baseUrl = getUrl .protocol + "//" + getUrl.host + "/";
   return relative ? baseUrl+relative : baseUrl;
 }
+
+
+$('document').ready(function(){
+  if(location.pathname.split("/")[1] == "post"){
+    $('.post-block').css('cursor','default')
+  }
+  window.post_text = true;
+});
 
 window.SelectText = function(element) {
     var doc = document
@@ -67,3 +79,27 @@ var ajaxOnClickFunction = $('.ajax').click(function(e) {
     }//end of error function
   })
 })
+
+
+
+$('.post-text')
+    .mouseover(function(){
+      window.post_text = false;
+    }).mouseout(function(){
+      window.post_text = true;
+    });
+$('.card-icons')
+    .mouseover(function(){
+      window.post_text = false;
+    }).mouseout(function(){
+      window.post_text = true;
+    });
+
+$('.post-block').click(function() {
+  var link = $(this).data('link')
+
+
+  if ( location.href != link && post_text) {
+    location.href = link;
+  }
+});

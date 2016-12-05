@@ -1,6 +1,6 @@
 
 
-<div class="card post-block card-block">
+<div class="card post-block card-block" data-link="{{url('/post/'.$timeline->id)}}">
 
       @if($timeline->is_repost)
         <div class="reposted-post">
@@ -16,11 +16,10 @@
     <a href="/u/{{ $post->User->username }}" class="post-name">{{ $post->User->name }}</a>
     <small class="text-muted post-username">{{'@'.$post->User->username}}</small>
     <small class="text-muted pull-right post-time">{{ $post->created_at->diffForHumans() }}</small>
-
   </div>
   <div class="card-text card-item">
 
-    <span data-toggle="true">
+    <span data-toggle="true" class="post-text">
       <?php $postLength = strlen(parse_post( nl2br(e($post->text)) ));
       ?>
       {!! substr(parse_post( nl2br(e($post->text)) ), 0, 250) !!}
@@ -37,13 +36,16 @@
     @endif
 
   </div>
-  @if(Auth::check())
+  @if(Auth::check() && $post->isReply == 0)
       <div class="card-icons card-item">
         <span class="icon repost" data-id="{{$post->id}}" >
           <i class="fa fa-retweet"></i> {{ $post->reposts()->count() }}
         </span>
         <span class="icon like" data-id="{{$post->id}}" >
           <i class="fa fa-heart"></i> {{ $post->likes()->count() }}
+        </span>
+        <span class="icon reply" data-id="{{$post->id}}" data-toggle="modal" data-target="#replyModal" >
+          <i class="fa fa-reply"></i> {{ $post->likes()->count() }}
         </span>
 
         <div class="dropdown pull-right">

@@ -230,6 +230,9 @@ return [
         'Timeline' => App\Timeline::class,
         'User' => App\User::class,
         'Community' => App\Community::class,
+        'Friend' => App\Friend::class,
+        'Reply' => App\Reply::class,
+
 
     ],
 

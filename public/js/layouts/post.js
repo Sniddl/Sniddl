@@ -58,6 +58,21 @@ $('.like').unbind().click(function(){
 })
 
 
+
+
+
+
+
+
+$('.reply').unbind().click(function(){
+  var id = $(this).data('id');
+  $('#reply-post-id').val(id);
+})
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Go Live
