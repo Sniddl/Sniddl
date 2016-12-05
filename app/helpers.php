@@ -52,7 +52,7 @@ function parse_post($target)
                 case '@':
                     $user = User::where('username', '=', $substr)->first();
                     if ($user) {
-                        $target = str_replace_first($match, "<a href='/u/$substr'>@".$user->name.'</a>', $target);
+                        $target = str_replace_first($match, "<a href='/u/$substr'>@".$user->display_name.'</a>', $target);
                     }
                     break;
                 case '+':

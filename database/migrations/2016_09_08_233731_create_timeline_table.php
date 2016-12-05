@@ -17,6 +17,7 @@ class CreateTimelineTable extends Migration
             $table->integer('post_id')->unsigned()->index();
             $table->integer('added_by')->unsigned()->index();
             $table->boolean('is_repost')->default(false);
+            $table->boolean('is_reply')->default(false);
             $table->timestamps();
         });
     }

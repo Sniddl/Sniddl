@@ -11,7 +11,6 @@ class Post extends Model
         return $this->hasMany('App\Like');
     }
 
-
     public function reposts()
     {
         return $this->hasMany('App\Repost');
@@ -21,4 +20,11 @@ class Post extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function Replies(){
+        return Reply::where('replyto_id',"=",$this->id)->get();
+    }
+
+    
+
 }

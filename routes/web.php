@@ -16,6 +16,7 @@ Route::get('/resendVerification', 'UserController@resendVerification');
   POST ROUTES -- use for forms, or if you want to keep things private.
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯*/
 Route::post('/create-post', 'PostController@create');
+Route::post('/create-reply', 'ReplyController@create'); 
 Route::post('/edit/profile/avatar', 'UserController@update_avatar');
 Route::post('/edit/profile/avatargen', 'UserController@generateAvatar');
 Route::post('/changeName', 'UserController@updateName');

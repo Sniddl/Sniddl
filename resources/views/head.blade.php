@@ -17,3 +17,8 @@
 
 <!-- JS -->
 <script src="{{asset('js/dependencies.js')}}" charset="utf-8"></script>
+
+<!-- Global Modals -->
+
+@include ('layouts.popups.create-post')
+@include ('layouts.popups.create-reply')

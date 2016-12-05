@@ -5,26 +5,14 @@
 </head>
 <body id="app-layout" >
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel" style="color:darkgrey">Create a post</h4>
-      </div>
-      <div class="modal-body">
-        @include ('create-post')
-      </div>
-    </div>
-  </div>
-</div>
-
-
 
 @if(Auth::check())
+
+    
+
+
+
+
     <nav class="navbar navbar-light bg-faded">
       <ul class="nav navbar-nav">
         <a class="navbar-brand" href="/">Sniddl</a>
