@@ -55,7 +55,7 @@
           <i class="fa fa-pencil"></i> Post
         </button>
         <div class="dropdown pull-nav-right">
-          <img class="avatar" src="{{ Auth::user()->avatar_url }}" style="background-color:#{{Auth::user()->avatar_bg_color}};" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+          <img class="avatar" src="{{ Auth::user()->avatar_url }}" style="background-color:{{Auth::user()->avatar_bg_color}};" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
           <div class="dropdown-menu drop-right" aria-labelledby="dropdownMenuButton">
 
             <a class="dropdown-item" href="/u/{{ Auth::user()->username }}"><i class="fa fa-btn fa-user"></i> View Profile</a>

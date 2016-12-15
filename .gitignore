@@ -2,6 +2,7 @@ vendor/
 node_modules/
 public/storage
 public/storage.*
+resources/assets/sass/reddit.scss
 
 # Laravel 4 specific
 bootstrap/compiled.php

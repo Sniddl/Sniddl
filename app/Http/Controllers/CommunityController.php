@@ -49,11 +49,7 @@ class CommunityController extends Controller
       $resize= Image::make($path)->fit(300)->save($url);*/
 
       if($request->hasFile('createcommunityavatar')){
-        $communityavatar = $request->file('createcommunityavatar');
-        $createcommunityavatar_ext = $communityavatar->getClientOriginalExtension();
-        // Format of the date() is "date, month, year, hour(12hr), minutes, seconds" **The date is based on machine time**
-        $filename = 'comm_' . date("jFYhis") . '.' . $communityavatar->getClientOriginalExtension();
-        Image::make($communityavatar)->fit(300)->save(public_path('/uploads/avatars/' . $filename));
+        $avatar_path = upload_image($request->file('createcommunityavatar'), 'comm', '/uploads/avatars/');
       }
       //Creating the community
       $community = new Community();
@@ -61,7 +57,7 @@ class CommunityController extends Controller
       $community->desc = $communitydescription;
       $community->owner_id = Auth::user()->id;
       $community->url = $communityurl;
-      $community->avatar = '/uploads/avatars/'.$filename;
+      $community->avatar = $avatar_path;
       $community->save();
       //return date("jFYhis");
       return redirect('/c/'. $community->url);
