@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <img class="img-circle" height="100px" width="100px" src="{{ Auth::user()->avatar }}" style="background-color: #{{Auth::user()->color}}"/>
+  <img class="img-circle" height="100px" width="100px" src="{{ Auth::user()->avatar_url }}" style="background-color: {{Auth::user()->avatar_bg_color}}"/>
   <p>
     <strong id="displayname" style="padding-top:20px;">{{ Auth::user()->name }}</strong>
     <small id="username">
@@ -58,6 +58,34 @@
       </div>
     </div>
     <button class="card-toggle" data-toggle="collapse" data-target="#profile-settings" aria-expanded="false" aria-controls="collapseExample">
+      <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+    </button>
+  </div>
+
+
+  <div class="card card-block">
+    <div class="container">
+      <h5 class="setting-block">Avatar Settings</h5>
+      <div class="card-collapse collapse" id="avatar-settings">
+        <!-- <form class="" enctype="multipart/form-data" action="/edit/profile/avatar" method="POST">
+          {{ csrf_field() }}
+          <label>Update Profile Image</label>
+          <input type="file" name="avatar"><br>
+          <input type="submit" class="btn btn-sm btn-primary" value="Upload">
+        </form> -->
+
+        <form class="card-form" enctype="multipart/form-data" action="/edit/profile/avatar" method="post" >
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <label for="displayname" style="padding-top:15px;">Upload Avatar</label>
+            <input type="file" name="avatar"/>
+          <!-- <label for="username" style="padding-top:15px;">Generate Avatars</label>
+            <input type="text" name="username"/> -->
+          <input type="submit" class="btn btn-primary " value="Save Changes">
+        </form>
+
+      </div>
+    </div>
+    <button class="card-toggle" data-toggle="collapse" data-target="#avatar-settings" aria-expanded="false" aria-controls="collapseExample">
       <i class="fa fa-angle-double-down" aria-hidden="true"></i>
     </button>
   </div>

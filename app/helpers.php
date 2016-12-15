@@ -89,3 +89,13 @@ function is_dev(){
   $dev = DB::table('devs')->where('user_id','=',$auth);
   return $dev->exists();
 }
+
+
+
+function upload_image($path, $prefix, $storage_path){
+  $extention = $path->getClientOriginalExtension();
+  // Format of the date() is "date, month, year, hour(12hr), minutes, seconds" **The date is based on machine time**
+  $filename = $prefix.'_' . date("jFYhis") . '.' . $extention;
+  Image::make($path)->fit(300)->save(public_path($storage_path . $filename));
+  return $storage_path.$filename;
+}

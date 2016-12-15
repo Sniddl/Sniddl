@@ -1,0 +1,372 @@
+
+// Main Colors
+$primary: #7034c7
+$primary-5: lighten($primary, 5%)
+$down-color: #8861f9
+$up-color: #ff7a49
+//Stickies & Flair Colors
+$sticky: #4CAF50
+
+//Neutrals
+$dark-grey: #282c34
+$dark-grey-5: lighten($dark-grey, 5%)
+$dark-grey-10: lighten($dark-grey, 10%)
+$light-grey: lighten($dark-grey, 50%)
+
+//transparents
+$dark-transparent: rgba(0,0,0,.18)
+$light-transparent: rgba(255,255,255,.18)
+
+//Text
+$text-primary: white
+
+//Breaks
+$break-xs: 544px
+$break-sm: 768px
+$break-md: 840px
+$break-lg: 1200px
+
+//Assign Flair Colors
+$flairs: (underated red) (submission yellow) (classic blue)
+
+
+body
+  background: $dark-grey-10
+  &:before
+    content: ""
+    position: absolute
+    width: 100%
+    height: 300px
+    background: $primary
+    top: 0
+    z-index: -9000
+    border-bottom: 2px solid white
+  &::after
+    content: ""
+    width: 100vw
+    height: 84px
+    top: 216px
+    position: absolute
+    background: $dark-transparent
+    z-index: -999
+
+.sheets
+  margin-right: 340px
+
+.content
+  z-index: 1
+  margin: 10px
+  .sitetable
+    list-style-type: none
+    width: calc( 100% - 332px)
+    @media screen and (max-width: $break-md)
+      width: 80%
+      margin: auto
+    @media screen and (max-width: $break-xs)
+      width: 100%
+      margin: auto
+  .organic-listing
+    @media screen and (max-width: $break-md)
+      width: 80%
+      margin: auto
+    @media screen and (max-width: $break-xs)
+      width: 100%
+      margin: auto
+  .thing
+    padding: 10px 0px
+    border: 1px solid black
+    margin: -1px 0
+    box-sizing: border-box
+    span.rank
+      display: none
+    &.promoted
+      background: #333842 !important
+      width: auto !important
+      border: none !important
+      outline: none !important
+      max-height: 72px !important
+    &.even
+      background: $dark-grey-5
+    &.odd
+      background: $dark-grey
+    &.stickied
+      border-right: 12px solid $sticky
+    .title
+      position: relative
+      color: $light-grey
+      &:hover
+        color: white
+    @each $flair, $color in $flairs
+      &.linkflair-#{$flair}
+        border-right: 12px solid $color
+        span.linkflairlabel
+          background: $color
+          color: white
+          border: none
+          padding: 3px 10px
+          position: absolute
+          top: 0px
+          right: 0px
+
+.entry
+  overflow: visible
+  .expando
+    width: 100%
+    height: auto
+    padding: 10px 30px
+    box-sizing: border-box
+    iframe
+      width: 100%
+
+.morelink
+  display: block
+  width: 100%
+  text-align: center
+  position: relative
+  border: 1px solid white
+  background: $primary
+  font-size: 150%
+  font-weight: normal
+  letter-spacing: -1px
+  line-height: 29px
+  height: 29px
+  &:hover
+    border-color: $text-primary
+    background: $primary-5
+  .nub
+    display: none
+  a
+    color: $text-primary
+    text-shadow: 0px 1px black
+
+.side
+  background: $dark-grey-5
+  box-sizing: content-box
+  overflow: visible
+  position: relative
+  padding: 10px
+  margin: 10px
+  width: 300px
+  border: 1px solid black
+  margin-top: 238px
+  box-shadow: 0px 1px 2px black
+  @media screen and (max-width: $break-md)
+    display: none
+  .titlebox
+    position: absolute
+    top: -241px
+    z-index: 1
+    background: $dark-grey
+    box-sizing: border-box
+    padding: 10px
+    width: calc(100% + 2px)
+    left: -1
+    border: 1px solid black
+    h1
+      position: relative
+      margin: 0
+    .fancy-toggle-button
+      display: block
+      width: 100%
+      padding: 5px 0
+      box-sizing: content-box
+      position: absolute
+      top: -42px
+      a.option.add
+        display: block
+        width: 100%
+        text-align: center
+        position: relative
+        border: 1px solid white
+        background: $primary
+        font-size: 15px
+        font-weight: normal
+        letter-spacing: -1px
+        line-height: 29px
+        height: 29px
+        padding: 0px
+        color: $text-primary
+        text-shadow: 0px 1px black
+        &:hover
+          border-color: $text-primary
+          background: $primary-5
+
+#header
+  border-bottom: none
+  position: relative
+  background-color: transparent
+  z-index: 99
+  height: 240px
+  #header-bottom-left
+    position: absolute
+    bottom: 0px
+    li, li.selected
+      margin: 0
+      a.choice
+        padding: 10px 15px
+        color: $light-grey
+        font-weight: normal
+        text-transform: uppercase
+        font-size: 11px
+        background: transparent
+        border: none
+        @media screen and (max-width: $break-md)
+          padding: 10px 8px
+        @media screen and (max-width: $break-xs)
+          padding: 10px 5px
+          font-size: 8px
+        &:hover
+          background: $light-transparent
+          color: $text-primary
+    @media screen and (max-width: $break-md)
+      left: 52%
+      transform: translateX(-50%)
+    li.selected
+      a.choice
+        color: $text-primary
+    #header-img.default-header
+      text-indent: -9999px
+      background-image: url(%%Reddit-Logo%%)
+      background-repeat: no-repeat
+      height: 60px
+      width: 140px
+      display: inline-block
+      vertical-align: bottom
+      margin-bottom: 3px
+      background-size: contain
+      position: absolute
+      top: -84px
+      left: 20px
+      background-position: 0
+    .pagename
+      font-weight: normal
+      font-variant: normal
+      text-transform: uppercase
+      padding: 9px
+      background: transparent
+      margin: 0 0 0 6px
+      font-size: 12px
+      box-sizing: border-box
+      @media screen and (max-width: $break-md)
+        position: absolute
+        top: 3px
+        left: -50px
+      @media screen and (max-width: $break-xs)
+        position: absolute
+        top: 9px
+        left: -35px
+
+      a
+        color: $text-primary
+        text-indent: -9999px
+        display: inline-block
+        background-image: url(%%Reddit-Home%%)
+        background-size: contain
+        background-repeat: no-repeat
+        background-position: center center
+        width: 13px
+        padding: 7px
+        margin-bottom: -10px
+        @media screen and (max-width: $break-xs)
+          padding: 2px
+  #sr-header-area
+    background-color: $dark-transparent
+    white-space: nowrap
+    text-transform: uppercase
+    border: none
+    font-size: 90%
+    height: 24px
+    line-height: 24px
+    padding: 1px 5px
+    .width-clip
+      position: absolute
+      left: 0
+      right: 345px
+      #sr-more-link
+        right: -50px
+        background: none
+        color: $text-primary
+    .dropdown.srdrop
+      float: left
+      margin-left: 5px
+      padding-left: 5px
+    .selected.title
+      color: $text-primary
+    a.choice
+      color: $text-primary
+  #header-bottom-right
+    position: absolute
+    right: 10px
+    top: 2px
+    background-color: transparent
+    padding: 4px 0
+    line-height: 12px
+    border-top-left-radius: 7px
+
+.expando-button.collapsed
+  &.video, &.selftext
+    background-image: url(%%expand%%)
+    background-position: 0
+    background-repeat: no-repeat
+    background-size: contain
+    opacity: .7
+    &:hover
+      background-image: url(%%expand%%)
+      background-position: 0
+      background-repeat: no-repeat
+      background-size: contain
+      opacity: 1
+
+.expando-button.expanded
+  &.video, &.selftext
+    background-image: url(%%collapse%%)
+    background-position: 0
+    background-repeat: no-repeat
+    background-size: contain
+    opacity: .7
+    &:hover
+      background-image: url(%%collapse%%)
+      background-position: 0
+      background-repeat: no-repeat
+      background-size: contain
+      opacity: 1
+
+.midcol
+  margin-right: 12px
+  .arrow
+    background-position: 0
+    background-repeat: no-repeat
+    background-size: contain
+    &.down
+      background-image: url(%%down%%)
+      &:hover
+        background-image: url(%%down-color%%)
+    &.downmod
+      background-image: url(%%down-color%%)
+      &:hover
+        background-image: url(%%down%%)
+    &.up
+      background-image: url(%%up%%)
+      &:hover
+        background-image: url(%%up-color%%)
+    &.upmod
+      background-image: url(%%up-color%%)
+      &:hover
+        background-image: url(%%up%%)
+  .score
+    &.dislikes
+      color: $down-color
+    &.likes
+      color: $up-color
+
+.footer-parent
+  font-size: larger
+  padding: 40px
+  clear: both
+  text-align: center
+  background: #191919
+  margin-bottom: -40px
+  .footer.rounded
+      border-radius: 0px
+      width: 100%
+      border: none

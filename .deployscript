@@ -1,0 +1,8 @@
+cd /home/forge/sniddl.com
+git pull origin master
+composer install --no-interaction --prefer-dist --optimize-autoloader
+
+if [ -f artisan ]
+then
+    php artisan migrate --force
+fi

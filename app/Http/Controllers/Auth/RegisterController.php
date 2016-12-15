@@ -82,7 +82,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'phone' => bcrypt($data['phone']),
             'avatar_url' => '/uploads/avatars/letters/'.$textColor.'/'.strtolower($data['name'][0]).'.png',
-            'avatar_bg_color' => $hex,
+            'avatar_bg_color' => "#".$hex,
             'confirmation_code' => str_random(30),
         ]);
     }

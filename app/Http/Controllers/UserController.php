@@ -20,6 +20,7 @@ use DB;
 use Validator;
 use \Session;
 use Response;
+use Storage;
 
 class UserController extends Controller
 {
@@ -68,20 +69,12 @@ class UserController extends Controller
 
 
     public function update_avatar(Request $request){
-        $this->validate($request, [
-          'avatar' => 'required|image',]);
-        $old_file = public_path(Auth::user()->avatar);
-        if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            $avatar_ext = $avatar->getClientOriginalExtension();
-            if (File::exists($old_file)) {
-                File::delete($old_file);}
-            $filename = 'user_' . date("jFYhis") . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->fit(300)->save(public_path('/uploads/avatars/' . $filename));
-            $user = Auth::user();
-            $user->avatar = '/uploads/avatars/' . $filename;
-            $user->save();
-            return back();}}
+        $avatar_path = upload_image($request->file('avatar'), 'ava', '/uploads/avatars/');
+        $user = Auth::user();
+        $user->avatar_url = $avatar_path;
+        $user->avatar_bg_color = 'transparent';
+        $user->save();
+        return back();}
 
 
     public function generateAvatar(){

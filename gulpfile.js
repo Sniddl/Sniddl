@@ -18,5 +18,6 @@ elixir(mix => {
     mix.sass('dependencies.scss') //assumes sass assets folder
        .sass('light.scss')
        .sass('dark.scss')
+       .sass('reddit.sass')
        .browserify('dependencies.js') //assumes js assets folder
 });

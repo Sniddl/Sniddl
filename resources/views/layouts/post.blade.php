@@ -11,7 +11,7 @@
 
   <div class=" card-item">
     <a href="/u/{{ $post->User->username }}" >
-      <img class="avatar" height="50px" width="50px" style ="margin-right:10px; background-color:#{{$post->User->color}};" src="{{ $post->User->avatar }}"/>
+      <img class="avatar" height="50px" width="50px" style ="margin-right:10px; background-color:{{$post->User->avatar_bg_color}};" src="{{ $post->User->avatar_url }}"/>
     </a>
     <a href="/u/{{ $post->User->username }}" class="post-name">{{ $post->User->name }}</a>
     <small class="text-muted post-username">{{'@'.$post->User->username}}</small>
