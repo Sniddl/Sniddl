@@ -85,9 +85,15 @@ function email_signup($user)
 }
 
 function is_dev(){
-  $auth = Auth::user()->id;
-  $dev = DB::table('devs')->where('user_id','=',$auth);
-  return $dev->exists();
+  try {
+    $auth = Auth::user()->id;
+    $dev = DB::table('devs')->where('user_id','=',$auth);
+    return $dev->exists();
+  } catch (Exception $e) {
+    return false;
+  }
+
+
 }
 
 

@@ -232,6 +232,7 @@ return [
         'Community' => App\Community::class,
         'Friend' => App\Friend::class,
         'Reply' => App\Reply::class,
+        'Issue' => App\Issue::class,
 
 
     ],

@@ -50,6 +50,7 @@ var ajaxOnClickFunction = $('.ajax').click(function(e) {
     type: "post",
     data: form.serialize(),
     success: function(result){
+      document.write(result)
       $('.ajaxErrors').hide()
       form[0].reset();
       window.result = result

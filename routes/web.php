@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Http\Request;
+use App\Http\Requests;
 /*⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
   MISC ROUTES
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯*/
@@ -16,7 +17,7 @@ Route::get('/resendVerification', 'UserController@resendVerification');
   POST ROUTES -- use for forms, or if you want to keep things private.
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯*/
 Route::post('/create-post', 'PostController@create');
-Route::post('/create-reply', 'ReplyController@create'); 
+Route::post('/create-reply', 'ReplyController@create');
 Route::post('/edit/profile/avatar', 'UserController@update_avatar');
 Route::post('/edit/profile/avatargen', 'UserController@generateAvatar');
 Route::post('/changeName', 'UserController@updateName');
@@ -111,4 +112,29 @@ Route::get('/docs/{page?}', function($page = null){
     abort(404);
   }
 
+});
+
+Route::get('/cards', function(){
+  if( is_dev() ){
+    $columns = Issue::get();
+    return view('cards.index',compact('columns'));
+  }else {
+    abort(404);
+  }
+
+});
+Route::post('/cards', function(Request $request){
+  //dd($request->all());
+  $column = $request->column;
+  $content = $request->content;
+  try {
+    $i = App\Issue::where('column','=',$column)->first();
+    $i->content = $content;
+    $i->save();
+  } catch (Exception $e) {
+    dd($e);
+  }
+});
+Route::post('/cards/add', function(Request $request){
+  dd($request->all());
 });
