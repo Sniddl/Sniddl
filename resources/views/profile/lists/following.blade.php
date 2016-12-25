@@ -1,24 +1,17 @@
 @extends ('profile.index')
 @section('list')
-<div class="friends List">
 
-    <ul class="list-group">
-      @foreach ($data['following'] as $following)
-        <li class="list-group-item">
-          <h5>
-            <a href="/u/{{$following->User->username}}">{{$following->User->name}}</a>
-            <small>{{'@'.$following->User->username}}
-              @if(!\App\Friend::where('user_id','=', $following->User->id )->where('follower', '=', Auth::user()->username)->exists())
-                <a href="/friend/{{$following->User->id}}">Add friend</a>
-              @else
-                <a href="/friend/{{$following->User->id}}">Remove Friend</a>
-              @endif
-            </small>
-          </h5>
 
-        </li>
+
+
+    @if($data['following']->count() > 0)
+      @foreach ($data['following'] as $instance)
+        <?php $user = $instance->user_being_followed();?>
+        @include('layouts.userCard')
       @endforeach
-    </ul>
+    @else
+      @include('layouts.nothingToShow')
+    @endif
 
-</div>
+
 @endsection
