@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\User;
 use App\Friend;
 use App\Repost;
+use App\Upload;
 use App\Timeline;
 use App\Http\Controllers\Auth\AuthController;
 
@@ -69,13 +70,20 @@ class UserController extends Controller
 
 
     public function update_avatar(Request $request){
-        $avatar_path = upload_image($request->file('avatar'), 'ava', '/uploads/avatars/');
+        $avatar_path = upload_image($request->file('avatar'), 'ava', '/uploads/avatars/', 300, 300);
         $user = Auth::user();
         $user->avatar_url = $avatar_path;
         $user->avatar_bg_color = 'transparent';
         $user->save();
         return back();}
 
+    public function update_banner(Request $request){
+        $image_path = upload_image($request->file('banner'), 'ban', '/uploads/banners/', 1500, 500);
+        $user = Auth::user();
+        $user->banner_url = $image_path;
+        $user->banner_bg_color = 'transparent';
+        $user->save();
+        return back();}
 
     public function generateAvatar(){
         $hex = generateHex();
@@ -84,7 +92,7 @@ class UserController extends Controller
         } else {
             $textColor = 'white';}
         $user = User::find(Auth::user()->id);
-        $user->avatar = '/uploads/avatars/letters/'.$textColor.'/'.strtolower(Auth::user()->name[0]).'.png';
+        $user->avatar = '/uploads/defaults/letters/'.$textColor.'/'.strtolower(Auth::user()->name[0]).'.png';
         $user->color = $hex;
         $user->save();
         return back();}

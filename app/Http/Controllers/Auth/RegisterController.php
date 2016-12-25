@@ -81,8 +81,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'phone' => bcrypt($data['phone']),
-            'avatar_url' => '/uploads/avatars/letters/'.$textColor.'/'.strtolower($data['name'][0]).'.png',
+            'avatar_url' => '/uploads/defaults/letters/'.$textColor.'/'.strtolower($data['name'][0]).'.png',
             'avatar_bg_color' => "#".$hex,
+            'banner_bg_color' => "#".$hex,
+            'banner_url' => '/uploads/defaults/low-poly.png',
             'confirmation_code' => str_random(30),
         ]);
     }

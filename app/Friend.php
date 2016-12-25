@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Friend extends Model
 {
-    public function user()
+    public function user_being_followed()
     {
-        return $this->belongsTo('App\User');
+        return User::where("id", '=', $this->being_followed_id)->first();
+    }
+
+    public function follower()
+    {
+        return User::where("id", '=', $this->follower_id)->first();
     }
 }

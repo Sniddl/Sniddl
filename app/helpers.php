@@ -98,10 +98,26 @@ function is_dev(){
 
 
 
-function upload_image($path, $prefix, $storage_path){
+function upload_image($path, $prefix, $storage_path, $width, $height){
   $extention = $path->getClientOriginalExtension();
   // Format of the date() is "date, month, year, hour(12hr), minutes, seconds" **The date is based on machine time**
   $filename = $prefix.'_' . date("jFYhis") . '.' . $extention;
-  Image::make($path)->fit(300)->save(public_path($storage_path . $filename));
+  Image::make($path)->fit($width,$height)->save(public_path($storage_path . $filename));
   return $storage_path.$filename;
 }
+/**
+ *
+ */
+// class Upload
+// {
+//   var $path;
+//   var $prefix;
+//   var $storage;
+//   var $width;
+//   var $height;
+//
+//   function __construct($path)
+//   {
+//     dd($path);
+//   }
+// }

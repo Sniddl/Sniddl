@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'display_name', 'email', 'password','username','phone','avatar_url','avatar_bg_color', 'confirmation_code', 'isDark',
+        'display_name', 'email', 'password','username','phone','avatar_url','avatar_bg_color', 'banner_url','banner_bg_color', 'confirmation_code', 'isDark',
     ];
 
     /**
@@ -39,20 +39,20 @@ class User extends Authenticatable
                       ->where('are_friends', '=', 1);}
 
     public function Followers(){
-      return Friend::where('being_followed_id', '=', $this->id);}
-
+      return Friend::where('being_followed_id', '=', $this->id)
+                    ->where('are_friends', '=', 0);}
     public function Following(){
-      return Friend::where('follower_id', '=', $this->id);}
-
+      return Friend::where('follower_id', '=', $this->id)
+                    ->where('are_friends', '=', 0);}
     public function Timeline(){
-      return Timeline::orderBy('id', 'DESC')->where('added_by', '=', $this->username);}
+      return Timeline::orderBy('id', 'DESC')->where('added_by', '=', $this->id);}
 
     public function Reposts(){
         return $this->hasMany('App\Repost');}
 
     public function AuthFriend(){
       return Friend::where('being_followed_id','=', $this->id )
-                   ->where('follower_id', '=', Auth::user()->id);}
+                   ->where('follower_id', '=', Auth::user()->id)->exists();}
 
     public static function GetRequest($column, $index){
       return User::where($column,'=',Request::segment($index));}

@@ -31,10 +31,10 @@
                     </div>
                   @endif
 
-                  <div class="container">
+
                     @yield('posts')
                     @yield('edit')
-                  </div>
+                  
             @else
 
                   <style media="screen">

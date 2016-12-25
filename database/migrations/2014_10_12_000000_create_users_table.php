@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->boolean('isDark')->default(0);
             $table->string('avatar_url');
             $table->string('avatar_bg_color');
+            $table->string('banner_url');
+            $table->string('banner_bg_color');
             $table->string('phone');
             $table->string('confirmation_code')->nullable();
             $table->string('password');
