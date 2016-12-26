@@ -27,83 +27,90 @@
     </div>
   </div>
 
-  <img class="img-circle" height="100px" width="100px" src="{{ Auth::user()->avatar_url }}" style="background-color: {{Auth::user()->avatar_bg_color}}"/>
-  <p>
-    <strong id="displayname" style="padding-top:20px;">{{ Auth::user()->name }}</strong>
-    <small id="username">
-    {{ "@".Auth::user()->username }}
-    </small>
-  </p>
+  <div class="container">
 
+    <img class="img-circle" height="100px" width="100px" src="{{ Auth::user()->avatar_url }}" style="background-color: {{Auth::user()->avatar_bg_color}}"/>
+    <p>
+      <strong id="displayname" style="padding-top:20px;">{{ Auth::user()->name }}</strong>
+      <small id="username">
+      {{ "@".Auth::user()->username }}
+      </small>
+    </p>
 
-  <div class="card card-block">
-    <div class="container">
-      <h5 class="setting-block">Profile Settings</h5>
-      <div class="card-collapse collapse" id="profile-settings">
+    <div class="card card-block">
+      <div class="container">
+        <h5 class="setting-block">Profile Settings</h5>
+        <div class="card-collapse collapse" id="profile-settings">
 
-        <form class="card-form" action="/profileSettings" method="post" data-success="profileSettings()"><!--  see /js/global.js@ajaxOnClickFunction -->
-          <label for="displayname" style="padding-top:15px;">Change display name</label>
-            <input type="text" name="displayname" placeholder="{{ Auth::user()->name }}"/>
-          <label for="username" style="padding-top:15px;">Change username</label>
-            <input type="text" name="username" placeholder="{{ Auth::user()->username }}"/>
-          <label style="padding-top:15px;">Change password</label>
-            <input type="password" name="currentpassword" placeholder="Current password">
-            <input type="password" name="newpassword" placeholder="New password" style="margin-top:10px;">
-            <input type="password" name="newpassword_confirmation" placeholder="Verify new password" style="margin-top:10px;">
-          <label style="padding-top:15px;">Change Email</label>
-            <input type="text" name="changeemail" placeholder="{{Auth::user()->email}}">
-          <input type="submit" class="btn btn-primary ajax" value="Save Changes">
-        </form>
+          <form class="card-form" action="/profileSettings" method="post" data-success="profileSettings()"><!--  see /js/global.js@ajaxOnClickFunction -->
+            <label for="displayname" style="padding-top:15px;">Change display name</label>
+              <input type="text" name="displayname" placeholder="{{ Auth::user()->name }}"/>
+            <label for="username" style="padding-top:15px;">Change username</label>
+              <input type="text" name="username" placeholder="{{ Auth::user()->username }}"/>
+            <label style="padding-top:15px;">Change password</label>
+              <input type="password" name="currentpassword" placeholder="Current password">
+              <input type="password" name="newpassword" placeholder="New password" style="margin-top:10px;">
+              <input type="password" name="newpassword_confirmation" placeholder="Verify new password" style="margin-top:10px;">
+            <label style="padding-top:15px;">Change Email</label>
+              <input type="text" name="changeemail" placeholder="{{Auth::user()->email}}">
+            <input type="submit" class="btn btn-primary ajax" value="Save Changes">
+          </form>
 
+        </div>
       </div>
+      <button class="card-toggle" data-toggle="collapse" data-target="#profile-settings" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+      </button>
     </div>
-    <button class="card-toggle" data-toggle="collapse" data-target="#profile-settings" aria-expanded="false" aria-controls="collapseExample">
-      <i class="fa fa-angle-double-down" aria-hidden="true"></i>
-    </button>
+
+
+    <div class="card card-block">
+      <div class="container">
+        <h5 class="setting-block">Avatar Settings</h5>
+        <div class="card-collapse collapse" id="avatar-settings">
+          <form class="card-form" enctype="multipart/form-data" action="/edit/profile/avatar" method="post" >
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <label for="displayname" style="padding-top:15px;">Upload Avatar</label>
+              <input type="file" name="avatar"/>
+            <input type="submit" class="btn btn-primary " value="Save Changes">
+          </form>
+        </div>
+      </div>
+      <button class="card-toggle" data-toggle="collapse" data-target="#avatar-settings" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+      </button>
+    </div>
+
+
+    <div class="card card-block">
+      <div class="container">
+        <h5 class="setting-block">Banner Settings</h5>
+        <div class="card-collapse collapse" id="banner-settings">
+          <form class="card-form" enctype="multipart/form-data" action="/edit/profile/banner" method="post" >
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <label for="displayname" style="padding-top:15px;">Upload Banner</label>
+              <input type="file" name="banner"/>
+            <input type="submit" class="btn btn-primary " value="Save Changes">
+          </form>
+        </div>
+      </div>
+      <button class="card-toggle" data-toggle="collapse" data-target="#banner-settings" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+      </button>
+    </div>
+
+
+
+    <form action="/toggleDarkness" method="POST">
+      {{ csrf_field() }}
+      @if (Auth::user()->isDark == 0)
+        <input class="btn btn-primary" type="submit" value="Night Time!"></input>
+      @else
+        <input class="btn btn-primary" type="submit" value="Day Time!"></input>
+      @endif
+    </form>
   </div>
 
-
-  <div class="card card-block">
-    <div class="container">
-      <h5 class="setting-block">Avatar Settings</h5>
-      <div class="card-collapse collapse" id="avatar-settings">
-        <!-- <form class="" enctype="multipart/form-data" action="/edit/profile/avatar" method="POST">
-          {{ csrf_field() }}
-          <label>Update Profile Image</label>
-          <input type="file" name="avatar"><br>
-          <input type="submit" class="btn btn-sm btn-primary" value="Upload">
-        </form> -->
-
-        <form class="card-form" enctype="multipart/form-data" action="/edit/profile/avatar" method="post" >
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <label for="displayname" style="padding-top:15px;">Upload Avatar</label>
-            <input type="file" name="avatar"/>
-          <!-- <label for="username" style="padding-top:15px;">Generate Avatars</label>
-            <input type="text" name="username"/> -->
-          <input type="submit" class="btn btn-primary " value="Save Changes">
-        </form>
-
-      </div>
-    </div>
-    <button class="card-toggle" data-toggle="collapse" data-target="#avatar-settings" aria-expanded="false" aria-controls="collapseExample">
-      <i class="fa fa-angle-double-down" aria-hidden="true"></i>
-    </button>
-  </div>
-
-  <p>
-    We temporarily removed the ability to upload and generate avatars. Zeb is too lazy to add the feature back in. (All he has to do is copy and paste.) XD
-  </br>
-    So have a look at this Day/Night time switch instead.
-  </p>
-
-  <form action="/toggleDarkness" method="POST">
-    {{ csrf_field() }}
-    @if (Auth::user()->isDark == 0)
-      <input class="btn btn-primary" type="submit" value="Night Time!"></input>
-    @else
-      <input class="btn btn-primary" type="submit" value="Day Time!"></input>
-    @endif
-  </form>
 
 
 
