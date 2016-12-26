@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container" id="user-settings">
 
     <img class="img-circle" height="100px" width="100px" src="{{ Auth::user()->avatar_url }}" style="background-color: {{Auth::user()->avatar_bg_color}}"/>
     <p>

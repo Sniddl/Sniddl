@@ -6,6 +6,9 @@ body {
   color: $off-white;
 }
 
+.btn{
+  border-radius:0;
+}
 
 .navbar{
     background-color: $black;
@@ -42,6 +45,25 @@ body {
   .post-name{
     color: $off-white;
   }
+}
+
+#user-settings{
+  .card{
+    color:$dark-grey;
+    border-radius: 0;
+  }
+}
+
+#profile-settings::before{
+  content: none;
+}
+
+#avatar-settings::before{
+  content: none;
+}
+
+#banner-settings::before{
+  content: none;
 }
 
 #register-center{
