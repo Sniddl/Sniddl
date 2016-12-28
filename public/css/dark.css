@@ -258,7 +258,8 @@ body {
     color: #ededed; }
 
 #user-settings .card {
-  color: #36363c; }
+  color: #36363c;
+  border-radius: 0; }
 
 #profile-settings::before {
   content: none; }
