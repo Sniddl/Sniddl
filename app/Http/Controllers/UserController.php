@@ -92,21 +92,22 @@ class UserController extends Controller
         } else {
             $textColor = 'white';}
         $user = User::find(Auth::user()->id);
-        $user->avatar = '/uploads/defaults/letters/'.$textColor.'/'.strtolower(Auth::user()->name[0]).'.png';
+        $user->avatar = '/uploads/defaults/letters/'.$textColor.'/'.strtolower(Auth::user()->display_name[0]).'.png';
         $user->color = $hex;
         $user->save();
         return back();}
 
 
     public function updateName(Request $request){
+        return "Success";
         $this->validate($request, [
           'displayname' => 'min:3|required|max:50|alpha_num',]);
         $name = $request->get('displayname');
-        if ($name === Auth::user()->name) {
+        if ($name === Auth::user()->display_name) {
             return back();
         } else {
             $user = User::find(Auth::user()->id); //Updates if not
-            $user->name = $name;
+            $user->display_name = $name;
             $user->save();
             flash('Your name was changed successfully', 'success');}
         return back();}
@@ -201,7 +202,7 @@ class UserController extends Controller
         'username' => 'unique:users|max:20|alpha_dash',
         'changeemail' => 'email|max:255|unique:users,email',]);
       $u = Auth::user();
-      $u->name = $r->has('displayname') ? $r->displayname: $u->name ;
+      $u->display_name = $r->has('displayname') ? $r->displayname: $u->display_name ;
       $u->username = $r->has('username') ? $r->username: $u->username ;
       if($r->has('newpassword')){
         $this->validate($r, ['currentpassword'=>'required',]);
@@ -211,7 +212,7 @@ class UserController extends Controller
           return Response::json(['error' => 'Your current password doesn\'t match '], 422);}}
       $u->email = $r->has('changeemail') ? $r->changeemail: $u->email ;
       $u->save();
-      return $u;}
+      return back();}
 
 
     public function toggleDarkness() {
