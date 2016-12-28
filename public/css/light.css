@@ -220,6 +220,9 @@ h5.setting-block {
 body {
   background-color: #e2e2e2; }
 
+.btn {
+  border-radius: 0; }
+
 .navbar {
   background-color: #36363c; }
   .navbar .nav-link, .navbar .navbar-brand {
@@ -253,8 +256,17 @@ body {
   .post-block .post-name {
     color: #36363c; }
 
-.card-collapse::before {
-  background-color: #ff0000; }
+#user-settings .card {
+  color: #36363c; }
+
+#profile-settings::before {
+  content: none; }
+
+#avatar-settings::before {
+  content: none; }
+
+#banner-settings::before {
+  content: none; }
 
 #register-center {
   border: 2px dashed #b3b3b3;

@@ -221,6 +221,9 @@ body {
   background-color: #36363c;
   color: #ededed; }
 
+.btn {
+  border-radius: 0; }
+
 .navbar {
   background-color: #1f1f22; }
   .navbar .nav-link, .navbar .navbar-brand {
@@ -253,6 +256,18 @@ body {
     border: 1px solid black; }
   .post-block .post-name {
     color: #ededed; }
+
+#user-settings .card {
+  color: #36363c; }
+
+#profile-settings::before {
+  content: none; }
+
+#avatar-settings::before {
+  content: none; }
+
+#banner-settings::before {
+  content: none; }
 
 #register-center {
   border: 2px dashed #b3b3b3;
