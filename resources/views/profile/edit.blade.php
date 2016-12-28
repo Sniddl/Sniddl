@@ -43,8 +43,9 @@
         <div class="card-collapse collapse" id="profile-settings">
 
           <form class="card-form" action="/profileSettings" method="post" data-success="profileSettings()"><!--  see /js/global.js@ajaxOnClickFunction -->
+            {{ csrf_field() }}
             <label for="displayname" style="padding-top:15px;">Change display name</label>
-              <input type="text" name="displayname" placeholder="{{ Auth::user()->name }}"/>
+              <input type="text" name="displayname" placeholder="{{ Auth::user()->display_name }}"/>
             <label for="username" style="padding-top:15px;">Change username</label>
               <input type="text" name="username" placeholder="{{ Auth::user()->username }}"/>
             <label style="padding-top:15px;">Change password</label>
@@ -53,7 +54,7 @@
               <input type="password" name="newpassword_confirmation" placeholder="Verify new password" style="margin-top:10px;">
             <label style="padding-top:15px;">Change Email</label>
               <input type="text" name="changeemail" placeholder="{{Auth::user()->email}}">
-            <input type="submit" class="btn btn-primary ajax" value="Save Changes">
+            <input type="submit" class="btn btn-primary" value="Save Changes">
           </form>
 
         </div>

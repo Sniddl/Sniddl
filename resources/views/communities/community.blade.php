@@ -14,7 +14,7 @@
         <p style="color:#a8a8a8; padding-top:5px;"><b style="padding-right:10px;">URL</b> sniddl.com/c/{{$getCommunity -> url}}</p> <br>
         <hr>
         <h3 style="text-align:center; color:#529bd5;">Staff</h3>
-        <h4><img class="img-circle" height="50px" style ="margin-right:10px; background-color:#{{$owner->color}}; " src="{{ $owner->avatar }}"/>{{$owner->username}}</h4>
+        <h4><img class="img-circle" height="50px" style ="margin-right:10px; background-color:#{{$owner->color}}; " src="{{ $owner->avatar_url }}"/>{{$owner->username}}</h4>
         <hr>
         <h3 style="text-align:center; color:#529bd5;">Members</h3>
       </div>

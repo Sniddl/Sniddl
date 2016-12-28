@@ -11,7 +11,6 @@ Auth::routes();
   Routes that need to be changed to post requests.
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯*/
 Route::get('/friend/{id}', 'FriendController@add');
-Route::get('/resendVerification', 'UserController@resendVerification');
 
 /*⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
   POST ROUTES -- use for forms, or if you want to keep things private.
@@ -20,10 +19,7 @@ Route::post('/create-post', 'PostController@create');
 Route::post('/create-reply', 'ReplyController@create');
 Route::post('/edit/profile/avatar', 'UserController@update_avatar');
 Route::post('/edit/profile/banner', 'UserController@update_banner');
-Route::post('/edit/profile/avatargen', 'UserController@generateAvatar');
-Route::post('/changeName', 'UserController@updateName');
-Route::post('/changePWD', 'UserController@changePWD');
-Route::post('/changeEmail', 'UserController@changeEmail');
+//Route::post('/edit/profile/avatargen', 'UserController@generateAvatar');
 Route::post('/delete/{item}/{id}', 'DeletionContoller@delete');
 Route::post('/create/c', 'CommunityController@createCommunity');
 Route::post('/like/{post}', 'PostController@like');

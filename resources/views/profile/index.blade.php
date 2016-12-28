@@ -30,6 +30,7 @@
     background-position: center center;
     background-size: cover;
     position: relative;
+    z-index: 1;
     top: -10px;
     left: 0;}
     .banner-img .avatar {
