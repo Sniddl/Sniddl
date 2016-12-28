@@ -49,7 +49,7 @@ class CommunityController extends Controller
       $resize= Image::make($path)->fit(300)->save($url);*/
 
       if($request->hasFile('createcommunityavatar')){
-        $avatar_path = upload_image($request->file('createcommunityavatar'), 'comm', '/uploads/avatars/');
+        $avatar_path = upload_image($request->file('createcommunityavatar'), 'comm', '/uploads/avatars/', 300,300);
       }
       //Creating the community
       $community = new Community();
