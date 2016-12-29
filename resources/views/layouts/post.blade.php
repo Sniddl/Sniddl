@@ -2,7 +2,7 @@
 
 <div class="card post-block card-block" data-link="{{url('/post/'.$timeline->id)}}">
 
-      @if($timeline->is_repost)
+      @if($post->reposts()->exists())
         <div class="reposted-post">
           <i class="fa fa-retweet"></i>
           <a href="/u/{{$timeline->AddedBy()->username}}">{{$timeline->AddedBy()->display_name}} reposted...</a>
@@ -45,7 +45,7 @@
           <i class="fa fa-heart"></i> {{ $post->likes()->count() }}
         </span>
         <span class="icon reply" data-id="{{$post->id}}" data-toggle="modal" data-target="#replyModal" >
-          <i class="fa fa-reply"></i> {{ $post->likes()->count() }}
+          <i class="fa fa-reply"></i> {{ $post->replies()->count() }}
         </span>
 
         <div class="dropdown pull-right">

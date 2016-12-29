@@ -25,6 +25,6 @@ class Post extends Model
         return Reply::where('replyto_id',"=",$this->id)->get();
     }
 
-    
+
 
 }
