@@ -19,7 +19,7 @@ class CommunityController extends Controller
       if($getCommunity == ''){ //If a community was searched but doesn't exist a 404 will be thrown ,(Literally).
         abort(404);
       }else{
-        $owner = User::find($getCommunity->owner_id)->first();
+        $owner = User::find($getCommunity->owner_id);
         //return $owner;
         return view('communities.community', compact('owner'));
         //return $getCommunity;
