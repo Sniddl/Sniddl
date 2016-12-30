@@ -22,10 +22,12 @@
               How people reacted...
             </div>
              @foreach($replies as $reply)
-               <?php $post = $reply->post() ?>
+               <?php
+               $post = $reply->timeline()->post;
+               $timeline = $reply->timeline();
+               ?>
                @include('layouts.post')
              @endforeach
-
         @endif
 
 </div>

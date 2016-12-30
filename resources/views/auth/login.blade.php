@@ -33,7 +33,7 @@
         100%{background-position:0% 86%}
     }
 
-    .form-container {
+    #login-container {
         position: absolute;
         width: 100%;
         top: 50%;
@@ -42,20 +42,26 @@
         background: rgba(0,0,0,0.12);
         padding: 30px 0;
         color: white;
-        text-shadow: 1px 1px #504e4e;
+        text-shadow: 1px 1px #737373;
         font-weight: 300;
     }
+
+    #login-container  .form-control{
+      border-radius:0;
+    }
+
     .btn-outline-primary{
       width: 100%;
       color: white;
       border-color: white;
+      margin-top: 20px;
     }
 </style>
 
 <div class="container">
   <div class="row">
 
-    <div class="form-container">
+    <div id="login-container">
       <form class="col-lg-8 offset-lg-2 col-md-8 offset-md-2" action="{{ url('/login') }}" method="post">
         {{ csrf_field() }}
         <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
@@ -82,7 +88,7 @@
         <div class="input-group">
                 <div class="checkbox" style="">
                         <input type="checkbox" name="remember"> Remember Me</input>
-                        <a class="btn btn-link " href="{{ url('/password/reset') }}" style="font-size: 12px;">
+                        <a class="btn btn-link " href="{{ url('/password/reset') }}" style="font-size: 12px; color:white;">
                             Forgot Your Password?
                         </a>
                 </div>

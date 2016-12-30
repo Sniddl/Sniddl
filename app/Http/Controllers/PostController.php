@@ -102,11 +102,12 @@ class PostController extends Controller
         $friends = Friend::where('follower_id', '=', Auth::user()->id)->get();
         $array = [];
         foreach ($friends as $friend) {
-            $posts = $friend->User->posts;
-            foreach ($posts as $post) {
-                array_push($array, $post->user);}}
-        $timeline = Timeline::orderBy('id', 'DESC')->whereIn('added_by', $array)->get();
-        return view('showAllPosts', compact('timeline'));}
+            $friendID = $friend->user_being_followed()->id;
+            array_push($array, $friendID);
+        }
+        $timeline = Timeline::orderBy('id', 'DESC')->whereIn('added_by', $array)->where('is_reply', '=', '0')->get();
+        return view('showAllPosts', compact('timeline'));
+      }
 
 
 

@@ -1,7 +1,6 @@
 
 
 <div class="card post-block card-block" data-link="{{url('/post/'.$timeline->id)}}">
-
       @if($timeline->is_repost)
         <div class="reposted-post">
           <i class="fa fa-retweet"></i>
@@ -10,7 +9,7 @@
       @endif
 
   <div class=" card-item">
-    <a href="/u/{{ $post->User->username }}" >
+    <a href="/u/{{ $post->User->username }}">
       <img class="avatar" height="50px" width="50px" style ="margin-right:10px; background-color:{{$post->User->avatar_bg_color}};" src="{{ $post->User->avatar_url }}"/>
     </a>
     <a href="/u/{{ $post->User->username }}" class="post-name">{{ $post->User->name }}</a>
@@ -45,7 +44,7 @@
           <i class="fa fa-heart"></i> {{ $post->likes()->count() }}
         </span>
         <span class="icon reply" data-id="{{$post->id}}" data-toggle="modal" data-target="#replyModal" >
-          <i class="fa fa-reply"></i> {{ $post->likes()->count() }}
+          <i class="fa fa-reply"></i> {{ $post->replies()->count() }}
         </span>
 
         <div class="dropdown pull-right">
