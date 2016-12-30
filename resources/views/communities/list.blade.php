@@ -3,15 +3,13 @@
 @section('content')
 <div class="container">
   <h5>
-    Currently there 
-    @if($communities->count() == 0) are
-    @elseif($communities->count() == 1) is
-    @else($communities->count() > 1) are
+    Currently there
+    @if($communities->count() != 1) are
+    @else is
     @endif
     {{$communities->count()}}
-    @if($communities->count() == 0) communities
-    @elseif($communities->count() == 1) community
-    @else($communities->count() > 1) communities
+    @if($communities->count() != 1) communities
+    @else community
     @endif
     on Sniddl.
   </h5>
