@@ -92,7 +92,6 @@ Route::get('/plugins/colorpicker', function() {
 //
 // });
 Route::get('/docs/{page?}', function($page = null){
-  if( is_dev() ){
     switch ($page) {
       case 'model-facades':
         return view('docs.sections.facades');
@@ -105,9 +104,6 @@ Route::get('/docs/{page?}', function($page = null){
         break;
     }
 
-  }else {
-    abort(404);
-  }
 
 });
 
