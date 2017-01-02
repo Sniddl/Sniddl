@@ -13,6 +13,7 @@ use App\Timeline;
 use App\Reply;
 use DB;
 use Auth;
+use App\Events\CreatedPost;
 
 class PostController extends Controller
 {
@@ -41,9 +42,11 @@ class PostController extends Controller
             $r->replyto_id = $op->id;//get the id global.js @reply click function.
             $r->post_id = $post_id; //the id of this post.
             $r->user_id = $user->id; //id of this user.
-            $r->save();}
+            $r->save();
+            event( new CreatedPost("reply") );}
         $timeline->save();
         if ($method == null){
+          event( new CreatedPost("post") );
           return back();}}
 
 

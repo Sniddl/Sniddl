@@ -74,3 +74,6 @@
       </div>
   @endif
 </div>
+
+<!-- <script src="/js/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js" charset="utf-8"></script> -->
