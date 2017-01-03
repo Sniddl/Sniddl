@@ -8,13 +8,6 @@ var redis = new Redis();
 // redis.subscribe('reply-channel');
 redis.psubscribe('*', function(err, count) {});
 
-// redis.on('message', function(channel, message){
-//   console.log("recieved message");
-//   message = JSON.parse(message);
-//   io.emit(channel + ":" + message.event, message.data);
-//
-// });
-
 redis.on('pmessage', function(subscribed, channel, message) {
     console.log(channel + ':' + message.event, message.data);
     message = JSON.parse(message);
