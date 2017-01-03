@@ -16211,10 +16211,20 @@ return Tether;
 //Dependencies that are needed in other libraries.
 global.$ = global.jQuery = require('jquery');
 global.Tether = require('tether');
+// global.Vue = require('vue');
 
 //Other Dependencies
 require('bootstrap');
 require('jquery-ui');
+// require('laravel-echo');
+// require('vue-resource');
+//
+//
+//
+// Vue.http.interceptors.push(function(request, next){
+//   request.headers['X-XSRF-TOKEN'] = Cookies.get('XSRF-TOKEN');
+//   next();
+// });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"bootstrap":1,"jquery":3,"jquery-ui":2,"tether":4}]},{},[5]);

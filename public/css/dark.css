@@ -8,6 +8,20 @@ body {
   margin-bottom: 10px;
 }
 
+.navbar .nav-link {
+  position: relative;
+}
+
+.navbar .nav-link .notification-circle {
+  position: absolute;
+  top: 5px;
+  right: -10px;
+  border-radius: 100%;
+  width: 18px;
+  height: 18px;
+  display: none;
+}
+
 .navbar .avatar {
   background-color: tansparent;
   border-radius: 100%;
@@ -319,6 +333,11 @@ body {
 
 .navbar .nav-link:hover, .navbar .navbar-brand:hover {
   color: #fff !important;
+}
+
+.navbar .nav-link .notification-circle, .navbar .navbar-brand .notification-circle {
+  background: #dddddd;
+  border: 3px solid #1f1f22;
 }
 
 .navbar button, .navbar i {

@@ -1,6 +1,5 @@
 
 
-<div class="card post-block card-block" data-link="{{url('/post/'.$timeline->id)}}">
       @if($timeline->is_repost)
         <div class="reposted-post">
           <i class="fa fa-retweet"></i>
@@ -73,7 +72,7 @@
         </div>
       </div>
   @endif
-</div>
+
 
 <!-- <script src="/js/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js" charset="utf-8"></script> -->

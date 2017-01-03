@@ -24,17 +24,18 @@
                   @endif
 
 
-                  @if(Session::has('notify_danger'))
-                    <div class="alert alert-danger alert-dismissible" role="alert"><div  type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>
-                      <strong>Warning:</strong>
-                      {{Session::get('notify_danger')}}
-                    </div>
+                  @if (session()->has('flash_notification.message'))
+                      <div class="alert alert-{{ session('flash_notification.level') }}">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                          {!! session('flash_notification.message') !!}
+                      </div>
                   @endif
 
 
                     @yield('posts')
                     @yield('edit')
-                  
+
             @else
 
                   <style media="screen">

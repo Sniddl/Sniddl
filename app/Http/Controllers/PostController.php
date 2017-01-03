@@ -14,6 +14,8 @@ use App\Reply;
 use DB;
 use Auth;
 use App\Events\CreatedPost;
+use App\Events\NotificationUpdate;
+use App\Notifications\TimelineEvent;
 
 class PostController extends Controller
 {
@@ -21,7 +23,7 @@ class PostController extends Controller
     public function create(Request $request, $method=null){
         $this->validate($request, [
           'text' => 'required|string',]);
-        $op = Post::find($request->id); //find the original post.
+        $op = Post::withTrashed()->find($request->id); //find the original post.
         $user = Auth::user();
         $post = new Post();
         $post->text = $request->text;
@@ -37,15 +39,23 @@ class PostController extends Controller
         $timeline->added_by = $user->id;
         $timeline->is_repost = 0;
         if ($method == "reply"){
+            if ($op->trashed()) {
+              flash('Sorry, the post you were trying to reply to has been deleted.', 'danger');
+              return back();
+            }
             $timeline->is_reply = 1;
             $r = new Reply();
             $r->replyto_id = $op->id;//get the id global.js @reply click function.
             $r->post_id = $post_id; //the id of this post.
             $r->user_id = $user->id; //id of this user.
             $r->save();
+            $timeline->save();
+            $op->user->notify(new TimelineEvent(Timeline::find($timeline->id)));
+            event( new NotificationUpdate($op->user) );
             event( new CreatedPost("reply") );}
-        $timeline->save();
+
         if ($method == null){
+          $timeline->save();
           event( new CreatedPost("post") );
           return back();}}
 
@@ -119,7 +129,11 @@ class PostController extends Controller
 
 
     public function url($timeline_id) {
-      $getPostByUrl = Timeline::find($timeline_id);
+      $getPostByUrl = Timeline::withTrashed()->find($timeline_id);
+      if($getPostByUrl->trashed()){
+        flash('The post you were trying to access has been deleted.', 'danger');
+        return back();
+      }
       return view('layouts.post-rendered')->with('timeline', $getPostByUrl);}
 
 

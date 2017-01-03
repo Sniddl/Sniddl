@@ -6,7 +6,9 @@
 
         <!-- Make variable for the posts you are referencing. -->
         <?php $post = $timeline->post; ?>
-        @include('layouts.post')
+        <div class="card post-block card-block" data-link="{{url('/post/'.$timeline->id)}}">
+          @include('layouts.post')
+        </div>
         @if( Request::segment(1) == "post")
 
           <?php
@@ -27,7 +29,9 @@
                $post = $reply->timeline()->post;
                $timeline = $reply->timeline();
                ?>
-               @include('layouts.post')
+               <div class="card post-block card-block" data-link="{{url('/post/'.$timeline->id)}}">
+                 @include('layouts.post')
+               </div>
              @endforeach
         @endif
 

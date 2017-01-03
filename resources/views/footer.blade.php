@@ -5,8 +5,10 @@
 
 <script>
 var socket = io("http://localhost:3000");
+var userId = $('meta[name=uid]').attr("content");
 var post_count = 0;
 var reply_count = 0;
+
 socket.on('post-channel:App\\Events\\CreatedPost', function(data){
   post_count ++;
   if (post_count == 1){
@@ -23,5 +25,9 @@ socket.on('reply-channel:App\\Events\\CreatedPost', function(data){
   else{
     $('#new-reply-event').html('Load '+ reply_count + " new replies.")}
   $('#new-reply-event').parent().parent().show();
+});
+
+socket.on(userId+'-notification-channel:App\\Events\\NotificationUpdate', function(data){
+  $('.notification-circle').show();
 });
 </script>

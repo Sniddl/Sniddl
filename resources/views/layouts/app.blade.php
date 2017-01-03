@@ -8,7 +8,7 @@
 
 @if(Auth::check())
 
-    
+
 
 
 
@@ -25,7 +25,10 @@
                 <a class="nav-link" href="/sort/friends" >Friends</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Notifications</a>
+                <a class="nav-link" href="/notifications">
+                  Notifications
+                  <span class="notification-circle"></span>
+                </a>
               </li>
           </div>
 
@@ -46,6 +49,7 @@
                 <a class="nav-link" href="#">
                   <i class="fa fa-bell" aria-hidden="true"></i>
                   <div class="nav-icon-text">Notifications</div>
+                  <span class="notification-circle"></span>
                 </a>
               </li>
           </div>
