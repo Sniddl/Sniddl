@@ -1,4 +1,14 @@
-var server = require('http').Server();
+// var server = require('http').Server();
+// var io = require('socket.io')(server);
+// var Redis = require('ioredis');
+// var redis = new Redis();
+
+
+var server = require('http').createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World\n');
+});
+
 var io = require('socket.io')(server);
 var Redis = require('ioredis');
 var redis = new Redis();
