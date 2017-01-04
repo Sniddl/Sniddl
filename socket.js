@@ -1,9 +1,3 @@
-// var server = require('http').Server();
-// var io = require('socket.io')(server);
-// var Redis = require('ioredis');
-// var redis = new Redis();
-
-
 var server = require('http').createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   res.end('Hello World\n');
@@ -12,10 +6,6 @@ var server = require('http').createServer(function (req, res) {
 var io = require('socket.io')(server);
 var Redis = require('ioredis');
 var redis = new Redis();
-
-// redis.subscribe('test-channel');
-// redis.subscribe('post-channel');
-// redis.subscribe('reply-channel');
 redis.psubscribe('*', function(err, count) {});
 
 redis.on('pmessage', function(subscribed, channel, message) {
