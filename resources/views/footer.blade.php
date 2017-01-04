@@ -4,7 +4,7 @@
 <script src="/js/community.js" charset="utf-8"></script>
 
 <script>
-var socket = io("http://localhost:3000");
+var socket = io("http://sniddl.com/socket.io");
 var userId = $('meta[name=uid]').attr("content");
 var post_count = 0;
 var reply_count = 0;
