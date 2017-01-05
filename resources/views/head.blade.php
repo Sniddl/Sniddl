@@ -19,7 +19,7 @@
 
 <!-- JS -->
 <script src="{{asset('js/dependencies.js')}}" charset="utf-8"></script>
-<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
 
 <!-- Global Modals -->
 

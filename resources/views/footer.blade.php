@@ -1,10 +1,11 @@
 <!-- JS -->
 
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <script src="/js/global.js" charset="utf-8"></script>
 <script src="/js/community.js" charset="utf-8"></script>
 
-<script>
-var socket = io("http://localhost:3000");
+<script id="socket-script">
+var socket = io.connect("{{env('APP_URL').':'.env('APP_NODE_PORT')}}");
 var userId = $('meta[name=uid]').attr("content");
 var post_count = 0;
 var reply_count = 0;

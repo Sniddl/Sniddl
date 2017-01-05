@@ -11,7 +11,7 @@
     <a href="/u/{{ $post->User->username }}">
       <img class="avatar" height="50px" width="50px" style ="margin-right:10px; background-color:{{$post->User->avatar_bg_color}};" src="{{ $post->User->avatar_url }}"/>
     </a>
-    <a href="/u/{{ $post->User->username }}" class="post-name">{{ $post->User->name }}</a>
+    <a href="/u/{{ $post->User->username }}" class="post-name">{{ $post->User->display_name }}</a>
     <small class="text-muted post-username">{{'@'.$post->User->username}}</small>
     <small class="text-muted pull-right post-time">{{ $post->created_at->diffForHumans() }}</small>
   </div>
