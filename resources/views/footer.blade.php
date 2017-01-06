@@ -5,7 +5,7 @@
 <script src="/js/community.js" charset="utf-8"></script>
 
 <script id="socket-script">
-var socket = io.connect("{{env('APP_URL').':'.env('APP_NODE_PORT')}}");
+var socket = io.connect("http://192.81.217.250:3000");
 var userId = $('meta[name=uid]').attr("content");
 var post_count = 0;
 var reply_count = 0;
