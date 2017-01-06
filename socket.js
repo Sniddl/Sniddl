@@ -13,4 +13,4 @@ redis.on('pmessage', function(subscribed, channel, message) {
     io.emit(channel + ':' + message.event, message.data);
 });
 
-server.listen(3000, '192.81.217.250');
+server.listen(3000, 'http://sniddl.com');
