@@ -20,4 +20,5 @@ elixir(mix => {
        .sass('dark.scss')
        .sass('reddit.sass')
        .browserify('dependencies.js') //assumes js assets folder
+       .browserify('bootstrap.js')
 });

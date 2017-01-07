@@ -1,11 +1,48 @@
 <!-- JS -->
 
-<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script>
+  window.laravel = {
+    token: '{{csrf_token()}}',
+    id: @if(Auth::check())
+        '{{Auth::user()->id}}'
+        @endif
+  }
+</script>
 <script src="/js/global.js" charset="utf-8"></script>
 <script src="/js/community.js" charset="utf-8"></script>
+<script src="/js/bootstrap.js" charset="utf-8"></script>
+<script type="text/javascript">
+var post_count = 0;
+var reply_count = 0;
+  Echo.private(`App.User.${window.laravel.id}`)
+      .listen('NotificationUpdate', (e) => {
+          $('.notification-circle').show();
+      });
 
-<script id="socket-script">
-var socket = io.connect();
+  Echo.channel(`post-channel`)
+      .listen('CreatedPost', (e) => {
+        post_count ++;
+        if (post_count == 1){
+          $('#new-post-event').html('Load '+ post_count + " new post.");}
+        else{
+          $('#new-post-event').html('Load '+ post_count + " new posts.")}
+        $('#new-post-event').parent().parent().show();
+      });
+
+  Echo.channel(`reply-channel`)
+      .listen('CreatedPost', (e) => {
+        reply_count ++;
+        if (reply_count == 1){
+          $('#new-reply-event').html('Load '+ reply_count + " new reply.");}
+        else{
+          $('#new-reply-event').html('Load '+ reply_count + " new replies.")}
+        $('#new-reply-event').parent().parent().show();
+      });
+</script>
+
+
+<!-- <script id="socket-script">
+var socket = io.connect("http://localhost:3000");
 var userId = $('meta[name=uid]').attr("content");
 var post_count = 0;
 var reply_count = 0;
@@ -31,4 +68,4 @@ socket.on('reply-channel:App\\Events\\CreatedPost', function(data){
 socket.on(userId+'-notification-channel:App\\Events\\NotificationUpdate', function(data){
   $('.notification-circle').show();
 });
-</script>
+</script> -->

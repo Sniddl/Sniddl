@@ -31,6 +31,6 @@ class NotificationUpdate implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return [$this->user->id.'-notification-channel'];
+        return new PrivateChannel('App.User.'.$this->user->id);
     }
 }
