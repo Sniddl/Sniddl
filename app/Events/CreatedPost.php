@@ -31,6 +31,6 @@ class CreatedPost implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return  [$this->channel.'-channel'];
+        return new Channel($this->channel.'-channel');
     }
 }

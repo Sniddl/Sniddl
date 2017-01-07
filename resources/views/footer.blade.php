@@ -42,7 +42,7 @@ var reply_count = 0;
 
 
 <script id="socket-script">
-var socket = io.connect("http://localhost:3000");
+var socket = io.connect("{{env('NODE_HOST', '\n**** MISSING .ENV NODE_HOST VARIABLE ****\n')}}");
 var userId = $('meta[name=uid]').attr("content");
 var post_count = 0;
 var reply_count = 0;
@@ -65,7 +65,7 @@ socket.on('reply-channel:App\\Events\\CreatedPost', function(data){
   $('#new-reply-event').parent().parent().show();
 });
 
-socket.on(userId+'-notification-channel:App\\Events\\NotificationUpdate', function(data){
+socket.on('private-App.User.'+window.laravel.id+':App\\Events\\NotificationUpdate', function(data){
   $('.notification-circle').show();
 });
 </script>
