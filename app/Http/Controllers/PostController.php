@@ -50,9 +50,12 @@ class PostController extends Controller
             $r->user_id = $user->id; //id of this user.
             $r->save();
             $timeline->save();
-            $op->user->notify(new TimelineEvent(Timeline::find($timeline->id)));
-            event( new NotificationUpdate($op->user) );
-            event( new CreatedPost("reply") );}
+
+            if ($op->user->id != Auth::user()->id) {
+              $op->user->notify(new TimelineEvent(Timeline::find($timeline->id)));
+              event( new NotificationUpdate($op->user) );
+              event( new CreatedPost("reply") );
+            }}
 
         if ($method == null){
           $timeline->save();

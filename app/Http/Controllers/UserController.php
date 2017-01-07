@@ -31,7 +31,7 @@ class UserController extends Controller
         $user = User::where('username', '=', $user)->first();
         if ($user) {
             $data = [
-              'timeline'  => $user->Timeline()->get(),
+              'timeline'  => $user->Timeline()->where('is_reply','=', 0)->get(),
               'following' => $user->Following()->get(),
               'followers' => $user->Followers()->get(),
               'friends'   => $user->Friends()->get()];

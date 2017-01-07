@@ -11,6 +11,9 @@
                 <a href="#" id="new-post-event" onclick="location.reload()"></a>
               </div>
             </div>
+            @if ($timeline->count() == 0)
+              @include('layouts.nothingToShow')
+            @endif
             @foreach ($timeline as $timeline)
               <!-- Make variable for the posts you are referencing. -->
               <?php $post = $timeline->post; ?>

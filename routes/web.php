@@ -46,12 +46,10 @@ Route::get('/c/{url}', 'CommunityController@getCommunity');
 Route::get('/communities', 'CommunityController@getList');
 Route::get('/post/{timeline_id}', 'PostController@url');
 
-Route::get('/notify', function () {
-    Auth::user()->notify(new ReplyOnPost(Timeline::find(97)));
+Route::get('/test', function () {
+    return view('testphp');
 });
-Route::get('/notifications', function () {
-    return view('notifications');
-});
+Route::get('/notifications', 'notificationController@each');
 
 
 

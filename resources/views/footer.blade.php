@@ -1,15 +1,18 @@
 <!-- JS -->
 
 <script>
+
   window.laravel = {
     token: '{{csrf_token()}}',
-    id: @if(Auth::check())
-        '{{Auth::user()->id}}'
-        @endif
+    @if(Auth::check())
+      id: '{{Auth::user()->id}}',
+      notifications: '{{Auth::user()->unreadNotifications->count()}}'
+    @endif
   }
 </script>
 <script src="/js/global.js" charset="utf-8"></script>
 <script src="/js/community.js" charset="utf-8"></script>
+<script src='https://cdn.rawgit.com/admsev/jquery-play-sound/master/jquery.playSound.js'></script>
 <!-- <script src="/js/bootstrap.js" charset="utf-8"></script> -->
 <!-- <script type="text/javascript">
 var post_count = 0;
@@ -67,5 +70,12 @@ socket.on('reply-channel:App\\Events\\CreatedPost', function(data){
 
 socket.on('private-App.User.'+window.laravel.id+':App\\Events\\NotificationUpdate', function(data){
   $('.notification-circle').show();
+  $.playSound("/notify")
 });
+if (window.laravel.notifications > 0 && !base_url_is('notifications')) {
+$('.notification-circle').show();
+$.playSound("/notify")}
+
+
+
 </script>
