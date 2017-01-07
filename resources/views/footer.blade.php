@@ -10,8 +10,8 @@
 </script>
 <script src="/js/global.js" charset="utf-8"></script>
 <script src="/js/community.js" charset="utf-8"></script>
-<script src="/js/bootstrap.js" charset="utf-8"></script>
-<script type="text/javascript">
+<!-- <script src="/js/bootstrap.js" charset="utf-8"></script> -->
+<!-- <script type="text/javascript">
 var post_count = 0;
 var reply_count = 0;
   Echo.private(`App.User.${window.laravel.id}`)
@@ -38,10 +38,10 @@ var reply_count = 0;
           $('#new-reply-event').html('Load '+ reply_count + " new replies.")}
         $('#new-reply-event').parent().parent().show();
       });
-</script>
+</script> -->
 
 
-<!-- <script id="socket-script">
+<script id="socket-script">
 var socket = io.connect("http://localhost:3000");
 var userId = $('meta[name=uid]').attr("content");
 var post_count = 0;
@@ -68,4 +68,4 @@ socket.on('reply-channel:App\\Events\\CreatedPost', function(data){
 socket.on(userId+'-notification-channel:App\\Events\\NotificationUpdate', function(data){
   $('.notification-circle').show();
 });
-</script> -->
+</script>

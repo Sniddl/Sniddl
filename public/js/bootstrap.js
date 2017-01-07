@@ -4710,17 +4710,17 @@ var _laravelEcho2 = _interopRequireDefault(_laravelEcho);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-window.Echo = new _laravelEcho2.default({
-    cluster: 'mt1',
-    broadcaster: 'pusher',
-    key: '321d89618ec4a140cbca',
-    encrypted: true
-});
+// window.Echo = new Echo({
+//     cluster: 'mt1',
+//     broadcaster: 'pusher',
+//     key: '321d89618ec4a140cbca',
+//     encrypted: true
+// });
 
-// Echo.private(`App.User.${userId}`)
-//     .listen('NotificationUpdate', (e) => {
-//         console.log(e.update);
-//     });
+window.Echo = new _laravelEcho2.default({
+    broadcaster: 'socket.io',
+    host: 'localhost:3000'
+});
 
 },{"laravel-echo":1}]},{},[3]);
 
