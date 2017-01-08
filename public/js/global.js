@@ -107,3 +107,24 @@ $('.post-block').click(function() {
     location.href = link;
   }
 });
+
+
+window.Tunnel = class Tunnel {
+  constructor(params) {
+    this.socket = io.connect(params.host);
+  }
+
+  public(params){
+    this.socket.on(params.channel + ':App\\Events\\'+params.event, function(data){
+      params.success(data);
+    });
+  }
+
+  private(params){
+    this.socket.on("private-"+params.channel + "." + params.unique + ':App\\Events\\'+params.event, function(data){
+      params.success(data);
+    });
+  }
+
+
+}
