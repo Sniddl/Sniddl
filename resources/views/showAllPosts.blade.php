@@ -12,7 +12,6 @@
               </div>
             </div>
             @foreach ($timeline as $timeline)
-              <!-- Make variable for the posts you are referencing. -->
               <?php $post = $timeline->post; ?>
               @include('layouts.post')
             @endforeach
