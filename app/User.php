@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use App\Friend;
 use App\User;
@@ -30,6 +31,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //protected $dates = ['deleted_at'];
 
     public function Posts(){
         return $this->hasMany('App\Post');}

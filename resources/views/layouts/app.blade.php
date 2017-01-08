@@ -44,7 +44,7 @@
           </div>
 
 
-        <button type="button" class="btn btn-outline-secondary pull-nav-right" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn btn-outline-secondary pull-nav-right" data-toggle="modal" data-target="#postModal">
           <i class="fa fa-pencil"></i> Post
         </button>
         <div class="dropdown pull-nav-right">
