@@ -1,42 +1,44 @@
 @extends('layouts.app')
 
-
 @section('content')
+              @if (Auth::check())
+                    @if(Session::has('verify_success'))
+                          <div class="alert alert-success alert-dismissible" role="alert"><div  type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>
+                            <strong>Success:</strong>
+                            {{Session::get('verify_success')}}
+                          </div>
+                    @elseif(Session::has('verify_fail'))
+                          <div class="alert alert-danger" role="alert">
+                            <strong>Error:</strong>
+                            {{Session::get('verify_fail')}}
+                            <a href="/resendVerification">Click here</a> to resend the email.
+                          </div>
+                    @elseif(Session::has('verify_incomplete'))
+                          <div class="alert alert-info alert-dismissible" role="alert"><div  type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>
+                            <strong>Confirmation Needed:</strong>
+                            {{Session::get('verify_incomplete')}}
+                            <a href="/resendVerification">Click here</a> to resend the email.
+                          </div>
+                    @endif
+                    @if (session()->has('flash_notification.message'))
+                        <div class="alert alert-{{ session('flash_notification.level') }}">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-            @if (Auth::check())
-                  @if(Session::has('verify_success'))
-                        <div class="alert alert-success alert-dismissible" role="alert"><div  type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>
-                          <strong>Success:</strong>
-                          {{Session::get('verify_success')}}
+                            {!! session('flash_notification.message') !!}
                         </div>
-                  @elseif(Session::has('verify_fail'))
-                        <div class="alert alert-danger" role="alert">
-                          <strong>Error:</strong>
-                          {{Session::get('verify_fail')}}
-                          <a href="/resendVerification">Click here</a> to resend the email.
-                        </div>
-                  @elseif(Session::has('verify_incomplete'))
-                        <div class="alert alert-info alert-dismissible" role="alert"><div  type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>
-                          <strong>Confirmation Needed:</strong>
-                          {{Session::get('verify_incomplete')}}
-                          <a href="/resendVerification">Click here</a> to resend the email.
-                        </div>
-                  @endif
+                    @endif
 
+                      @yield('posts')
+                      @yield('edit')
 
-                  @if (session()->has('flash_notification.message'))
-                      <div class="alert alert-{{ session('flash_notification.level') }}">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              @else
+              @if (session()->has('flash_notification.message'))
+                  <div class="alert alert-{{ session('flash_notification.level') }}">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                          {!! session('flash_notification.message') !!}
-                      </div>
-                  @endif
-
-
-                    @yield('posts')
-                    @yield('edit')
-
-            @else
+                      {!! session('flash_notification.message') !!}
+                  </div>
+              @endif
 
                   <style media="screen">
                     body{background-color: #eceeef;}
@@ -54,17 +56,5 @@
 
                     </div>
                   </div>
-
-
             @endif
-
-
-
-
-
-
-
-
-
-
 @endsection

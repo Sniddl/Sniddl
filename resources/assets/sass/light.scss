@@ -119,6 +119,17 @@ body {
   content: none;
 }
 
+#delete-account-settings::before{
+  content: none;
+}
+
+#deleteAccModal{
+  input:focus{
+    border-color: rgba(0,0,0,0.3);
+    outline: none;
+  }
+}
+
 #register-center{
   border: 2px dashed $grey;
   border-radius: 20px;

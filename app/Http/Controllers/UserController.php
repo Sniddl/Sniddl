@@ -120,11 +120,14 @@ class UserController extends Controller
           'password' => 'min:6|confirmed',
         ]);
         if(password_verify($request->password,$u->password)){
-            Post::where('user_id', '=', Auth::user()->id)->delete();
-            Repost::where('op_id', '=', Auth::user()->id)->delete();
-            Timeline::where('added_by', '=', Auth::user()->id)->delete();
-            User::where('id', '=', Auth::user()->id)->delete();
+            $u->username = '$_'.$u->username;
+            $u->save();
+            Post::where('user_id', '=', $u->id)->delete();
+            Repost::where('op_id', '=', $u->id)->delete();
+            Timeline::where('added_by', '=', $u->id)->delete();
+            User::where('id', '=', $u->id)->delete();
         }
+        flash('Success! You have deleted your account', 'success');
         return redirect('/');}
 
 
