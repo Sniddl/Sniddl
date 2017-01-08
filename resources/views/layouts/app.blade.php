@@ -6,6 +6,11 @@
 <body id="app-layout" >
 @if(Auth::check())
 
+
+
+
+
+
     <nav class="navbar navbar-light bg-faded">
       <ul class="nav navbar-nav">
         <a class="navbar-brand" href="/">Sniddl</a>
