@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->longText('text');
             $table->boolean('isTrending')->default(false);
             $table->boolean('isReply')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

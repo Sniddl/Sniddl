@@ -104,6 +104,17 @@ function upload_image($path, $prefix, $storage_path, $width, $height){
   $filename = $prefix.'_' . date("jFYhis") . '.' . $extention;
   Image::make($path)->fit($width,$height)->save(public_path($storage_path . $filename));
   return $storage_path.$filename;
+
+  // ---------------------------------------------------------
+  // DO NOT DELETE!! THIS IS CODE FOR SAVING TO STORAGE!!
+  // ---------------------------------------------------------
+      // $path   = $request->file('avatar');
+      // $resize = Image::make($path)->fit(300)->encode('jpg');
+      // $hash   = md5( $resize->__toString() );
+      // $path   = "uploads/avatars/{$hash}.jpg";
+      // $resize->save(public_path($path));
+      // $url    = "/" . $path;
+      // Storage::put('public/image/myUniqueFileNameHere.jpg', $resize->__toString());
 }
 /**
  *

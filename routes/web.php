@@ -1,6 +1,9 @@
 <?php
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 use App\Http\Requests;
+use App\Events\CreatedPost;
+use App\Notifications\ReplyOnPost;
 /*⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
   MISC ROUTES
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯*/
@@ -42,6 +45,12 @@ Route::get('/verify/{username}/{code}', 'UserController@verify');
 Route::get('/c/{url}', 'CommunityController@getCommunity');
 Route::get('/communities', 'CommunityController@getList');
 Route::get('/post/{timeline_id}', 'PostController@url');
+
+Route::get('/test', function () {
+    return view('testphp');
+});
+Route::get('/notifications', 'notificationController@each');
+
 
 
 

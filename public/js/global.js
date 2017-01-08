@@ -7,6 +7,9 @@ window.base_url = function(relative=false) {
   var baseUrl = getUrl .protocol + "//" + getUrl.host + "/";
   return relative ? baseUrl+relative : baseUrl;
 }
+window.base_url_is = function(path) {
+  return base_url(path) == window.location.href;
+}
 
 
 $('document').ready(function(){
@@ -104,3 +107,24 @@ $('.post-block').click(function() {
     location.href = link;
   }
 });
+
+
+window.Tunnel = class Tunnel {
+  constructor(params) {
+    this.socket = io.connect(params.host);
+  }
+
+  public(params){
+    this.socket.on(params.channel + ':App\\Events\\'+params.event, function(data){
+      params.success(data);
+    });
+  }
+
+  private(params){
+    this.socket.on("private-"+params.channel + "." + params.unique + ':App\\Events\\'+params.event, function(data){
+      params.success(data);
+    });
+  }
+
+
+}

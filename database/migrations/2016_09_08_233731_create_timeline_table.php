@@ -18,6 +18,7 @@ class CreateTimelineTable extends Migration
             $table->integer('added_by')->unsigned()->index();
             $table->boolean('is_repost')->default(false);
             $table->boolean('is_reply')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
