@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use App\Friend;
 use App\User;
@@ -12,6 +13,9 @@ use \Auth;
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
     /**
      * The attributes that are mass assignable.
      *

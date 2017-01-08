@@ -7,6 +7,9 @@ window.base_url = function(relative=false) {
   var baseUrl = getUrl .protocol + "//" + getUrl.host + "/";
   return relative ? baseUrl+relative : baseUrl;
 }
+window.base_url_is = function(path) {
+  return base_url(path) == window.location.href;
+}
 
 
 $('document').ready(function(){

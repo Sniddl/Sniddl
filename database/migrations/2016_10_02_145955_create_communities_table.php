@@ -19,6 +19,7 @@ class CreateCommunitiesTable extends Migration
         $table->integer('owner_id')->unsigned()->index();
         $table->string('url')->unique();
         $table->string('avatar')->nullable();
+        $table->softDeletes();
         $table->timestamps();
       });
     }

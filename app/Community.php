@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Community extends Model
 {
+  use SoftDeletes;
+  protected $dates = ['deleted_at'];
   protected $fillable = ['name', 'description', 'url', 'avatar'];
   protected $table = 'communities';
 

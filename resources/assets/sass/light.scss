@@ -64,7 +64,10 @@ body {
     .nav-link, .navbar-brand {
       color: $light-grey !important;
       &:hover{
-        color: $pure-white !important;}}
+        color: $pure-white !important;}
+      .notification-circle{
+        background: $light-grey;
+        border: 3px solid $dark-grey;}}
     button, i {
       color: $light-grey;
       border-color: $light-grey;

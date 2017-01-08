@@ -82,28 +82,28 @@ $('.reply').unbind().click(function(){
 |
 |
 */
-var refresh_rate_sec = 1
-var post_feed = setInterval(function() {
-  var last_update = $(".timeline-info").data('last-post-update')
-  $.ajax({
-       type : 'POST',
-       url  : base_url('post-feed'),
-       headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-       data : {
-         last_update: last_update,
-       },
-    }).done(function (msg) {
-      var thereAreNewPost = msg["thereAreNewPost"];
-      var count = msg['amountOfNewPosts'];
-      if (thereAreNewPost) {
-        $('#new-events').html('View '+ count + " new events.")
-        $('#new-events').parent().parent().show();
-      }
-    });
-
-}, refresh_rate_sec * 10000);
+// var refresh_rate_sec = 1
+// var post_feed = setInterval(function() {
+//   var last_update = $(".timeline-info").data('last-post-update')
+//   $.ajax({
+//        type : 'POST',
+//        url  : base_url('post-feed'),
+//        headers: {
+//           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//         },
+//        data : {
+//          last_update: last_update,
+//        },
+//     }).done(function (msg) {
+//       var thereAreNewPost = msg["thereAreNewPost"];
+//       var count = msg['amountOfNewPosts'];
+//       if (thereAreNewPost) {
+//         $('#new-events').html('View '+ count + " new events.")
+//         $('#new-events').parent().parent().show();
+//       }
+//     });
+//
+// }, refresh_rate_sec * 10000);
 
 
 
