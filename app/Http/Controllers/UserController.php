@@ -111,7 +111,7 @@ class UserController extends Controller
       }else{
         $u->isDark = 0;}
       $u->save();
-      return redirect('/edit/profile');}
+      return back();}
 
 
       public function DeleteAcc(Request $request){
