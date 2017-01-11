@@ -30,6 +30,7 @@ Route::post('/repost/{post}', 'PostController@repost')->name('repost');
 Route::post('/post-feed', 'LiveController@post');
 Route::post('/profileSettings', 'UserController@profileSettings');
 Route::post('/toggleDarkness', 'UserController@toggleDarkness');
+Route::post('/delete-account', 'UserController@DeleteAcc');
 
 
 

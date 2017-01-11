@@ -31,28 +31,10 @@
         50%{background-position:100% 15%}
         100%{background-position:0% 86%}
     }
-
-    .form-container {
-        position: absolute;
-        width: 100%;
-        top: 50%;
-        left: 0;
-        transform: translateY(-50%);
-        background: rgba(0,0,0,0.12);
-        padding: 30px 0;
-        color: white;
-        text-shadow: 1px 1px #504e4e;
-        font-weight: 300;
-    }
-    .btn-outline-primary{
-      width: 100%;
-      color: white;
-      border-color: white;
-    }
 </style>
 <div class="container">
     <div class="row">
-      <div class="form-container">
+      <div id="register-container">
         <form class="col-lg-8 offset-lg-2 col-md-8 offset-md-2" role="form" method="POST" action="{{ url('/register') }}">
             {{ csrf_field() }}
             <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
@@ -108,6 +90,7 @@
                         </span>
                     @endif
             </div>
+            <a href="{{ url('/login') }}" style="font-size: 12px; color:white;">Already have an account?</a>
         <!--<div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-primary">

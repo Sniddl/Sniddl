@@ -19,7 +19,7 @@ class Community extends Model
 
   public function Owner() {
     return User::find($this->id);}
-
+    
 
 
 }//end of class

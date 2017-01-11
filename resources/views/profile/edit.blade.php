@@ -16,13 +16,11 @@
       </div>
   @endif
 
-
-
+@include ('layouts.popups.delete-account')
 
   <div class="ajaxErrors" style="display:none">
     <div class="alert alert-danger" role="alert">
         <ul>
-
         </ul>
     </div>
   </div>
@@ -100,6 +98,20 @@
       </button>
     </div>
 
+    <div class="card card-block">
+      <div class="container">
+        <h5 class="setting-block">Delete your account</h5>
+        <div class="card-collapse collapse" id="delete-account-settings">
+          <div class="card-form">
+            <button type="submit" class="btn btn-danger " data-toggle="modal" data-target="#deleteAccModal" style="width: 100%;">Delete account</button>
+          </div>
+        </div>
+      </div>
+      <button class="card-toggle" data-toggle="collapse" data-target="#delete-account-settings" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+      </button>
+    </div>
+
 
 
     <form action="/toggleDarkness" method="POST">
@@ -111,9 +123,6 @@
       @endif
     </form>
   </div>
-
-
-
 
   <script type="text/javascript">
     function profileSettings() {

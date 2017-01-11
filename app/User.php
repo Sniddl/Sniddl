@@ -34,6 +34,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //protected $dates = ['deleted_at'];
 
     public function Posts(){
         return $this->hasMany('App\Post');}

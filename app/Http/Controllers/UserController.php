@@ -25,8 +25,6 @@ use Storage;
 
 class UserController extends Controller
 {
-
-
     public function getProfile($user, $list = null){
         $user = User::where('username', '=', $user)->first();
         if ($user) {
@@ -115,6 +113,22 @@ class UserController extends Controller
       $u->save();
       return redirect('/edit/profile');}
 
+
+      public function DeleteAcc(Request $request){
+        $u = Auth::user();
+        $this->validate($request, [
+          'password' => 'min:6|confirmed',
+        ]);
+        if(password_verify($request->password,$u->password)){
+            $u->username = '$_'.$u->username;
+            $u->save();
+            Post::where('user_id', '=', $u->id)->delete();
+            Repost::where('op_id', '=', $u->id)->delete();
+            Timeline::where('added_by', '=', $u->id)->delete();
+            User::where('id', '=', $u->id)->delete();
+        }
+        flash('Success! You have deleted your account', 'success');
+        return redirect('/');}
 
 
 

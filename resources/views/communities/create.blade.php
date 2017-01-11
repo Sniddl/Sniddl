@@ -10,7 +10,7 @@
         </ul>
     </div>
 @endif
-<div class="container">
+<div id="create-community" class="container">
   <div class="row">
     <div class="col-sm-6 offset-sm-3">
       <form method="POST" action="/create/c" enctype="multipart/form-data">
@@ -33,7 +33,7 @@
           <p class="help-block">Upload an avatar for your community!</p>
         </div>
         {{ csrf_field() }}
-        <button style="border:none; background-color:#fff; float:right;"><i class="material-icons" style="color:#00d467;">check</i></button>
+        <button style="border:1px solid #a7a7a7; background-color:#e2e2e2; float:right; cursor:pointer;"><i class="material-icons" style="color:#00d467;">Create</i></button>
       </form>
     </div>
     <div class="col-sm-3"></div>

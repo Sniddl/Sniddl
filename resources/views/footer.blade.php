@@ -1,5 +1,3 @@
-<!-- JS -->
-
 <script>
 
   window.laravel = {
@@ -10,6 +8,7 @@
     @endif
   }
 </script>
+<script src="/js/layouts/post.js" charset="utf-8"></script>
 <script src="/js/global.js" charset="utf-8"></script>
 <script src="/js/community.js" charset="utf-8"></script>
 <script src='https://cdn.rawgit.com/admsev/jquery-play-sound/master/jquery.playSound.js'></script>

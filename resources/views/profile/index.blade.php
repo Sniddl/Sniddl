@@ -17,77 +17,13 @@
 <!--⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
   DOES THE PROFILE BELONG TO THE AUTH::USER()
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯-->
-
-
-
-
-
 <style media="screen">
-  .banner-img {
-    height: 33vw;
-    background-color: <?php echo $user->banner_bg_color ?>;
-    background-image: url('<?php echo $user->banner_url ?>');
-    background-position: center center;
-    background-size: cover;
-    position: relative;
-    z-index: 1;
-    top: -10px;
-    left: 0;}
-    .banner-img .avatar {
-      position: absolute;
-      height: 120px;
-      width: 120px;
-      background-position: center;
-      background-size: contain;
-      border-radius: 100%;
-      bottom: -86px;
-      left: 50px;
-      z-index: 2}
-    .banner-img .edit{
-      font-size: 16px;
-      background: rgba(0, 0, 0, 0.17);
-      padding: 6px 10px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      text-decoration: none;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.72);}
-    .sort-ul {
-      background: rgba(255, 255, 255, 0.5);
-      position: relative;
-      top: -10px;
-      width: 100%;
-      z-index: 0;
-      padding-left: 250px;
-      margin-bottom: 40px;}
-      .sort-ul .sort-li {
-        cursor: pointer;
-        box-sizing: border-box;
-        right: 15px;
-        position: relative;
-        padding: 1px 15px 1px;
-        border-bottom: 5px solid transparent;
-        text-align: center;
-        display: inline-block;
-        text-decoration: none;
-        bottom: -5px;}
-        .sort-ul .sort-li:hover{
-          border-bottom: 5px solid blue;}
-        .sort-ul .sort-li .header {
-          font-size: 10px;
-          letter-spacing: 1px;
-          display: block;
-          text-transform: uppercase;
-          color: grey;}
-        .sort-ul .sort-li .number {
-          font-size: 23px;}
-    .sort-ul .friend-btn{
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      right: 50px;}
+.banner-img{
+  background-color: <?php echo $user->banner_bg_color ?>;
+  background-image: url('<?php echo $user->banner_url ?>');
+}
 </style>
+
 
   <div class="banner-img col-lg-12">
     <img class="avatar" src="{{ $user->avatar_url }}" style="background-color:{{$user->avatar_bg_color}};" />

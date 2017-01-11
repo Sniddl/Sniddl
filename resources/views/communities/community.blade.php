@@ -5,7 +5,7 @@
 {{--$getCommunity gets the relevant information depending on the URL entered.--}}
 {{--$owner gets the relevant information on the owner of the community.--}}
 
-<div class="container">
+<div id="community-page" class="container">
   <div class="row">
 {{--Left column--}}
       <div class="col-sm-6">

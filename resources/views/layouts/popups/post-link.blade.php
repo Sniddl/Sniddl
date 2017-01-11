@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h5 class="modal-title text-center" id="myModalLabel">Copy link to post.</h5>
+        <h5 class="modal-title text-center" id="myModalLabel" style="color:#818a91;">Copy link to post.</h5>
       </div>
       <div class="modal-body">
         <div class="form-group">

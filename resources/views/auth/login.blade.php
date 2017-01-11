@@ -32,30 +32,6 @@
         50%{background-position:100% 15%}
         100%{background-position:0% 86%}
     }
-
-    #login-container {
-        position: absolute;
-        width: 100%;
-        top: 50%;
-        left: 0;
-        transform: translateY(-70%);
-        background: rgba(0,0,0,0.12);
-        padding: 30px 0;
-        color: white;
-        text-shadow: 1px 1px #737373;
-        font-weight: 300;
-    }
-
-    #login-container  .form-control{
-      border-radius:0;
-    }
-
-    .btn-outline-primary{
-      width: 100%;
-      color: white;
-      border-color: white;
-      margin-top: 20px;
-    }
 </style>
 
 <div class="container">
@@ -94,6 +70,8 @@
                 </div>
 
         </div>
+
+        <a href="{{ url('/register') }}" style="font-size: 12px; color:white;">Don't have an account?</a>
 
         <div class="form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
           <button type="submit" class="btn btn-outline-primary">Login</button>
