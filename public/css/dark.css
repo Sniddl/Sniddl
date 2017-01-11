@@ -252,6 +252,17 @@ body {
       .navbar button:hover button, .navbar button:hover i, .navbar i:hover button, .navbar i:hover i {
         color: #fff; }
 
+#toggle-theme-dropdown button {
+  border: none;
+  background-color: #fff;
+  padding: 0; }
+
+#toggle-theme-dropdown:hover {
+  border-color: #fff;
+  background-color: transparent; }
+  #toggle-theme-dropdown:hover button, #toggle-theme-dropdown:hover i {
+    color: #dddddd !important; }
+
 .post-block {
   background-color: #333;
   border-color: black; }

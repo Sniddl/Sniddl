@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div id="community-list" class="container">
   <h5>
     Currently there
     @if($communities->count() != 1) are
@@ -14,6 +14,10 @@
     on Sniddl.
   </h5>
   <a href="/create" class="createcommunity">create</a>
+  <hr>
+  <h4>Communities you are a part of</h4>
+  <hr>
+  <h4>All communities on Sniddl</h4>
   <div class="list-group">
     @foreach($communities as $c)
       <a href="/c/{{$c->url}}" class="list-group-item list-group-item-action">

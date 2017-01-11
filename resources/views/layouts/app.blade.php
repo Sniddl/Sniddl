@@ -57,7 +57,14 @@
       <div class="dropdown-menu drop-right" aria-labelledby="dropdownMenuButton">
 
         <a class="dropdown-item" href="/u/{{ Auth::user()->username }}"><i class="fa fa-btn fa-user"></i> View Profile</a>
+
+        <form action="/toggleDarkness" method="post" id="theme-change-nav">
+        {{ csrf_field() }}
+        <a  class="dropdown-item" href="javascript:{}" onclick="document.getElementById('theme-change-nav').submit();"><i class="fa fa-star-half-o"></i> Change Theme</a>
+        </form>
+
         <a class="dropdown-item" href="/edit/profile"><i class="fa fa-btn fa-cog"></i> Edit Profile</a>
+        <hr>
         <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="fa fa-btn fa-sign-out"></i> Logout
         </a>
