@@ -15,8 +15,16 @@
   </h5>
   <a href="/create" class="createcommunity">create</a>
   <hr>
+  @if($OwnerOf->count() > 0)
   <h4>Communities you are a part of</h4>
+  @foreach($OwnerOf as $OwnerOf)
+  <a href="/c/{{$OwnerOf->url}}" class="list-group-item list-group-item-action">
+    <h5 class="list-group-item-heading">{{$OwnerOf->name}} <small style="float:right; color:#909090;">/c/{{$OwnerOf->url}}</small></h5>
+    <p class="list-group-item-text">{{$OwnerOf->description}}</p>
+  </a>
+  @endforeach
   <hr>
+  @endif
   <h4>All communities on Sniddl</h4>
   <div class="list-group">
     @foreach($communities as $c)
