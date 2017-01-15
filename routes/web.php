@@ -31,7 +31,7 @@ Route::post('/post-feed', 'LiveController@post');
 Route::post('/profileSettings', 'UserController@profileSettings');
 Route::post('/toggleDarkness', 'UserController@toggleDarkness');
 Route::post('/delete-account', 'UserController@DeleteAcc');
-Route::post('/joincommunity/{id}', 'CommunityController@Join');
+Route::post('/join_community', 'CommunityController@Join');
 
 
 

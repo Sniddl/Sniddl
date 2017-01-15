@@ -12,9 +12,9 @@
         <img class="img-circle" height="80px" style ="margin-right:10px;" src="{{$getCommunity->avatar}}"/>
         <h3 style="color:#0d0d0d;">{{$getCommunity->name}}</h3>
         <p style="color:#a8a8a8; padding-top:5px;"><b style="padding-right:10px;">URL</b> sniddl.com/c/{{$getCommunity -> url}}</p> <br>
-        <form action="/joincommunity/{{$getCommunity->id}}" method="post">
+        <form action="/join_community" method="post">
           {{ csrf_field() }}
-          <button class="btn btn-primary">Join</button>
+          <button class="btn btn-primary" name="id" value="{{$getCommunity->id}}">Join</button>
         </form>
         <hr>
         <h3 style="text-align:center; color:#529bd5;">Staff</h3>

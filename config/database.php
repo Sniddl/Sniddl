@@ -1,6 +1,9 @@
 <?php
 
+$MAMP = (env('DB_MAMP')) ? '/Applications/MAMP/tmp/mysql/mysql.sock' : null;
 return [
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -44,6 +47,8 @@ return [
     |
     */
 
+
+
     'connections' => [
 
         'sqlite' => [
@@ -64,7 +69,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
-            //'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
+            'unix_socket' => $MAMP,
         ],
 
         'pgsql' => [

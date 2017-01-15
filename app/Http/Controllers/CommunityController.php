@@ -77,8 +77,8 @@ class CommunityController extends Controller
       return view('communities.list', compact('communities', 'OwnerOf'));
     }
 
-    public function Join() {
-      $id = Request::segment(2);
+    public function Join(Request $request) {
+      $id = $request->id;
       if(CommunityMembers::where('user_id', '=', Auth::user()->id)->where('comm_id','=', $id)->exists()){
         return redirect('/404');
       }else{
