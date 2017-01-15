@@ -98,6 +98,7 @@ return [
             'required' => 'Your display name cannot be blank.',
             'alpha_num' => 'Your display name must only contain alphanumeric characters',
             'max' => 'Your display name must be no longer than 50 characters',
+            'regex' => 'You are using illegal characters',
 
         ],
         'currentpassword' => [
