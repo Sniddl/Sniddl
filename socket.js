@@ -1,14 +1,10 @@
 #!/usr/bin/env nodejs
 
 var app   = require('express')();
-var https  = require('https');
+var https  = require('https').Server(app);
 var io    = require('socket.io')(https);
 var Redis = require('ioredis');
 var redis = new Redis();
-var server = https.createServer({
-                key: fs.readFileSync('privkey.pem'),
-                cert: fs.readFileSync('fullchain.pem')
-             },app);
 
 redis.psubscribe('*', function(err, count) {});
 
