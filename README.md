@@ -1,7 +1,7 @@
 # Sniddl
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
-[![Discord](https://discordapp.com/api/guilds/188480422831718400/widget.png)](https://discord.gg/013H0XhKoeCR3IfWr)
+[![Discord](https://discordapp.com/api/guilds/188480422831718400/widget.png)](https://discord.gg/VcQ52EC)
 
 
 
