@@ -19,6 +19,7 @@
   "dependencies": {
     "bootstrap": "4.0.0-alpha.5",
     "express": "^4.14.0",
+    "font-awesome": "^4.7.0",
     "ioredis": "^2.4.3",
     "jquery": "^3.1.1",
     "jquery-ui": "^1.12.1",

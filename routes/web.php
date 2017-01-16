@@ -51,6 +51,10 @@ Route::get('/post/{timeline_id}', 'PostController@url');
 Route::get('/test', function () {
     return view('testphp');
 });
+
+Route::get('/skeleton', function () {
+    return view('skeleton');
+});
 Route::get('/notifications', 'notificationController@each');
 
 

@@ -1,4 +1,37 @@
-@if($timeline->is_repost)
+
+
+
+
+  <div class="header">
+    <img class="image" src="http://placehold.it/300x300"></img>
+      <div class="content">
+        <div class="name">{{ $post->User->display_name }}</div>
+        <a class="username" href="http://google.com">{{ $post->User->username }}</a>
+        <div class="username">+Sniddl</div>
+        <div class="time">1 hour ago</div>
+        <div class="icon"><i class="fa fa-ellipsis-h post-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i></div>
+      </div>
+    </div>
+  <div class="body">
+      <span>Hey</span>
+  </div>
+  <div class="footer">
+    <span class="icon repost"  >
+      <i class="fa fa-retweet"></i> 100k
+    </span>
+    <span class="icon like"  >
+      <i class="fa fa-heart"></i>100k
+    </span>
+    <span class="icon reply" >
+      <i class="fa fa-reply"></i> 100k
+    </span>
+  </div>
+
+
+
+
+
+<!-- @if($timeline->is_repost)
   <div class="reposted-post">
     <i class="fa fa-retweet"></i>
     <a href="/u/{{$timeline->AddedBy()->username}}">{{$timeline->AddedBy()->display_name}} reposted...</a>
@@ -66,4 +99,4 @@
     </div>
   </div>
 </div>
-@endif
+@endif -->

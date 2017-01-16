@@ -12,8 +12,11 @@
 
 
 <!-- CSS -->
+<!-- <link rel="stylesheet" href="/css/sniddl-bones.css"> -->
 <link href="{{ asset('css/dependencies.css') }}" rel="stylesheet" type="text/css" >
 <link href="{{ asset('css/light.css') }}" rel="stylesheet" type="text/css" >
+
+
 @if(Auth::check() && Auth::user()->isDark == 1)
   <link href="{{ asset('css/dark.css') }}" rel="stylesheet" type="text/css" >
 @endif
