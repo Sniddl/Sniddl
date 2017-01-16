@@ -152,7 +152,7 @@ body {
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222;
   padding: 0;
-  margin: 0}
+  margin: 50px 0 0 0}
 
 
 /* Typography
@@ -403,10 +403,10 @@ form {
 }
   @media (max-width: 576px) {
     .hide-sm {
-      visibility: hidden;}}
+      display: none !important;}}
   @media (min-width: 576px) {
     .show-sm {
-      visibility: hidden;}}
+      display: none !important;}}
 
 
 /* Misc
@@ -470,21 +470,28 @@ hr {
           font-size: 20px;
           color: grey;
           position: absolute;
-          top: 27px;
-          right: 0;}
+          top: 40px;
+          right: 10px;}
     .card .body{
       padding: 15px;}
 
     .card .footer{
       padding: 15px;
       border-top: 1px solid #ccc;}
+      span.icon {
+          position: relative;
+          padding-left: 30px;
+          margin-right: 10px;
+      }
       .card .footer .icon i {
         font-size: 16px;
         color: grey;
-        margin: 0 6px 0 20px;}
+        margin: 0 6px 0 20px;
+        position: absolute;
+        left: 0;}
         .icon:hover{
           cursor: pointer;}
-        .footer .icon:first-child i{
+        .footer .icon:first-child {
           margin-left: 0px;}
 
 
@@ -506,6 +513,7 @@ hr {
   border-color: #ccc;
   width: 100vw;
   height: 50px;
+  z-index: 9999;
 }.navigation.top{
   border-width: 0px 0px 1px;
   top: 0;
@@ -523,7 +531,8 @@ hr {
     position: absolute;
     height: inherit;
     top: 0;
-    left: 60px;}
+    left: 60px;
+    width: 100%;}
 .logo {
   position: absolute;
   width: 25px;
@@ -536,12 +545,12 @@ hr {
   background-position: 50% 50%;
   transform: translateX(-50%) translateY(-50%);}
 .icons {
-    background: red;
-    position: absolute;
-    height: inherit;
-    width: 100px;
-    top: 0;
-    right: 60px;}
+  position: absolute;
+  height: inherit;
+  width: 100%;
+  top: 0;
+  text-align: right;
+  right: 60px;}
 @media (max-width: 576px) {
   .user-block {
     left: 14px;}
@@ -560,9 +569,9 @@ hr {
 
 
 .navigation .user-block .avatar {
-    height: 45px;
+    height: 34px;
     background: aliceblue;
-    width: 45px;
+    width: 34px;
     border-radius: 100%;
     position: absolute;
     left: 0;
@@ -571,9 +580,8 @@ hr {
     border: 1px solid rgba(204, 204, 204, 0.19);
 }.user-info {
   position: absolute;
-  left: 50px;
+  left: 40px;
   font-size: 14px;
-  width: 150px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -584,4 +592,58 @@ span.status-color {
     display: inline-block;
     border-radius: 100%;
     bottom: -1px;
+}
+
+.icons-container {
+  width: 34px;
+  height: 34px;
+  background: #eceeef;
+  display: inline-block;
+  position: relative;
+  bottom: -5px;
+  margin: 3px;
+  padding: 0;
+  border: 1px solid #e4e4e4;
+  color: #9E9E9E;
+  border-radius: 3px;
+}
+
+i.fa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translatey(-50%);
+}
+
+.navigation.bottom .icons.left {
+  right: auto;
+    left: 12px;
+    width: 50%;
+    text-align: left;
+    z-index: 10000;
+}
+
+.navigation.bottom .icons.right {
+  left: auto;
+    right: 12px;
+    width: 50%;
+    text-align: right;
+    z-index: 10000;
+}
+
+.navigation.bottom .icons.center {
+  right: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 9999;
+}
+
+a.icons-container.big {
+    width: 80;
+    height: 80px;
+    bottom: 40px;
+    background: #03A9F4;
+    color: white;
+    border-radius: 100%;
 }
