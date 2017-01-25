@@ -96,8 +96,8 @@
           <img class="image" src="http://placehold.it/300x300"></img>
             <div class="content">
               <div class="name">Zeb</div>
-              <a class="username" href="http://google.com">@zebthewizard</a>
-              <div class="username">+Sniddl</div>
+              <!--<a class="username" href="http://google.com">@zebthewizard</a>
+              <div class="username">+Sniddl</div>-->
               <div class="time">1 hour ago</div>
               <div class="icon"><i class="fa fa-ellipsis-h post-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i></div>
             </div>
