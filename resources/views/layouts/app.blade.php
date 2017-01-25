@@ -5,12 +5,72 @@
 @if(Auth::check())
 <!--Global Modals-->
 
-@include ('layouts.popups.create-post')
+
 @include ('layouts.popups.create-reply')
 
 <!--Navigation-->
+<div class="navigation top">
 
-<nav class="navbar navbar-light bg-faded">
+  <div class="user-block">
+    <div class="avatar"></div>
+    <div class="user-info">
+      <div class="name">Zeb</div>
+      <div class="small-text">
+        <span class="status-color green"></span>
+        <span class="status hide-sm">Online | </span>
+        <span class="username">ZebTheWizard</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="logo"></div>
+
+  <div class="icons">
+    <a href="" class="icons-container hide-sm">
+      <i class="fa fa-moon-o"></i>
+    </a>
+    <a href="" class="icons-container hide-sm">
+      <i class="fa fa-bell"></i>
+    </a>
+    <a href="" class="icons-container hide-sm">
+      <i class="fa fa-user"></i>
+    </a>
+    <a href="" class="icons-container hide-sm">
+      <i class="fa fa-users"></i>
+    </a>
+    <a href="" class="icons-container">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+</div>
+
+<div class="navigation bottom show-sm">
+  <div class="icons left">
+    <a href="" class="icons-container show-sm">
+      <i class="fa fa-moon-o"></i>
+    </a>
+    <a href="" class="icons-container show-sm">
+      <i class="fa fa-bell"></i>
+    </a>
+  </div>
+
+  <div class="icons center">
+    <a href="" class="icons-container big show-sm">
+      <i class="fa fa-plus"></i>
+    </a>
+  </div>
+
+  <div class="icons right">
+    <a href="" class="icons-container show-sm">
+      <i class="fa fa-user"></i>
+    </a>
+    <a href="" class="icons-container show-sm">
+      <i class="fa fa-users"></i>
+    </a>
+  </div>
+</div>
+<!-- <nav class="navbar navbar-light bg-faded">
   <ul class="nav navbar-nav">
     <a class="navbar-brand" href="/">Sniddl</a>
       <div class="nav-left" >
@@ -74,7 +134,7 @@
       </div>
     </div>
   </ul>
-</nav>
+</nav> -->
 
 <!--End of navigation-->
 @endif

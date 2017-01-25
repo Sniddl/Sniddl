@@ -1,6 +1,6 @@
 
 <!-- Create Reply Modal -->
-<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div class="modal" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,7 +10,7 @@
         <h4 class="modal-title" style="color:darkgrey">Create a reply</h4>
       </div>
       <div class="modal-body">
-      <form class="" action="/create-reply" method="post">
+      <form class="" action="/create-post" method="post">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <input id="reply-post-id" type="hidden" name="id" value="">
           <div class="form-group">
@@ -24,4 +24,4 @@
       </form>
     </div>
   </div>
-</div>
+</div> -->

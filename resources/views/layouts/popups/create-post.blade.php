@@ -1,26 +1,25 @@
-
-<!-- Create Post Modal -->
-<div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel" style="color:darkgrey">Create a post</h4>
-      </div>
-      <div class="modal-body">
-      <form class="" action="/create-post" method="post">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <div class="form-group">
-          <textarea name="text" class="form-control vresize" rows="5" placeholder="Tell me something exciting"></textarea>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="post-submit">Post</button>
-      </div>
-      </form>
+<!-- <div class="header">
+  <img class="image" src="http://placehold.it/300x300"></img>
+    <div class="content">
+      <div class="name">Zeb</div>
+      <a class="username" href="http://google.com">@zebthewizard</a>
+      <div class="username">+Sniddl</div>
+      <div class="time">1 hour ago</div>
+      <div class="icon"><i class="fa fa-ellipsis-h post-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i></div>
     </div>
   </div>
+<div class="body">
+    <img class="image" src="http://placehold.it/300x300"></img>
+    <span>Create a post</span>
 </div>
+<div class="footer">
+  <span class="icon repost"  >
+    <i class="fa fa-retweet"></i> 100k
+  </span>
+  <span class="icon like"  >
+    <i class="fa fa-heart"></i>100k
+  </span>
+  <span class="icon reply" >
+    <i class="fa fa-reply"></i> 100k
+  </span>
+</div> -->
