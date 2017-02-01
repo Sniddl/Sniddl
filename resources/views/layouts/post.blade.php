@@ -1,31 +1,34 @@
-
-
-
-
-  <div class="header">
-    <img class="image" src="http://placehold.it/300x300"></img>
-      <div class="content">
-        <div class="name">{{ $post->User->display_name }}</div>
-        <a class="username" href="http://google.com">{{ $post->User->username }}</a>
-        <div class="username">+Sniddl</div>
-        <div class="time">1 hour ago</div>
-        <div class="icon"><i class="fa fa-ellipsis-h post-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i></div>
+  <div class="card-item">
+    <div class="info">
+      <img class="post-avatar" src="{{ $post->User->avatar_url }}"></img>
+      <!-- <img class="avatar" height="50px" width="50px" style ="margin-right:10px; background-color:{{$post->User->avatar_bg_color}};" src="{{ $post->User->avatar_url }}"/> -->
+      <div class="right">
+        <div class="post-time">{{ $post->created_at->diffForHumans() }}</div>
       </div>
+      <div class="post-displayname">{{$post->User->display_name}}</div>
+      <div class="post-username">{{$post->User->username}}</div>
+      <div class="post-community"></div>
+
     </div>
-  <div class="body">
-      <span>Hey</span>
   </div>
-  <div class="footer">
-    <span class="icon repost"  >
-      <i class="fa fa-retweet"></i> 100k
+  <div class=" card-item post-text">
+    {{ $post->text }}
+  </div>
+  <div class=" card-item post-icons">
+    <span class="icon repost" data-id="{{$post->id}}" >
+      <i class="fa fa-retweet"></i> {{ $post->reposts()->count() }}
     </span>
-    <span class="icon like"  >
-      <i class="fa fa-heart"></i>100k
+    <span class="icon like" data-id="{{$post->id}}" >
+      <i class="fa fa-heart"></i> {{ $post->likes()->count() }}
     </span>
-    <span class="icon reply" >
-      <i class="fa fa-reply"></i> 100k
+    <span class="icon reply" data-id="{{$post->id}}" data-toggle="modal" data-target="#replyModal" >
+      <i class="fa fa-reply"></i> {{ $post->replies()->count() }}
+    </span>
+    <span class="icon reply pull-right" data-id="{{$post->id}}" data-toggle="modal" data-target="#replyModal" >
+      <i class="fa fa-ellipsis-h"></i>
     </span>
   </div>
+
 
 
 

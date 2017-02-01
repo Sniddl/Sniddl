@@ -3,7 +3,7 @@
 
 
 
-  <div class="col-lg-8 col-md-10 offset-lg-2 offset-md-1" >
+  <div class="c-6 o-3" >
     @if($data['timeline']->count() > 0)
       @foreach ($data['timeline'] as $timeline)
         <!-- Make variable for the posts you are referencing. -->
@@ -16,7 +16,6 @@
       @include('layouts.nothingToShow')
     @endif
   </div>
-  @include('layouts.popups.post-link')
   <script src="/js/layouts/post.js" charset="utf-8"></script>
 
 @endsection

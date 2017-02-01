@@ -33,12 +33,9 @@
         100%{background-position:0% 86%}
     }
 </style>
-
-<div class="container">
-  <div class="row">
-
+<div class="c-6 o-3">
     <div id="login-container">
-      <form class="col-lg-8 offset-lg-2 col-md-8 offset-md-2" action="{{ url('/login') }}" method="post">
+      <form action="{{ url('/login') }}" method="post">
         {{ csrf_field() }}
         <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                 <label for="email">Email Address</label>
@@ -78,7 +75,5 @@
         </div>
       </form>
     </div>
-
-  </div>
 </div>
 @endsection

@@ -35,6 +35,7 @@ class PostController extends Controller
         $post_id = $post->id;
 
         $timeline = new Timeline();
+        $timeline->id = rand_64(11);
         $timeline->post_id = $post_id;
         $timeline->added_by = $user->id;
         $timeline->is_repost = 0;
@@ -65,7 +66,7 @@ class PostController extends Controller
 
 
     public function get(){
-        $timeline = Timeline::orderBy('id', 'DESC')->where('is_reply','=', 0)->get();
+        $timeline = Timeline::orderBy('created_at', 'DESC')->where('is_reply','=', 0)->get();
         return view('showAllPosts', compact('timeline'));}
 
 

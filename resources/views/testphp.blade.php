@@ -1,6 +1,4 @@
 @include('head')
-
-<?php $items=['a','a','a','a','a','a','a','a','a'] ?>
 <link rel="stylesheet" href="/css/sniddl-bones.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <body style="background: #ECEEEF;">
@@ -24,16 +22,19 @@
   <div class="logo"></div>
 
   <div class="icons">
-    <a href="" class="icons-container hide-sm">
+    <form action="/toggleDarkness" method="post" id="theme-change-nav" class="nav-forms">
+      {{ csrf_field() }}
+    <a href="javascript:{}" onclick="document.getElementById('theme-change-nav').submit();" class="icons-container hide-sm">
       <i class="fa fa-moon-o"></i>
     </a>
-    <a href="" class="icons-container hide-sm">
+    </form>
+    <a href="/notifications" class="icons-container hide-sm">
       <i class="fa fa-bell"></i>
     </a>
-    <a href="" class="icons-container hide-sm">
+    <a href="/u/{{ Auth::user()->username }}" class="icons-container hide-sm">
       <i class="fa fa-user"></i>
     </a>
-    <a href="" class="icons-container hide-sm">
+    <a href="/communities" class="icons-container hide-sm">
       <i class="fa fa-users"></i>
     </a>
     <a href="" class="icons-container">
@@ -87,37 +88,18 @@
 
   <div class="container" >
     <div class="row">
-
-@foreach($items as $item)
-
-
       <div class="card">
-        <div class="header">
+        <div class="body create-post-body">
           <img class="image" src="http://placehold.it/300x300"></img>
-            <div class="content">
-              <div class="name">Zeb</div>
-              <!--<a class="username" href="http://google.com">@zebthewizard</a>
-              <div class="username">+Sniddl</div>-->
-              <div class="time">1 hour ago</div>
-              <div class="icon"><i class="fa fa-ellipsis-h post-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i></div>
-            </div>
-          </div>
-        <div class="body">
-            <span>Hey</span>
-        </div>
-        <div class="footer">
-          <span class="icon repost"  >
-            <i class="fa fa-retweet"></i> 100k
-          </span>
-          <span class="icon like"  >
-            <i class="fa fa-heart"></i>100k
-          </span>
-          <span class="icon reply" >
-            <i class="fa fa-reply"></i> 100k
-          </span>
+          <form class="" action="/create-post" method="post">
+          <textarea name="text" class="fullwidth post-textarea" placeholder="Tell the world!" id="exampleMessage"></textarea>
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <input type="submit" value="post" style="float:right; color:#63b992;">
+          </form>
         </div>
       </div>
-@endforeach
+
+      <!-- @include('showAllPosts') -->
 
     </div>
   </div>

@@ -96,41 +96,41 @@
 
 
   @media (min-width: 576px) {
-    .c-1        { width: 5.66666666667%; }
-    .c-2        { width: 14.3333333333%; }
-    .c-3        { width: 23%;            }
-    .c-4        { width: 31.6666666667%; }
-    .c-5        { width: 40.3333333333%; }
-    .c-6        { width: 49%;            }
-    .c-7        { width: 57.6666666667%; }
-    .c-8        { width: 66.3333333333%; }
-    .c-9        { width: 75.0%;          }
-    .c-10       { width: 83.6666666667%; }
-    .c-11       { width: 92.3333333333%; }
+    .c-1        { width: 8.3333333333%;  }
+    .c-2        { width: 16.6666666667%; }
+    .c-3        { width: 25%;            }
+    .c-4        { width: 33.3333333333%; }
+    .c-5        { width: 41.6666666667%; }
+    .c-6        { width: 50%;            }
+    .c-7        { width: 58.3333333333%; }
+    .c-8        { width: 66.6666666667%; }
+    .c-9        { width: 75%;            }
+    .c-10       { width: 83.3333333333%; }
+    .c-11       { width: 91.6666666667%; }
     .c-12       { width: 100%; margin-left: 0; }
 
-    .c-1-third  { width: 32%; }
+    .c-1-third  { width: 33%; }
     .c-2-third  { width: 66%; }
 
-    .c-1-half   { width: 48%; }
+    .c-1-half   { width: 50%; }
 
     /* Offsets */
-    .o-1        { margin-left: 10.66666666667%; }
-    .o-2        { margin-left: 19.3333333333%; }
-    .o-3        { margin-left: 28%;            }
-    .o-4        { margin-left: 36.6666666667%; }
-    .o-5        { margin-left: 45.3333333333%; }
-    .o-6        { margin-left: 54%;            }
-    .o-7        { margin-left: 62.6666666667%; }
-    .o-8        { margin-left: 71.3333333333%; }
-    .o-9        { margin-left: 80.0%;          }
-    .o-10       { margin-left: 88.6666666667%; }
-    .o-11       { margin-left: 97.3333333333%; }
+    .o-1        { margin-left: 8.3333333333%; }
+    .o-2        { margin-left: 16.6666666667%; }
+    .o-3        { margin-left: 25%; }
+    .o-4        { margin-left: 33.3333333333%; }
+    .o-5        { margin-left: 41.6666666667%; }
+    .o-6        { margin-left: 50%;            }
+    .o-7        { margin-left: 58.3333333333%; }
+    .o-8        { margin-left: 66.6666666667%; }
+    .o-9        { margin-left: 75%;          }
+    .o-10       { margin-left: 83.3333333333%; }
+    .o-11       { margin-left: 91.6666666667%; }
 
-    .o-1-third  { margin-left: 36.6666666667%; }
-    .o-2-third  { margin-left: 71.3333333333%; }
+    .o-1-third  { margin-left: 33.3333333333%; }
+    .o-2-third  { margin-left: 66.6666666667%; }
 
-    .o-1-half   { margin-left: 54%; }}
+    .o-1-half   { margin-left: 50%; }}
 
 
 
@@ -149,7 +149,7 @@ body {
   font-size: 2rem; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family:'Lato', sans-serif !important;
   color: #222;
   padding: 0;
   margin: 50px 0 0 0}
@@ -369,9 +369,6 @@ td:last-child {
 
 /* Spacing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-button,
-.button {
-  margin-bottom: 1rem; }
 input,
 textarea,
 select,
@@ -493,7 +490,7 @@ hr {
       color:#a7a7a7;}
       span.icon {
           position: relative;
-          padding-left: 30px;
+          padding-left: 5px;
           margin-right: 10px;
       }
       .card .footer .icon i {
@@ -508,14 +505,19 @@ hr {
         .footer .icon:first-child {
           margin-left: 0px;}
 
+.post-text{
+    padding-left: 65px!important;
+}
 
+.post-icons{
+    padding-left: 65px!important;
+    color: #7b7b7b;
+}
 
-
-
-
-
-
-
+.post-username,
+.post-time{
+    color:#afafaf;
+}
 
 .post-settings{
   color:#9a9a9a;
@@ -666,6 +668,7 @@ a.icons-container.big {
 
 .post-textarea{
   max-height: 200px;
+  max-width: 916px;
   margin-top: 30px;
 }
 
@@ -684,14 +687,13 @@ a.icons-container.big {
   border-radius: 4px;
   box-shadow: none;
   font-size: 1.3rem;
-    font-family: sans-serif;
 }
 
 .card-item {
     padding: 10px 15px;
 }
 
-.avatar {
+.post-avatar {
     height: 40px;
     width: 40px;
     background: red;
@@ -725,4 +727,81 @@ span.icon {
 .right{
   text-align: right;
   float: right;
+}
+
+/*Profile CSS*/
+.banner-img {
+  height: 33vw;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  top: -10px;
+  left: 0;
+}
+  .banner-img .avatar {
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    background-position: center;
+    background-size: contain;
+    border-radius: 100%;
+    bottom: -86px;
+    left: 50px;
+    z-index: 2
+  }
+  .banner-img .edit{
+    font-size: 16px;
+    background: rgba(0, 0, 0, 0.17);
+    padding: 6px 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-decoration: none;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .sort-ul {
+    background: rgba(255, 255, 255, 0.5);
+    position: relative;
+    top: -10px;
+    width: 100%;
+    z-index: 0;
+    padding-left: 250px;
+    margin-bottom: 40px;
+  }
+    .sort-li {
+      cursor: pointer;
+      box-sizing: border-box;
+      right: 15px;
+      position: relative;
+      padding: 1px 15px 1px;
+      border-bottom: 5px solid transparent;
+      text-align: center;
+      display: inline-block;
+      text-decoration: none;
+      bottom: -5px;
+    }
+    .sort-li:hover{
+      border-bottom: 4px solid #3d6278;
+    }
+    .sort-li .header {
+      font-size: 10px;
+      letter-spacing: 1px;
+      display: block;
+      text-transform: uppercase;
+      color: grey;
+    }
+    .sort-li .number {
+      font-size: 23px;
+    }
+    .friend-btn{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 50px;
+    }
+
+.communities-list > tbody{
+  font-size:16px;
 }

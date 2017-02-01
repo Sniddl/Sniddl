@@ -36,5 +36,4 @@
 
 </div>
 <script src="/js/layouts/post.js" charset="utf-8"></script>
-@include('layouts.popups.post-link')
 @endsection

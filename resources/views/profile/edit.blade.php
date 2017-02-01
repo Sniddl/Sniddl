@@ -16,7 +16,6 @@
       </div>
   @endif
 
-@include ('layouts.popups.delete-account')
 
   <div class="ajaxErrors" style="display:none">
     <div class="alert alert-danger" role="alert">
