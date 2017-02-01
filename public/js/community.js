@@ -5,3 +5,5 @@ $( document ).ready(function() {
         $("#comm_url_example").text(this.value);
     });
 });
+
+$('.tabular.menu .item').tab();

@@ -6,15 +6,6 @@
           {!! session('flash_notification.message') !!}
       </div>
   @endif
-  @if (count($errors) > 0)
-      <div class="alert alert-danger" role="alert">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
-  @endif
 
 
   <div class="ajaxErrors" style="display:none">
@@ -24,7 +15,7 @@
     </div>
   </div>
 
-  <div class="container" id="user-settings">
+  <!-- <div class="container" id="user-settings">
 
     <img class="img-circle" height="100px" width="100px" src="{{ Auth::user()->avatar_url }}" style="background-color: {{Auth::user()->avatar_bg_color}}"/>
     <p>
@@ -39,7 +30,7 @@
         <h5 class="setting-block">Profile Settings</h5>
         <div class="card-collapse collapse" id="profile-settings">
 
-          <form class="card-form" action="/profileSettings" method="post" data-success="profileSettings()"><!--  see /js/global.js@ajaxOnClickFunction -->
+          <form class="card-form" action="/profileSettings" method="post" data-success="profileSettings()">
             {{ csrf_field() }}
             <label for="displayname" style="padding-top:15px;">Change display name</label>
               <input type="text" name="displayname" placeholder="{{ Auth::user()->display_name }}"/>
@@ -140,8 +131,73 @@
         $(this).html('<i class="fa fa-angle-double-up" aria-hidden="true"></i>');
       }
     });
-  </script>
+  </script> -->
 
+  <div class="c-6 o-3 profile-settings">
+    <div class="ui tabular menu">
+      <div class="item active" data-tab="General">General</div>
+      <div class="item" data-tab="Appearance">Appearance</div>
+      <div class="item" data-tab="Security">Security</div>
+    </div>
+    @if (count($errors) > 0)
+    <div class="ui error message">
+      <div class="header">
+        Yikes! We found some errors
+      </div>
+      <ul class="list">
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+      </ul>
+    </div>
+    @endif
+    <div class="ui tab active" data-tab="General">
+      <form class="c-6 o-3"action="/profileSettings" method="post" data-success="profileSettings()">
+        {{ csrf_field() }}
+        <label for="ps-displayname">Display Name</label>
+        <input name="displayname" class="fullwidth" type="text" placeholder="{{ Auth::user()->display_name }}" id="ps-displayname">
+        <label for="ps-displayname">Username</label>
+        <input name="username" class="fullwidth" type="text" placeholder="{{ Auth::user()->username }}" id="ps-username">
+        <label for="ps-email">Email</label>
+        <input name="changeemail" class="fullwidth" type="text" placeholder="{{ Auth::user()->email }}" id="ps-email">
+        <input class="pull-right" type="submit" value="Update">
+      </form>
+    </div>
+
+    <div class="ui tab" data-tab="Appearance">
+      <!-- <div class="card card-block">
+        <div class="container">
+          <h5 class="setting-block">Avatar Settings</h5>
+          <div class="card-collapse collapse" id="avatar-settings">
+            <form class="card-form" enctype="multipart/form-data" action="/edit/profile/avatar" method="post" >
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <label for="displayname" style="padding-top:15px;">Upload Avatar</label>
+                <input type="file" name="avatar"/>
+              <input type="submit" class="btn btn-primary " value="Save Changes">
+            </form>
+          </div>
+        </div>
+        <button class="card-toggle" data-toggle="collapse" data-target="#avatar-settings" aria-expanded="false" aria-controls="collapseExample">
+          <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+        </button>
+      </div> -->
+    </div>
+
+    <div class="ui tab" data-tab="Security">
+      <form class="c-6 o-3"action="/profileSettings" method="post" data-success="profileSettings()">
+        {{ csrf_field() }}
+        <label for="ps-currentpassword">Current Password</label>
+        <input name="currentpassword" class="fullwidth" type="password" id="ps-currentpassword">
+        <label for="ps-newpassword">New Password</label>
+        <input name="newpassword" class="fullwidth" type="password" id="ps-newpassword">
+        <label for="ps-verifypassword">Verify New Password</label>
+        <input name="newpassword_confirmation" class="fullwidth" type="password" id="ps-verifypassword">
+        <h4 class="ui horizontal divider header"><i class="lock icon"></i></h4>
+        <input class="pull-right" type="submit" value="Update">
+      </form>
+
+    </div>
+  </div>
 
 
 

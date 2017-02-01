@@ -15,9 +15,11 @@
 <!-- <link href="{{ asset('css/dependencies.css') }}" rel="stylesheet" type="text/css" >
 <link href="{{ asset('css/light.css') }}" rel="stylesheet" type="text/css" > -->
 <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+<link href="{{asset('semantic/semantic.css')}}" rel="stylesheet">
 
 <!-- JS -->
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <script src="{{asset('js/dependencies.js')}}" charset="utf-8"></script>
+<script src="{{asset('semantic/semantic.js')}}" charset="utf-8"></script>
 
 </head>

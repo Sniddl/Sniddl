@@ -269,7 +269,9 @@ select {
   border: 1px solid #D1D1D1;
   border-radius: 4px;
   box-shadow: none;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-size:15px;
+}
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"],
 input[type="number"],
@@ -301,7 +303,8 @@ label,
 legend {
   display: block;
   margin-bottom: .5rem;
-  font-weight: 600; }
+  font-weight: 400;
+  font-size: 15px;}
 fieldset {
   padding: 0;
   border-width: 0; }
@@ -804,4 +807,8 @@ span.icon {
 
 .communities-list > tbody{
   font-size:16px;
+}
+
+.profile-settings{
+  padding-top: 40px;
 }
