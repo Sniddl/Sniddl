@@ -1854,6 +1854,57 @@ button {
   width: 14em;
 }
 
+.avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.card {
+  display: block;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  margin-top: 15px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  box-shadow: none;
+  font-size: 1.3rem;
+  font-family: sans-serif;
+}
+
+.card-item {
+  padding: 10px 15px;
+  cursor: default;
+}
+
+.dropdown {
+  display: block;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  margin-top: 15px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  box-shadow: none;
+  font-size: 1.3rem;
+  font-family: sans-serif;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+  max-width: 50%;
+}
+
 .navigation {
   position: fixed;
   background: white;

@@ -13,6 +13,48 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
+    <style media="screen">
+
+
+
+
+
+
+.info {
+  position: relative;
+  display: inline-block;
+  padding-left: 50px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+span.icon {
+  position: relative;
+  margin: 0 20px;
+  height: 28px;
+  line-height: 28px;
+  cursor: pointer;
+
+}
+.icon .fa {
+  left: -10px;
+}
+
+.right{
+text-align: right;
+float: right;
+}
+
+#nav-dropdown{
+  position: absolute;
+  right: 0;
+  top: 34px;
+  display: none;
+}
+
+
+    </style>
+
 
     <!-- Scripts -->
     <script>
@@ -22,44 +64,59 @@
     </script>
 </head>
 <body>
-
+  <form id="global-form"></form>
 
 
       @if(Auth::check())
           <!--Navigation-->
           <div class="navigation top">
 
-          <div class="user-block">
-            <div class="avatar"></div>
-            <div class="user-info">
-              <div class="name">Zeb</div>
-              <div class="small-text">
-                <span class="status-color green"></span>
-                <span class="status hide-sm">Online | </span>
-                <span class="username">ZebTheWizard</span>
+            <div class="user-block">
+              <div class="avatar"></div>
+              <div class="user-info">
+                <div class="name">{{Auth::user()->display_name}}</div>
+                <div class="small-text">
+                  <span class="status-color green"></span>
+                  <span class="status hide-sm">Online | </span>
+                  <span class="username">{{Auth::user()->username}}</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="logo"></div>
+            <div class="logo"></div>
 
-          <div class="icons">
-            <a href="" class="icons-container hide-sm">
-              <i class="fa fa-moon-o"></i>
-            </a>
-            <a href="" class="icons-container hide-sm">
-              <i class="fa fa-bell"></i>
-            </a>
-            <a href="" class="icons-container hide-sm">
-              <i class="fa fa-user"></i>
-            </a>
-            <a href="" class="icons-container hide-sm">
-              <i class="fa fa-users"></i>
-            </a>
-            <a href="" class="icons-container">
-              <i class="fa fa-bars"></i>
-            </a>
-          </div>
+            <div class="icons">
+              <a href="" class="icons-container hide-sm">
+                <i class="fa fa-moon-o"></i>
+              </a>
+              <a href="" class="icons-container hide-sm">
+                <i class="fa fa-bell"></i>
+              </a>
+              <a href="" class="icons-container hide-sm">
+                <i class="fa fa-user"></i>
+              </a>
+              <a href="" class="icons-container hide-sm">
+                <i class="fa fa-users"></i>
+              </a>
+              <a href="" class="icons-container" data-toggle="#nav-dropdown">
+                <i class="fa fa-bars"></i>
+              </a>
+            </div>
+
+            <div id="nav-dropdown" class="dropdown" >
+              <div class="card-item">
+                <ul>
+                  <li>
+                        <a  data-ajax="true"
+                            data-href="/post"
+                            data-request="POST"
+                            data-json='{"test": "test-value", "test2": "test2-value"}'>
+                            Logout
+                        </a>
+                   </li>
+                </ul>
+              </div>
+            </div>
 
           </div>
 
@@ -90,9 +147,12 @@
           </div>
       @endif
       @yield('content')
-  
+
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script type="text/javascript">
+
+    </script>
 </body>
 </html>
