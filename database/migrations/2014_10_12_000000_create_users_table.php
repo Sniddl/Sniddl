@@ -15,10 +15,13 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('display_name');
             $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->boolean('isDark')->default(0);
+            $table->string('display_name');
+            $table->ipAddress('ip_created');
+            $table->ipAddress('ip_latest');
+            $table->timestamp('ip_updated_at');
+            $table->boolean('is_dark')->default(0);
             $table->string('avatar_url');
             $table->string('avatar_bg_color');
             $table->string('banner_url');
@@ -29,8 +32,6 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
-
-
         });
     }
 
@@ -41,8 +42,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::dropIfExists('users');
     }
-
-
 }

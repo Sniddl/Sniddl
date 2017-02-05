@@ -1,0 +1,125 @@
+/*BUTTON RESET*/
+/* Base */
+
+// .button,
+// button,
+// input[type="submit"],
+// input[type="reset"],
+// input[type="button"]
+//   display: inline-block
+//   height: 38px
+//   padding: 0 30px
+//   color: #555
+//   text-align: center
+//   font-size: 11px
+//   font-weight: 600
+//   line-height: 38px
+//   letter-spacing: .1rem
+//   text-transform: uppercase
+//   text-decoration: none
+//   white-space: nowrap
+//   background-color: transparent
+//   border-radius: 4px
+//   border: 1px solid #bbb
+//   cursor: pointer
+//   box-sizing: border-box
+// .button:hover,
+// button:hover,
+// input[type="submit"]:hover,
+// input[type="reset"]:hover,
+// input[type="button"]:hover,
+// .button:focus,
+// button:focus,
+// input[type="submit"]:focus,
+// input[type="reset"]:focus,
+// input[type="button"]:focus
+//   color: #333
+//   border-color: #888
+//   outline: 0
+// .button.button-primary,
+// button.button-primary,
+// input[type="submit"].button-primary,
+// input[type="reset"].button-primary,
+// input[type="button"].button-primary
+//   color: #FFF
+//   background-color: #33C3F0
+//   border-color: #33C3F0
+// .button.button-primary:hover,
+// button.button-primary:hover,
+// input[type="submit"].button-primary:hover,
+// input[type="reset"].button-primary:hover,
+// input[type="button"].button-primary:hover,
+// .button.button-primary:focus,
+// button.button-primary:focus,
+// input[type="submit"].button-primary:focus,
+// input[type="reset"].button-primary:focus,
+// input[type="button"].button-primary:focus
+//   color: #FFF
+//   background-color: #1EAEDB
+//   border-color: #1EAEDB
+
+
+
+[role="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button
+    -webkit-box-sizing: content-box
+       -moz-box-sizing: content-box
+            box-sizing: content-box
+
+
+/* Reset `button` and button-style `input` default styles */
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button
+    background: none
+    border: 0
+    color: inherit
+    /* cursor: default */
+    font: inherit
+    line-height: normal
+    overflow: visible
+    padding: 0
+    -webkit-appearance: button /* for input */
+    -webkit-user-select: none /* for button */
+       -moz-user-select: none
+        -ms-user-select: none
+
+input::-moz-focus-inner,
+button::-moz-focus-inner
+    border: 0
+    padding: 0
+
+
+/* Make `a` like a button */
+[role="button"]
+    color: inherit
+    cursor: default
+    display: inline-block
+    text-align: center
+    text-decoration: none
+    white-space: pre
+    -webkit-user-select: none
+       -moz-user-select: none
+        -ms-user-select: none
+
+
+
+/* Demo */
+[role="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button
+    background-color: #f0f0f0
+    border: 1px solid rgb(0, 0, 0)
+    border: 1px solid rgba(0, 0, 0, 0.1)
+    border-radius: 0.25em
+    height: 2.5em
+    line-height: 2.5
+    margin: 0.25em
+    padding: 0 1em
+    width: 14em

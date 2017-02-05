@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use Validator;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -23,19 +25,21 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
-     * Where to redirect users after login / registration.
+     * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
+    protected $request;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
+        $this->request = $request;
         $this->middleware('guest');
     }
 
@@ -48,13 +52,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-          'name' => 'min:3|required|max:50|regex:/^[a-zA-Z]+[a-zA-Z0-9\-\_]+(?: [\S]+)*$/',
-          'username' => 'required|unique:users|max:20|alpha_dash',
-          'email' => 'required|email|max:255|unique:users',
-          'password' => 'required|min:6|confirmed',
-          'phone' => 'required|regex:/^[+(0-9)]{1,6}[0-9()\s-]*$/|min:10|max:25',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
         ]);
     }
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -62,30 +65,37 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    protected function create( array $data)
     {
 
+      $r = $this->request;
       $hex = generateHex();
 
-      if (hexInfo($hex, 'contrast') > 130) {
-        //bright color use dark text
-        $textColor =  'black';
-      }else {
-        //dark color use light text
-        $textColor = 'white';
-      }
+        if (hexInfo($hex, 'contrast') > 130) {
+          //bright color use dark text
+          $textColor =  'black';
+        }else {
+          //dark color use light text
+          $textColor = 'white';
+        }
 
+        // This has to be an array because it is passed through middleware that authenticates the user.
+        // normally each column would be it's own parameter like the following...
+        // $user->display_name = 'zebthewizard';
         return User::create([
-            'display_name' => $data['name'],
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'phone' => bcrypt($data['phone']),
-            'avatar_url' => '/uploads/defaults/letters/'.$textColor.'/'.strtolower($data['name'][0]).'.png',
-            'avatar_bg_color' => "#".$hex,
-            'banner_bg_color' => "#".$hex,
-            'banner_url' => '/uploads/defaults/low-poly.png',
-            'confirmation_code' => str_random(30),
+          'display_name'      => $r->name,
+          'username'          => $r->name,
+          'email'             => $r->email,
+          'password'          => bcrypt($r->password),
+          'phone'             => "1234567890",
+          'avatar_url'        => '/uploads/defaults/letters/'.$textColor.'/'.strtolower($r->name[0]).'.png',
+          'avatar_bg_color'   => "#".$hex,
+          'banner_bg_color'   => "#".$hex,
+          'banner_url'        => '/uploads/defaults/low-poly.png',
+          'confirmation_code' => str_random(30),
+          'ip_created'        => $r->ip(),
+          'ip_latest'         => $r->ip(),
+          'ip_updated_at'     => new Carbon,
         ]);
     }
 }

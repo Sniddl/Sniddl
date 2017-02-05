@@ -2,8 +2,8 @@
 ip: "192.168.10.10"
 memory: 2048
 cpus: 1
-hostname: sniddl2
-name: sniddl2
+hostname: sniddl
+name: sniddl
 provider: virtualbox
 
 authorize: ~/.ssh/id_rsa.pub
@@ -12,12 +12,12 @@ keys:
     - ~/.ssh/id_rsa
 
 folders:
-    - map: "/Applications/XAMPP/xamppfiles/htdocs/sniddl2"
-      to: "/home/vagrant/sniddl2"
+    - map: "/Users/zeb/_Code/Sniddl"
+      to: "/home/vagrant/sniddl"
 
 sites:
     - map: homestead.app
-      to: "/home/vagrant/sniddl2/public"
+      to: "/home/vagrant/sniddl/public"
 
 databases:
     - homestead
