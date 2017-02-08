@@ -1,27 +1,19 @@
 @extends('auth.index')
 
 @section('forms')
-
-
-<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+<div class="login">
+  <h1>Sign In</h1>
+  <form class="ui form" role="form" method="POST" action="{{ url('/login') }}">
     {{ csrf_field() }}
-        <label class="">E-Mail Address</label>
-        <input  type="email" class="col-lg-12" name="email" value="{{ old('email') }}" required autofocus>
-
-        <label for="password" class="col-md-4 control-label">Password</label>
-        <input  type="password" class="col-lg-12" name="password" required>
-
-
-
-        <div class="col-lg-12">
-          <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-        </div>
-
-        <button type="submit" class="btn btn-primary">Login</button>
-
-        <a class="btn btn-link" href="{{ url('/password/reset') }}">
-            Forgot Your Password?
-        </a>
-</form>
-
+    <div class="field">
+      <label>Username</label>
+      <input type="text" name="first-name" placeholder="Enter your username">
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" name="last-name" placeholder="Enter your password">
+    </div>
+    <button class="tiny ui button" type="submit">Submit</button>
+  </form>
+</div>
 @endsection

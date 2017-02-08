@@ -2365,3 +2365,58 @@ form {
 .screen-width {
   width: 100vw;
 }
+
+#left-panel img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -75px;
+  margin-left: -75px;
+}
+
+.login {
+  padding-left: 200px;
+  padding-top: 260px;
+  padding-right: 200px;
+}
+
+.login .ui.form .field label {
+  color: #fff;
+  font-size: 16px;
+  padding-bottom: 10px;
+}
+
+.login .ui.form .field input {
+  border: 0;
+  background-color: transparent;
+  border-radius: 0;
+  border-bottom: 1px solid #6b6b6b;
+  color: #fff;
+}
+
+.login .ui.form .field input:focus {
+  border: 0;
+  background-color: transparent;
+  border-radius: 0;
+  border-bottom: 1px solid #63d5c4;
+  color: #fff;
+}
+
+.login h1 {
+  font-weight: 100;
+  padding-bottom: 40px;
+}
+
+.login .ui.form button {
+  background-color: #63d5c4;
+  color: #000;
+  margin-top: 40px;
+}
+
+.login .ui.form button:hover {
+  background-color: #39c7b2;
+  -webkit-transition: 1s;
+  transition: 1s;
+  color: #000;
+  margin-top: 40px;
+}
