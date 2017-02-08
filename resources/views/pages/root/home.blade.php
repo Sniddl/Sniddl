@@ -13,5 +13,15 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+      <form class="" action="/post" method="POST">
+        {{csrf_field()}}
+        <textarea name="text" rows="4" cols="80"></textarea>
+        <input type="submit"  value="Post">
+      </form>
+    </div>
 </div>
+
+@include('pages.posts.index')
 @endsection

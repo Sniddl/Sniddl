@@ -16,8 +16,8 @@ class CreatePostRelatedTables extends Migration
       Schema::create('posts', function (Blueprint $table) {
           $table->increments('id');
           $cs = $table->string('url')->unique();
-          $table->integer('user_id')->unsigned();
-          $table->integer('community_id')->unsigned();
+          $table->integer('user_id')->unsigned()->index();
+          $table->integer('community_id')->unsigned()->index();
           $table->longText('text');
           $table->softDeletes();
           $table->timestamps();
@@ -25,35 +25,40 @@ class CreatePostRelatedTables extends Migration
       });
 
       Schema::create('events', function (Blueprint $table) {
-        $table->integer('post_id')->unsigned();
-        $table->integer('added_by')->unsigned();
+        $table->increments('id');
+        $table->integer('post_id')->unsigned()->index();
+        $table->integer('added_by')->unsigned()->index();
         $table->boolean('is_repost')->default(FALSE);
         $table->boolean('is_reply')->default(FALSE);
         $table->softDeletes();
+        $table->timestamps();
       });
 
 
       Schema::create('reposts', function (Blueprint $table) {
-        $table->integer('post_id')->unsigned();
-        $table->integer('reposter')->unsigned();
-        $table->integer('op')->unsigned();
+        $table->integer('post_id')->unsigned()->index();
+        $table->integer('reposter')->unsigned()->index();
+        $table->integer('op')->unsigned()->index();
         $table->softDeletes();
+        $table->timestamps();
       });
 
 
       Schema::create('replies', function (Blueprint $table) {
-        $table->integer('post_id')->unsigned();
-        $table->integer('user_id')->unsigned();
-        $table->integer('op')->unsigned();
+        $table->integer('post_id')->unsigned()->index();
+        $table->integer('user_id')->unsigned()->index();
+        $table->integer('op')->unsigned()->index();
         $table->softDeletes();
+        $table->timestamps();
       });
 
 
       Schema::create('likes', function (Blueprint $table) {
-        $table->integer('post_id')->unsigned();
-        $table->integer('user_id')->unsigned();
-        $table->integer('parent_id')->unsigned();
+        $table->integer('post_id')->unsigned()->index();
+        $table->integer('user_id')->unsigned()->index();
+        $table->integer('parent_id')->unsigned()->index();
         $table->softDeletes();
+        $table->timestamps();
       });
     }
 

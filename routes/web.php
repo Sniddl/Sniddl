@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Post;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +15,10 @@ use Illuminate\Http\Request;
 
 Route::get('/', function (Request $request) {
     if(Auth::check()){
-      return view('pages.home');
+      $events = \App\Event::orderBy('id', 'DESC')->get();
+      return view('pages.root.home',compact('events'));
     }
-    return view('pages.welcome');
+    return view('pages.root.welcome');
 });
 
 Auth::routes();
@@ -32,6 +34,32 @@ Route::get('/user', function(Request $request){
           ]);
 });
 
+Route::get('/delete', function(Request $r){
+  $post = Post::first();
+  Post::drop($post);
+  return;
+});
+
+
+
 Route::post('/post', function(Request $r){
-  dd($r->all());
+  Post::create([
+    "user_id" => 4,
+    "community_id" => 1,
+    "text" => $r->text
+  ]);
+  return back();
+});
+
+
+
+
+
+Route::get('/createpost', function(Request $r){
+  Post::create([
+    "user_id" => 4,
+    "community_id" => 1,
+    "text" => rand_64(2)
+  ]);
+  return redirect('/post');
 });
