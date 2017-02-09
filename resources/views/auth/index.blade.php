@@ -21,7 +21,7 @@
 
 <div class="container">
   <div class="row">
-    <div id="left-panel" class="screen-height col-md-5"><img src="/uploads/sniddl150.png"></img></div>
+    <div id="left-panel" class="screen-height col-md-5"><img src="/uploads/sniddl200.png"></img></div>
     <div id="right-panel" class="screen-height col-md-7">
       @yield('forms')
     </div>
