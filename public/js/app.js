@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -77,7 +77,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-// require('./bootstrap');
+/*require('./bootstrap');*/
 __webpack_require__(3);
 
 /**
@@ -86,7 +86,7 @@ __webpack_require__(3);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', __webpack_require__(5));
+Vue.component('example', __webpack_require__(6));
 
 var app = new Vue({
   el: '#app'
@@ -104,28 +104,29 @@ var app = new Vue({
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+// <template>
+//     <div class="container">
+//         <div class="row">
+//             <div class="col-md-8 col-md-offset-2">
+//                 <div class="panel panel-default">
+//                     <div class="panel-heading">Example Component</div>
 //
+//                     <div class="panel-body">
+//                         I'm an example component!
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//     </div>
+// </template>
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
+// <script>
 /* harmony default export */ __webpack_exports__["default"] = {
     mounted: function mounted() {
         console.log('Component mounted.');
     }
 };
+// </script>
 
 /***/ }),
 /* 3 */
@@ -143,16 +144,11 @@ $('[data-toggle]').click(function (e) {
   $(target).toggle();
 });
 
-
-
 $('[data-href]').click(function (e) {
   var request = $(this).data("request").toUpperCase();
   var url = $(this).data("href");
   var json = $(this).data("json");
   var ajax = $(this).data("ajax");
-  var success = $(this).data("success");
-  var error = $(this).data("error");
-  window.data_href_clicked_object = this;
 
   e.preventDefault();
 
@@ -162,31 +158,11 @@ $('[data-href]').click(function (e) {
       type: request,
       url: url,
       headers: {
-        'X-CSRF-TOKEN': window.Laravel.csrfToken,
-        'AJAX': true
+        'X-CSRF-TOKEN': window.Laravel.csrfToken
       },
       data: json,
-      success: function s(data) {
-        if(success){
-          var self = window.data_href_clicked_object;
-          eval(success);
-        }else{
-          console.log("%c\
-          Ajax was successful.\n\
-          Write or call code to run by using the 'data-success' or 'data-success' attribute.\n\
-          Use the 'data' object as a parameter to retrieve the Ajax results.",
-          "color:#ccc; font-size: 14px; "
-          );
-          console.log('data:\n',data);
-        }
-
-      },
-      error: function e(data){
-        if(error){
-          eval(error)
-        }else{
-            document.write( data.responseText );
-        }
+      success: function success() {
+        alert('success');
       }
     });
   } else if (request) {
@@ -10440,122 +10416,45 @@ return jQuery;
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var Component = __webpack_require__(6)(
-  /* script */
-  __webpack_require__(2),
-  /* template */
-  __webpack_require__(7),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/home/vagrant/sniddl/resources/assets/js/components/Example.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4847ac70", Component.options)
-  } else {
-    hotAPI.reload("data-v-4847ac70", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
+module.exports = "\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-md-8 col-md-offset-2\">\n            <div class=\"panel panel-default\">\n                <div class=\"panel-heading\">Example Component</div>\n\n                <div class=\"panel-body\">\n                    I'm an example component!\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  scopeId,
-  cssModules
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  // inject cssModules
-  if (cssModules) {
-    var computed = options.computed || (options.computed = {})
-    Object.keys(cssModules).forEach(function (key) {
-      var module = cssModules[key]
-      computed[key] = function () { return module }
-    })
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
+var __vue_script__, __vue_template__
+var __vue_styles__ = {}
+__vue_script__ = __webpack_require__(2)
+if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
+  console.warn("[vue-loader] resources\\assets\\js\\components\\Example.vue: named exports in *.vue files are ignored.")}
+__vue_template__ = __webpack_require__(5)
+module.exports = __vue_script__ || {}
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+if (__vue_template__) {
+__vue_options__.template = __vue_template__
 }
-
+if (!__vue_options__.computed) __vue_options__.computed = {}
+Object.keys(__vue_styles__).forEach(function (key) {
+var module = __vue_styles__[key]
+__vue_options__.computed[key] = function () { return module }
+})
+if (false) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  var id = "_v-5de02e5d/Example.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, __vue_template__)
+  }
+})()}
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "container"
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-8 col-md-offset-2"
-  }, [_c('div', {
-    staticClass: "panel panel-default"
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4847ac70", module.exports)
-  }
-}
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(0);

@@ -12,7 +12,10 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/semantic/semantic.min.css" rel="stylesheet">
 
+    <script type="text/javascript" src="/semantic/semantic.min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
     <style media="screen">
 
 

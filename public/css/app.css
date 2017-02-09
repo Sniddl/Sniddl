@@ -2365,3 +2365,118 @@ form {
 .screen-width {
   width: 100vw;
 }
+
+#left-panel img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -100px;
+}
+
+.welcome-form.login {
+  padding-left: 200px;
+  padding-right: 200px;
+  position: absolute;
+  top: 50%;
+  margin-top: -174px;
+  width: 100%;
+}
+
+.welcome-form.register {
+  padding-left: 200px;
+  padding-right: 200px;
+  position: absolute;
+  top: 50%;
+  margin-top: -292px;
+  width: 100%;
+}
+
+.welcome-form a {
+  color: #63d5c4;
+}
+
+.welcome-form a:hover,
+.welcome-form a:visited,
+.welcome-form a:active {
+  color: #63d5c4;
+}
+
+.welcome-form .ui.form .field label {
+  color: #fff;
+  font-size: 16px;
+  padding-bottom: 10px;
+}
+
+.welcome-form .ui.form .field input {
+  border: 0;
+  background-color: transparent;
+  border-radius: 0;
+  border-bottom: 1px solid #6b6b6b;
+  color: #fff;
+  width: 180px;
+  -webkit-transition: width 1s ease;
+  transition: width 1s ease;
+}
+
+.welcome-form .ui.form .field input::-webkit-input-placeholder {
+  color: #d4d4d4;
+  opacity: 0.6;
+}
+
+.welcome-form .ui.form .field input::-moz-placeholder {
+  color: #e2e2e2;
+  opacity: 0.6;
+}
+
+.welcome-form .ui.form .field input:focus {
+  border: 0;
+  background-color: transparent;
+  border-radius: 0;
+  border-bottom: 1px solid #63d5c4;
+  color: #fff;
+  width: 100%;
+}
+
+.welcome-form h1 {
+  font-weight: 100;
+  padding-bottom: 40px;
+}
+
+.welcome-form .ui.form .inline.fields {
+  padding-top: 40px;
+}
+
+.welcome-form .ui.form button {
+  background-color: #63d5c4;
+  color: #000;
+}
+
+.welcome-form .ui.form button:hover {
+  background-color: #39c7b2;
+  -webkit-transition: 1s;
+  transition: 1s;
+  color: #000;
+}
+
+@media only screen and (max-width: 1005px) {
+  .welcome-form {
+    padding-left: 100px !important;
+    padding-right: 0px !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .welcome-form {
+    padding-left: 100px !important;
+    padding-right: 200px !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .welcome-form {
+    padding-left: 0px !important;
+    padding-top: 0px !important;
+    padding-right: 30px !important;
+  }
+}

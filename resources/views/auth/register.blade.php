@@ -2,31 +2,35 @@
 
 @section('forms')
 
-
-<form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+<div class="welcome-form register">
+  <h1>Sign Up</h1>
+  <form class="ui form" role="form" method="POST" action="{{ url('/login') }}">
     {{ csrf_field() }}
-
-        <label for="password" class="col-md-4 control-label">Name</label>
-        <input  type="text" class="col-lg-12" name="name" required>
-
-        <label class="">E-Mail Address</label>
-        <input  type="email" class="col-lg-12" name="email" value="{{ old('email') }}" required autofocus>
-
-        <label for="password" class="col-md-4 control-label">Password</label>
-        <input  type="password" class="col-lg-12" name="password" required>
-
-        <label for="password" class="col-md-4 control-label">Password</label>
-        <input  type="password" class="col-lg-12" name="password_confirmation" required>
-
-        <div class="col-lg-12">
-          <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-        </div>
-
-        <button type="submit" class="btn btn-primary">Login</button>
-
-        <a class="btn btn-link" href="{{ url('/password/reset') }}">
-            Forgot Your Password?
-        </a>
-</form>
+    <div class="field">
+      <label>Name</label>
+      <input type="text" name="first-name" placeholder="Enter your name">
+    </div>
+    <div class="field">
+      <label>Username</label>
+      <input type="password" name="last-name" placeholder="Enter a username">
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input type="password" name="last-name" placeholder="Enter an email">
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" name="last-name" placeholder="Enter a password">
+    </div>
+    <div class="field">
+      <label>Confirm password</label>
+      <input type="password" name="last-name" placeholder="Confirm your password">
+    </div>
+    <div class="inline fields">
+      <div class="field"><button class="tiny ui button" type="submit">Register</button></div>
+      <div class="field"><a href="/login">Already have an account?</a></div>
+    </div>
+  </form>
+</div>
 
 @endsection
