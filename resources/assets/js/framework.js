@@ -32,7 +32,7 @@ $('[data-href]').click(function(e){
         },
         data: json,
         success: function() {
-          alert('success');
+          console.info('Ajax is successful.');
         }
     });
 

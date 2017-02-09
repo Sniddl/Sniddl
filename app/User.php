@@ -5,11 +5,14 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -85,5 +88,13 @@ class User extends Authenticatable
       return Community_Member::where('user_id','=',$this->id)->get();
     }
 
+    public function drop(){
+      if($this->username[0] != "$"){
+        $this->username = '$'.$this->username;
+        $this->save();
+      }
+      $this->delete();
+
+    }
 
 }

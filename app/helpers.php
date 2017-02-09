@@ -1,4 +1,8 @@
 <?php
+
+
+use Carbon\Carbon;
+
 function rand_64($length){
   return substr(base64_encode(sha1(mt_rand())), 0, $length);
 }
@@ -35,4 +39,10 @@ function hexInfo($hex, $method = null)
         'b' => $b,
             ];
     }
+}
+
+
+function noMicroseconds(){
+  $now = Carbon::now();
+  return Carbon::create($now->year, $now->month, $now->day, $now->hour, $now->minute, $now->second);
 }

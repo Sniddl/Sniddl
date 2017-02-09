@@ -2,6 +2,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
+use App\Event;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,43 +25,32 @@ Route::get('/', function (Request $request) {
 
 Auth::routes();
 
-
-
-Route::get('/user', function(Request $request){
-  $u = \App\User::find(1);
-  return response()
-          ->json([
-            "name" => $u->name,
-            "user" => $u
-          ]);
-});
-
-Route::get('/delete', function(Request $r){
-  $post = Post::first();
-  Post::drop($post);
-  return;
-});
-
-
-
-Route::post('/post', function(Request $r){
-  Post::create([
-    "user_id" => 4,
-    "community_id" => 1,
-    "text" => $r->text
-  ]);
-  return back();
-});
+Route::post('/post', 'PostController@create');
+Route::post('/post/repost', 'PostController@repost')->middleware('ajax');
+Route::post('/post/like', 'PostController@like')->middleware('ajax');
 
 
 
 
 
-Route::get('/createpost', function(Request $r){
-  Post::create([
-    "user_id" => 4,
-    "community_id" => 1,
-    "text" => rand_64(2)
-  ]);
-  return redirect('/post');
-});
+//--------------------------------------------------
+// IGNORE THESE, THEY ARE JUST FOR QUICK TESTS.
+// I STILL NEED THEM THOUGH, SO DON'T DELETE THEM.
+//--------------------------------------------------
+//
+// Route::get('/user', function(Request $request){
+//   $u = \App\User::find(1);
+//   return response()
+//           ->json([
+//             "name" => $u->name,
+//             "user" => $u
+//           ]);
+// });
+//
+// Route::get('/delete', function(Request $r){
+//   $post = Post::find(15);
+//   $e = Event::where('post_id','=', $post->id)
+//             ->where('is_repost','=', TRUE)
+//             ->where('is_reply','=', FALSE)
+//             ->delete();
+// });

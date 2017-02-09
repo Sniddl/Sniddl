@@ -70,6 +70,7 @@ span.icon {
 </style>
 
 
+
 @foreach($events as $event)
 <?php $post = $event->post;?>
 <div class="card" >
@@ -81,8 +82,8 @@ span.icon {
       <div class="right">
         <div class="">{{ $post->created_at->diffForHumans() }}</div>
       </div>
-      <div class="">{{$post->User->display_name}}</div>
-      <div class="">{{$post->User->username}}</div>
+      <div class="">{{$post->user->display_name}}</div>
+      <div class="">{{$post->user->username}}</div>
       <div class="">Commutity</div>
 
     </div>
@@ -91,11 +92,27 @@ span.icon {
     {{ $post->text }}
   </div>
   <div class=" card-item">
-    <span class="icon repost" data-id="{{$post->id}}" >
-      <i class="fa fa-retweet"></i> {{ $post->reposts()->count() }}
+    <span class="icon repost"
+          data-ajax="TRUE"
+          data-href="/post/repost"
+          data-request="POST"
+          data-success='$(self).html(`<i class="fa fa-retweet"></i>` + data.count)'
+          data-json='{
+            "post_id": {{$post->id}}
+          }'>
+          <i class="fa fa-retweet"></i>
+          {{ $post->reposts()->count() }}
     </span>
-    <span class="icon like" data-id="{{$post->id}}" >
-      <i class="fa fa-heart"></i> {{ $post->likes()->count() }}
+    <span class="icon like"
+          data-ajax="TRUE"
+          data-href="/post/like"
+          data-request="POST"
+          data-success='$(self).html(`<i class="fa fa-retweet"></i>` + data.count)'
+          data-json='{
+            "post_id": {{$post->id}}
+          }'>
+          <i class="fa fa-heart"></i>
+          {{ $post->likes()->count() }}
     </span>
     <span class="icon reply" data-id="{{$post->id}}" data-toggle="modal" data-target="#replyModal" >
       <i class="fa fa-reply"></i> {{ $post->replies()->count() }}

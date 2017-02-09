@@ -36,6 +36,7 @@ class CreatePostRelatedTables extends Migration
 
 
       Schema::create('reposts', function (Blueprint $table) {
+        $table->increments('id');
         $table->integer('post_id')->unsigned()->index();
         $table->integer('reposter')->unsigned()->index();
         $table->integer('op')->unsigned()->index();
@@ -45,6 +46,7 @@ class CreatePostRelatedTables extends Migration
 
 
       Schema::create('replies', function (Blueprint $table) {
+        $table->increments('id');
         $table->integer('post_id')->unsigned()->index();
         $table->integer('user_id')->unsigned()->index();
         $table->integer('op')->unsigned()->index();
@@ -54,9 +56,9 @@ class CreatePostRelatedTables extends Migration
 
 
       Schema::create('likes', function (Blueprint $table) {
+        $table->increments('id');
         $table->integer('post_id')->unsigned()->index();
         $table->integer('user_id')->unsigned()->index();
-        $table->integer('parent_id')->unsigned()->index();
         $table->softDeletes();
         $table->timestamps();
       });
