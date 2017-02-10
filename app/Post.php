@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Reply;
 use App\Event;
-use App\Repost;
-use App\Like;
+use App\Vote;
 use Auth;
 use Carbon\Carbon;
 use Exception;
@@ -23,14 +22,28 @@ class Post extends Model
         'user_id',
     ];
 
-    public function likes()
-    {
-        return $this->hasMany('App\Like');
-    }
 
-    public function reposts()
+
+    public function votes()
     {
-        return $this->hasMany('App\Repost');
+        return $this->hasMany('App\Vote');
+    }
+    public function voted($type, $class){
+      $vote = Vote::where('post_id',$this->id)
+                  ->where('voter', Auth::id());
+      if($vote->exists()){
+        if ($vote->first()->type == strtolower($type)){
+          return $class;
+        }
+      }
+    }
+    public function ups()
+    {
+        return $this->votes->where('type','=', 'up');
+    }
+    public function downs()
+    {
+        return $this->votes->where('type','=', 'down');
     }
 
     public function user()
@@ -89,48 +102,53 @@ class Post extends Model
 
 
 
-    public function repost(){
+    public function vote($type){
       // Search all reposts. Even the SoftDeletes.
       // If the repost doesn't exist, then create it.
       // If it does, check if it is deleted.
       // If it is deleted, then restore it.
       // Otherwise, if it already exsists & isn't brand new, then delete it.
+
       $currentTime = noMicroseconds();
-      $repost = Repost::withTrashed()->firstOrCreate([
+      $vote = Vote::withTrashed()->firstOrCreate([
         'post_id' => $this->id,
-        'reposter' => Auth::id(),
+        'voter' => Auth::id(),
         'op' => $this->user->id,
       ]);
-      if($repost->trashed()){
-        $repost->restore();
-        Event::create($this, "repost");
-      }else if ($repost->created_at != $currentTime){
-        Event::drop($repost->post, "repost");
-        $repost->delete();
+      $currentType = $vote->type;
+      $vote->type = $type;
+      $vote->save();
+
+      if($vote->trashed()){
+        $vote->restore();
+        // Event::create($this, "vote");
+      }else if ($vote->created_at != $currentTime && $currentType == $type){
+        // Event::drop($vote->post, "vote");
+        $vote->delete();
       }
     }
 
 
 
 
-    public function like(){
-      // Search all likes. Even the SoftDeletes.
-      // If the likes doesn't exist, then create it.
-      // If it does, check if it is deleted.
-      // If it is deleted, then restore it.
-      // Otherwise, if it already exsists & isn't brand new, then delete it.
-      $currentTime = noMicroseconds();
-      $like = Like::withTrashed()->firstOrCreate([
-        'post_id' => $this->id,
-        'user_id' => Auth::id(),
-      ]);
-      // dd($currentTime, $like->created_at);
-      if($like->trashed()){
-        $like->restore();
-      }else if ($like->created_at != $currentTime){
-        $like->delete();
-      }
-    }
+    // public function like(){
+    //   // Search all likes. Even the SoftDeletes.
+    //   // If the likes doesn't exist, then create it.
+    //   // If it does, check if it is deleted.
+    //   // If it is deleted, then restore it.
+    //   // Otherwise, if it already exsists & isn't brand new, then delete it.
+    //   $currentTime = noMicroseconds();
+    //   $like = Like::withTrashed()->firstOrCreate([
+    //     'post_id' => $this->id,
+    //     'user_id' => Auth::id(),
+    //   ]);
+    //   // dd($currentTime, $like->created_at);
+    //   if($like->trashed()){
+    //     $like->restore();
+    //   }else if ($like->created_at != $currentTime){
+    //     $like->delete();
+    //   }
+    // }
 
 
 

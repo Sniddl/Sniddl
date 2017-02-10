@@ -50,14 +50,14 @@ class Event extends Model
               $reply->restore();}
             break;
 
-          case 'repost':
-            $repost = Event::withTrashed()->firstOrCreate([
+          case 'vote':
+            $vote = Event::withTrashed()->firstOrCreate([
               'post_id' => $p->id,
               'added_by' => Auth::id(),
-              'is_repost' => TRUE
+              'is_vote' => TRUE
             ]);
-            if( $repost->trashed() ){
-              $repost->restore();}
+            if( $vote->trashed() ){
+              $vote->restore();}
             break;
 
           default:

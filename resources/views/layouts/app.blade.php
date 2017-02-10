@@ -14,8 +14,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <link href="/semantic/semantic.min.css" rel="stylesheet">
 
-    <script type="text/javascript" src="/semantic/semantic.min.js"></script>
-    <script type="text/javascript" src="/js/app.js"></script>
+
     <style media="screen">
 
 
@@ -110,10 +109,8 @@ float: right;
               <div class="card-item">
                 <ul>
                   <li>
-                        <a  data-ajax="true"
-                            data-href="/post"
-                            data-request="POST"
-                            data-json='{"test": "test-value", "test2": "test2-value"}'>
+                        <a  data-href="/logout"
+                            data-request="POST">
                             Logout
                         </a>
                    </li>
@@ -149,13 +146,19 @@ float: right;
           </div>
           </div>
       @endif
-      @yield('content')
+
+
+      <div id="content" style="margin-top:60px">
+        @yield('content')
+      </div>
+
 
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/semantic/semantic.min.js"></script>
     <script type="text/javascript">
-
+    
     </script>
 </body>
 </html>

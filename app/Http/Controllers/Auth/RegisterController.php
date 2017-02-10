@@ -52,9 +52,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            // 'display_name' => 'required|max:255',
+            // 'email' => 'required|email|max:255|unique:users',
+            // 'password' => 'required|min:6|confirmed',
         ]);
     }
 
@@ -83,8 +83,8 @@ class RegisterController extends Controller
         // normally each column would be it's own parameter like the following...
         // $user->display_name = 'zebthewizard';
         return User::create([
-          'display_name'      => $r->name,
-          'username'          => $r->name,
+          'display_name'      => $r->display_name,
+          'username'          => $r->username,
           'email'             => $r->email,
           'password'          => bcrypt($r->password),
           'phone'             => "1234567890",

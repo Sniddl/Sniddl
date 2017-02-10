@@ -26,7 +26,7 @@ Route::get('/', function (Request $request) {
 Auth::routes();
 
 Route::post('/post', 'PostController@create');
-Route::post('/post/repost', 'PostController@repost')->middleware('ajax');
+Route::post('/post/vote/{type}', 'PostController@vote')->middleware('ajax');
 Route::post('/post/like', 'PostController@like')->middleware('ajax');
 
 

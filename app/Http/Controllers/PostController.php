@@ -29,14 +29,15 @@ class PostController extends Controller
   }
 
 
-  public function repost(Request $request){
+  public function vote(Request $request, $type){
     $post = Post::find($request->post_id);
-    if ( $post->user_id != Auth::id() ){
-      $post->repost();
-    }
+    // if ( $post->user_id != Auth::id() ){
+      $post->vote($type);
+    // }
     //adds data for ajax.
     $request->request->add([
-      'count'=> $post->reposts()->count(),
+      'ups'=> $post->ups()->count(),
+      'downs'=> $post->downs()->count(),
     ]);
     //if ajax isn't used return back a page.
     return back();

@@ -28,18 +28,19 @@ class CreatePostRelatedTables extends Migration
         $table->increments('id');
         $table->integer('post_id')->unsigned()->index();
         $table->integer('added_by')->unsigned()->index();
-        $table->boolean('is_repost')->default(FALSE);
+        $table->boolean('is_vote')->default(FALSE);
         $table->boolean('is_reply')->default(FALSE);
         $table->softDeletes();
         $table->timestamps();
       });
 
 
-      Schema::create('reposts', function (Blueprint $table) {
+      Schema::create('votes', function (Blueprint $table) {
         $table->increments('id');
         $table->integer('post_id')->unsigned()->index();
-        $table->integer('reposter')->unsigned()->index();
-        $table->integer('op')->unsigned()->index();
+        $table->integer('voter')->unsigned()->index();
+        $table->integer('op')->unsigned()->index(); //leave so we can count total votes
+        $table->string('type')->nullable();
         $table->softDeletes();
         $table->timestamps();
       });
@@ -55,13 +56,13 @@ class CreatePostRelatedTables extends Migration
       });
 
 
-      Schema::create('likes', function (Blueprint $table) {
-        $table->increments('id');
-        $table->integer('post_id')->unsigned()->index();
-        $table->integer('user_id')->unsigned()->index();
-        $table->softDeletes();
-        $table->timestamps();
-      });
+      // Schema::create('likes', function (Blueprint $table) {
+      //   $table->increments('id');
+      //   $table->integer('post_id')->unsigned()->index();
+      //   $table->integer('user_id')->unsigned()->index();
+      //   $table->softDeletes();
+      //   $table->timestamps();
+      // });
     }
 
     /**
@@ -73,8 +74,7 @@ class CreatePostRelatedTables extends Migration
     {
         Schema::dropIfExists('posts');
         Schema::dropIfExists('events');
-        Schema::dropIfExists('likes');
-        Schema::dropIfExists('reposts');
+        Schema::dropIfExists('votes');
         Schema::dropIfExists('replies');
     }
 }
