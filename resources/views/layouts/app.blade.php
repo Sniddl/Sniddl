@@ -1,74 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/semantic/semantic.min.css" rel="stylesheet">
-
-
-    <style media="screen">
-
-
-
-
-
-
-.info {
-  position: relative;
-  display: inline-block;
-  padding-left: 50px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-span.icon {
-  position: relative;
-  margin: 0 20px;
-  height: 28px;
-  line-height: 28px;
-  cursor: pointer;
-
-}
-.icon .fa {
-  left: -10px;
-}
-
-.right{
-text-align: right;
-float: right;
-}
-
-#nav-dropdown{
-  position: absolute;
-  right: 0;
-  top: 34px;
-  display: none;
-}
-
-
-    </style>
-
-
-    <!-- Scripts -->
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
-    </script>
+    @include('layouts.head')
 </head>
 <body>
-  <form id="global-form"></form>
-
-
+  <div id="sniddl">
       @if(Auth::check())
           <!--Navigation-->
           <div class="navigation top">
@@ -109,7 +45,8 @@ float: right;
               <div class="card-item">
                 <ul>
                   <li>
-                        <a  data-href="/logout"
+                        <a  v-href
+                            data-href="/logout"
                             data-request="POST">
                             Logout
                         </a>
@@ -148,17 +85,14 @@ float: right;
       @endif
 
 
-      <div id="content" style="margin-top:60px">
-        @yield('content')
-      </div>
+        <div id="content" style="margin-top:60px">
+          @yield('content')
+        </div>
 
 
 
-    <!-- Scripts -->
-    <script type="text/javascript" src="/js/app.js"></script>
-    <script type="text/javascript" src="/semantic/semantic.min.js"></script>
-    <script type="text/javascript">
-    
-    </script>
+
+  </div>
+    @include('layouts.foot')
 </body>
 </html>

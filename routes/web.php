@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use App\Event;
+use App\JSON;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,9 +29,11 @@ Auth::routes();
 Route::post('/post', 'PostController@create');
 Route::post('/post/vote/{type}', 'PostController@vote')->middleware('ajax');
 Route::post('/post/like', 'PostController@like')->middleware('ajax');
+Route::get('/testing/{view}', function(Request $request, $view){
+  return view('testing.'.$view);
+})->middleware('ajax');
 
-
-
+Route::get('/api/remote/get/{site}', 'JSONController@get')->middleware('ajax');
 
 
 //--------------------------------------------------
@@ -54,3 +57,16 @@ Route::post('/post/like', 'PostController@like')->middleware('ajax');
 //             ->where('is_reply','=', FALSE)
 //             ->delete();
 // });
+
+Route::get('/createJSON', function(){
+  return view('createJSON');
+});
+
+Route::post('/createJSON', function(Request $request){
+  // dd($request->query, $request->url);
+  $added_JSON = json_decode($request->json, true);
+  $url = $request->url.'?'.http_build_query($added_JSON);
+  $requested_JSON = file_get_contents($url);
+  JSON::create($request->name, $request->url, $requested_JSON);
+  dd(json_decode($requested_JSON)) ;
+});
