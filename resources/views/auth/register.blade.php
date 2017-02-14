@@ -7,11 +7,11 @@
     </div>
     <div class="field">
       <label>Username</label>
-      <input type="password" name="last-name" placeholder="Enter a username">
+      <input type="text" name="last-name" placeholder="Enter a username">
     </div>
     <div class="field">
       <label>Email</label>
-      <input type="password" name="last-name" placeholder="Enter an email">
+      <input type="email" name="last-name" placeholder="Enter an email">
     </div>
     <div class="field">
       <label>Password</label>
