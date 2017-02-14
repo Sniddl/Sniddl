@@ -1,10 +1,5 @@
-@extends('auth.index')
-
-@section('forms')
-
 <div class="welcome-form register">
-  <h1>Sign Up</h1>
-  <form class="ui form" role="form" method="POST" action="/register">
+  <form class="ui form" role="form" method="POST" action="{{ url('/login') }}">
     {{ csrf_field() }}
     <div class="field">
       <label>Name</label>
@@ -18,6 +13,7 @@
       <label>Email</label>
       <input type="email" name="email" placeholder="Enter an email">
     </div>
+    </div>
     <div class="field">
       <label>Password</label>
       <input type="password" name="password" placeholder="Enter a password">
@@ -26,13 +22,6 @@
       <label>Confirm password</label>
       <input type="password" name="password_confirmation" placeholder="Confirm your password">
     </div>
-    <div class="inline fields">
-      <div class="field"><button class="tiny ui button" type="submit">Register</button></div>
-      <div class="field"><a href="/login">Already have an account?</a></div>
-    </div>
+    <div class="field"><button class="tiny ui button" type="submit">Sign Up</button></div>
   </form>
-
-
 </div>
-
-@endsection

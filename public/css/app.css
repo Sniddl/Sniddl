@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin);@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700);
 
 @-ms-viewport {
   width: device-width;
@@ -37272,6 +37273,12 @@ a.icons-container.big {
   width: 100vw;
 }
 
+/*Login and Register forms*/
+
+.welcome {
+  font-family: Lato;
+}
+
 #left-panel img {
   position: absolute;
   top: 50%;
@@ -37284,7 +37291,7 @@ a.icons-container.big {
   padding-left: 200px;
   padding-right: 200px;
   position: absolute;
-  top: 50%;
+  top: 55%;
   margin-top: -174px;
   width: 100%;
 }
@@ -37293,7 +37300,7 @@ a.icons-container.big {
   padding-left: 200px;
   padding-right: 200px;
   position: absolute;
-  top: 50%;
+  top: 60%;
   margin-top: -292px;
   width: 100%;
 }
@@ -37349,13 +37356,10 @@ a.icons-container.big {
   padding-bottom: 40px;
 }
 
-.welcome-form .ui.form .inline.fields {
-  padding-top: 40px;
-}
-
 .welcome-form .ui.form button {
   background-color: #63d5c4;
   color: #000;
+  margin-top: 40px;
 }
 
 .welcome-form .ui.form button:hover {
@@ -37365,10 +37369,21 @@ a.icons-container.big {
   color: #000;
 }
 
+@media only screen and (max-width: 1263px) {
+  ul.welcome-tabs {
+    padding-right: 100px;
+  }
+}
+
 @media only screen and (max-width: 1005px) {
   .welcome-form {
     padding-left: 100px !important;
     padding-right: 0px !important;
+  }
+
+  ul.welcome-tabs {
+    padding-left: 100px !important;
+    padding-right: 100px;
   }
 }
 
@@ -37376,6 +37391,10 @@ a.icons-container.big {
   .welcome-form {
     padding-left: 100px !important;
     padding-right: 200px !important;
+  }
+
+  ul.welcome-tabs {
+    padding-left: 100px !important;
   }
 }
 
@@ -37386,3 +37405,53 @@ a.icons-container.big {
     padding-right: 30px !important;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  ul.welcome-tabs {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.current {
+  display: block;
+}
+
+.welcome-tabs {
+  padding-left: 200px;
+  padding-right: 200px;
+  width: 100%;
+}
+
+ul.welcome-tabs {
+  list-style-type: none;
+  overflow: hidden;
+  padding-top: 15%;
+}
+
+ul.welcome-tabs li {
+  float: left;
+  cursor: pointer;
+  padding: 5px 0px 15px 0px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 300;
+}
+
+ul.welcome-tabs li.current {
+  border-bottom: 2px solid #63d5c4;
+}
+
+.or-divide {
+  float: left;
+  padding: 13px 20px 0px 20px;
+  color: #63d5c4;
+  font-family: Lato;
+  font-weight: 300;
+}
+
+/*END OF | Login and Register forms*/

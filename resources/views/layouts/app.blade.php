@@ -1,8 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @include('layouts.head')
+    <!--@include('layouts.head')-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Styles -->
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/semantic/semantic.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/semantic/semantic.min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+
+<style media="screen">
+.info {
+  position: relative;
+  display: inline-block;
+  padding-left: 50px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+span.icon {
+  position: relative;
+  margin: 0 20px;
+  height: 28px;
+  line-height: 28px;
+  cursor: pointer;
+
+}
+.icon .fa {
+  left: -10px;
+}
+
+.right{
+text-align: right;
+float: right;
+}
+
+#nav-dropdown{
+  position: absolute;
+  right: 0;
+  top: 34px;
+  display: none;
+}
+
+
+</style>
+
+
+    <!-- Scripts -->
+<script>
+  window.Laravel = {!! json_encode([
+      'csrfToken' => csrf_token(),
+  ]) !!};
+</script>
 </head>
+
 <body>
   <div id="sniddl">
       @if(Auth::check())
