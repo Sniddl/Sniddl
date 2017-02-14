@@ -14,6 +14,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <link href="/semantic/semantic.min.css" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/semantic/semantic.min.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
     <style media="screen">

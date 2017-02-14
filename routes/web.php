@@ -21,7 +21,9 @@ Route::get('/', function (Request $request) {
     return view('pages.root.welcome');
 });
 
-Auth::routes();
+Route::get('/login', function(Request $request){
+  return view('auth.index');
+});
 
 
 

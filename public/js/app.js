@@ -10445,7 +10445,7 @@ if (false) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), false)
   if (!hotAPI.compatible) return
-  var id = "_v-5de02e5d/Example.vue"
+  var id = "_v-15cf2e7d/Example.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
