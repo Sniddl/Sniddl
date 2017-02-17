@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10344,7 +10344,7 @@ global.$ = global.jQuery = __webpack_require__(0);
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Vue = __webpack_require__(10);
+window.Vue = __webpack_require__(11);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -27495,7 +27495,7 @@ Vue.nextTick(function () {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(11)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(12)(module)))
 
 /***/ }),
 /* 9 */
@@ -27684,7 +27684,8 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 10 */
+/* 10 */,
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36260,7 +36261,7 @@ module.exports = Vue$3;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9), __webpack_require__(1)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -36288,8 +36289,8 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 12 */,
-/* 13 */
+/* 13 */,
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(3);
