@@ -31,6 +31,8 @@ Route::get('/register', function(Request $request){
   return view('auth.index');
 });
 
+Auth::routes();
+
 Route::post('/post', 'PostController@create');
 Route::post('/post/vote/{type}', 'PostController@vote')->middleware('ajax');
 Route::post('/post/like', 'PostController@like')->middleware('ajax');

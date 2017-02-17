@@ -26,6 +26,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+    protected $view = 'auth.index';
 
     /**
      * Create a new controller instance.
@@ -34,6 +35,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        // dd($this->loginView);
         $this->middleware('guest', ['except' => 'logout']);
     }
 }

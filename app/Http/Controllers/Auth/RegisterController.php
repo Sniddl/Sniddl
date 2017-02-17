@@ -30,6 +30,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+    protected $view = 'auth.index';
     protected $request;
 
     /**
