@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10307,8 +10307,8 @@ return jQuery;
 
 //don't comment out bootstrap. It has jquery and stuff in there.
 
-__webpack_require__(5);
 __webpack_require__(6);
+__webpack_require__(7);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -10325,6 +10325,12 @@ __webpack_require__(6);
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {__FRAMEWORK__ = function __FRAMEWORK__() {
@@ -10447,7 +10453,7 @@ __webpack_require__(6);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 
@@ -10459,15 +10465,16 @@ var app = new Vue({
 });
 
 /***/ }),
-/* 7 */,
 /* 8 */,
 /* 9 */,
 /* 10 */,
-/* 11 */
+/* 11 */,
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(2);
-module.exports = __webpack_require__(4);
+__webpack_require__(4);
+module.exports = __webpack_require__(5);
 
 
 /***/ })

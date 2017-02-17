@@ -31,10 +31,11 @@ $('.fa-close').click(function(){
             'AJAX': true
           },
           success: function s(data) {
+            window.data = data;
             $('.img-of-the-day-artist')
               .attr('href', "https://unsplash.com/@"+data.json.user.username)
               .html(data.json.user.first_name + " " + data.json.user.last_name);
-            $('.img-of-the-day').css('background-image','url("'+data.json.urls.full+'")')
+            $('.img-of-the-day').css('background-image','url("'+data.json.urls.small+'")')
             $('.artist-info').show()
           },
           error: function e(data){}

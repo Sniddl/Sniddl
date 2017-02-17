@@ -8,6 +8,7 @@
 <title>{{ config('app.name', 'Laravel') }}</title>
 
 <!-- Styles -->
+<link href="/css/semantic.css" rel="stylesheet">
 <link href="/css/app.css" rel="stylesheet">
 <link href="/css/temp.css" rel="stylesheet">
 <!-- <link href="/semantic/semantic.min.css" rel="stylesheet"> -->

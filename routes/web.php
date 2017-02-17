@@ -27,6 +27,9 @@ Route::get('/', function (Request $request) {
 Route::get('/login', function(Request $request){
   return view('auth.index');
 });
+Route::get('/register', function(Request $request){
+  return view('auth.index');
+});
 
 Route::post('/post', 'PostController@create');
 Route::post('/post/vote/{type}', 'PostController@vote')->middleware('ajax');

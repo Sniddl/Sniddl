@@ -1,5 +1,5 @@
 <div class="welcome-form login">
-  <form class="ui form" role="form" method="POST" action="{{ url('/login') }}">
+  <form class="ui form" role="form" method="POST" action="/login">
     {{ csrf_field() }}
     <div class="field">
       <label>Email</label>

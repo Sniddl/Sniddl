@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10326,7 +10326,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, $) {
-window._ = __webpack_require__(7);
+window._ = __webpack_require__(8);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -10344,7 +10344,7 @@ global.$ = global.jQuery = __webpack_require__(0);
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Vue = __webpack_require__(9);
+window.Vue = __webpack_require__(10);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -10405,7 +10405,8 @@ Vue.nextTick(function () {
 /* 4 */,
 /* 5 */,
 /* 6 */,
-/* 7 */
+/* 7 */,
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -27494,10 +27495,10 @@ Vue.nextTick(function () {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(10)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(11)(module)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -27683,7 +27684,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36256,10 +36257,10 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9), __webpack_require__(1)))
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -36287,8 +36288,8 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 11 */,
-/* 12 */
+/* 12 */,
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(3);

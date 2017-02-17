@@ -55,13 +55,6 @@ float: right;
 
 </style>
 
-
-    <!-- Scripts -->
-<script>
-  window.Laravel = {!! json_encode([
-      'csrfToken' => csrf_token(),
-  ]) !!};
-</script>
 </head>
 
 <body>
@@ -146,9 +139,9 @@ float: right;
       @endif
 
 
-        <div id="content" style="margin-top:60px">
-          @yield('content')
-        </div>
+      <div id="content" style="margin-top:60px">
+        @yield('content')
+      </div>
 
 
 
