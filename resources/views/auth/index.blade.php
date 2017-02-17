@@ -3,20 +3,14 @@
 @section('content')
 
 
-<!-- <div class="img-of-the-day" style="width:400px; position: relative">
-  <img style="width:100%">
-
-</div> -->
-
-
-
 <div class="welcome container">
   <div class="row">
-    <div id="left-panel" class="img-of-the-day screen-height col-md-5">
+    <div id="left-panel" class="img-of-the-day screen-height col-md-5"
+      style="background-image: url('/uploads/images/resources/potd.jpg')">
       <img src="/uploads/sniddl200.png"></img>
       <span class="artist-info">
         Photo by
-        <a class="img-of-the-day-artist" target="_blank"></a>
+        <a class="img-of-the-day-artist"  target="_blank">  </a>
         / <a href="https://unsplash.com">Unsplash</a>
       </span>
     </div>

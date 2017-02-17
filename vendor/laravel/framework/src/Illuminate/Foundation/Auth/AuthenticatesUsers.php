@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 trait AuthenticatesUsers
 {
     use RedirectsUsers, ThrottlesLogins;
-    // protected $loginView = "hello";
 
     /**
      * Show the application's login form.
@@ -17,11 +16,7 @@ trait AuthenticatesUsers
      */
     public function showLoginForm()
     {
-        // if(isset($this->view)){
-        //   return view($this->view);
-        // }
-        // return view('auth.login');
-        return isset($this->view) ? view($this->view) : view('auth.login');
+        return view('auth.login');
     }
 
     /**

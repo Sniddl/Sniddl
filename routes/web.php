@@ -24,12 +24,14 @@ Route::get('/', function (Request $request) {
     return view('pages.root.welcome');
 });
 
-Route::get('/login', function(Request $request){
-  return view('auth.index');
-});
-Route::get('/register', function(Request $request){
-  return view('auth.index');
-});
+// Route::get('/login', function(Request $request){
+//   $unsplash = JSON::where('site', 'unsplash_random')->first();
+//   $json = json_decode($unsplash->json);
+//   return view('auth.index', compact($json));
+// });
+// Route::get('/register', function(Request $request){
+//   return view('auth.index');
+// });
 
 Auth::routes();
 

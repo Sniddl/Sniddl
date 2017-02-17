@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('make:POTD')->everyFiveMinute();
+        $schedule->command('make:POTD')->everyFiveMinutes();
     }
 
     /**

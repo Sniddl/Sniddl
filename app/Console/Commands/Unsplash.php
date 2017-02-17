@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\JSON;
+use Intervention\Image\Facades\Image as Image;
 
 class Unsplash extends Command
 {
@@ -42,7 +43,19 @@ class Unsplash extends Command
       $added_JSON = json_decode($json, true);
       $url = 'https://api.unsplash.com/photos/random?'.http_build_query($added_JSON);
       $requested_JSON = file_get_contents($url);
-      JSON::create('unsplash_random', 'https://api.unsplash.com/photos/random', $requested_JSON);
-      $this->info('Unsplash Picture of the Day stored successfully!');
+      $this->info('API Successful');
+
+      $unsplash = JSON::withTrashed()->firstOrCreate([
+        'site' => 'unsplash_random'
+      ]);
+      $unsplash->json = $requested_JSON;
+      $unsplash->save();
+      $this->info('Cached in Database');
+
+      // $unsplash = JSON::create('unsplash_random', 'https://api.unsplash.com/photos/random', $requested_JSON);
+      $result = json_decode($unsplash->json);
+      $path = $result->urls->raw;
+      Image::make($path)->save(public_path('uploads/images/resources/potd.jpg'));
+      $this->info('Image cached in public storage');
     }
 }

@@ -58,7 +58,7 @@ float: right;
 </head>
 
 <body>
-  <div id="sniddl">
+  <!-- <div id="sniddl"> -->
       @if(Auth::check())
           <!--Navigation-->
           <div class="navigation top">
@@ -146,7 +146,7 @@ float: right;
 
 
 
-  </div>
+  <!-- </div> -->
     @include('layouts.foot')
 </body>
 </html>

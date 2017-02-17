@@ -33,6 +33,10 @@ class RegisterController extends Controller
     protected $view = 'auth.index';
     protected $request;
 
+    public function showRegistrationForm(){
+        return view('auth.index');
+    }
+
     /**
      * Create a new controller instance.
      *

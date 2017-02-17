@@ -1,4 +1,4 @@
-vendor/**/*
+vendor/
 node_modules/
 public/storage
 public/storage.*
@@ -20,8 +20,3 @@ bootstrap/cache/
 .rocketeer/
 
 database.php
-
-
-# Allow
-!vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php
-!vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php
