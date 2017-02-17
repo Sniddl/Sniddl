@@ -18,5 +18,11 @@
     window.Laravel = {!! json_encode([
         'csrfToken' => csrf_token(),
     ]) !!};
+
+window.__SNIDDL_AJAX__ = {
+  data: {!! json_encode([
+      '_token' => csrf_token(),
+  ]) !!}
+};
 </script>
 <script type="text/javascript" src="/js/bootstrap.js"></script>

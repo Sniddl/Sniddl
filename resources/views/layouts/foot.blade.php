@@ -56,5 +56,4 @@ $('.fa-close').click(function(){
 
 
 
-
 </script>

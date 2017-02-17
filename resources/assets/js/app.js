@@ -8,6 +8,7 @@
 //don't comment out bootstrap. It has jquery and stuff in there.
 
 require('./framework');
+require('sniddl-ajax');
 require('./sniddl');
 
 /**
